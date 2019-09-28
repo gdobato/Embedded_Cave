@@ -1,0 +1,26 @@
+image: gcc
+before_script:
+ - apt-get update  --yes
+ - apt-get install --yes cmake
+ 
+Stm32F429_1:
+ stage: build
+ script:
+   - mkdir -p build && cd build
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_1 ../cmake
+   - make
+   
+Stm32L475_1:
+ stage: build 
+ script:
+   - mkdir -p build && cd build
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_1 ../cmake
+   - make
+
+Stm32L475_2:
+ stage: build 
+ script:
+   - mkdir -p build && cd build
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_2 ../cmake
+   - make
+

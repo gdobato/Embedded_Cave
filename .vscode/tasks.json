@@ -1,0 +1,133 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py", "Build" ],
+            "windows": {
+              "command": "python",
+               "args": [ ".\\run.py", "Build" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Rebuild",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py", "Rebuild" ],
+            "windows": {
+              "command": "python",
+               "args": [ ".\\run.py", "Rebuild" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Clean" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Clean" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate: Stm32L475_1",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Generate", "Stm32L475_1" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Generate", "Stm32L475_1" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate: Stm32L475_2",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Generate", "Stm32L475_2" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Generate", "Stm32L475_2" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Generate: Stm32F429_1",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Generate", "Stm32F429_1" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Generate", "Stm32F429_1" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flash in target",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Flash"],
+            "windows": {
+              "command":"python",
+              "args": [ ".\\run.py","Flash"],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+    ]
+}

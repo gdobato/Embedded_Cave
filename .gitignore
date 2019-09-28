@@ -1,0 +1,8 @@
+src/STM32F429I/Makefile
+src/STM32F429I/.mxproject
+build/*
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/MCUPlatform.code-workspace
+

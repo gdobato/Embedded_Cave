@@ -1,0 +1,107 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2018-q4-major/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32F429_1/Stm32F429_1.elf",
+            "name": "LINUX Debug Stm32F429_1",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2018-q4-major/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32F429_1/Stm32F429_1.elf",
+            "name": "WIN Debug Stm32F429_1",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2018-q4-major/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32L475_1/Stm32L475_1.elf",
+            "name": "LINUX Debug Stm32L475_1",
+            "device": "STM32L475",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32L475_2/Stm32L475_2.elf",
+            "name": "LINUX Debug Stm32L475_2",
+            "device": "STM32L475",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32L475_1/Stm32L475_1.elf",
+            "name": "WIN Debug Stm32L475_1",
+            "device": "STM32L475",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/bin/Stm32L475_2/Stm32L475_2.elf",
+            "name": "WIN Debug Stm32L475_2",
+            "device": "STM32L475",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
+            ],
+            "showDevDebugOutput": true,
+        }
+    ],
+    "commands": [
+        {
+            "category": "Cortex-Debug",
+            "command": "cortex-debug.viewDisassembly",
+            "title": "View Disassembly (Function)"
+        },
+        {
+            "category": "Cortex-Debug",
+            "command": "cortex-debug.setForceDisassembly",
+            "title": "Set Force Disassembly"
+        }
+    ],
+}
