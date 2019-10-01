@@ -258,10 +258,10 @@ g_pfnVectors:
 	.thumb_set DebugMon_Handler,Default_Handler
 
 	.weak	PendSV_Handler
-	.thumb_set PendSV_Handler,Default_Handler
+	.thumb_set PendSV_Handler,OsDispatcher
 
 	.weak	SysTick_Handler
-	.thumb_set SysTick_Handler,Default_Handler
+	.thumb_set SysTick_Handler,OsCat2IsrWrapper
 
 	.weak	WWDG_IRQHandler
 	.thumb_set WWDG_IRQHandler,Default_Handler
