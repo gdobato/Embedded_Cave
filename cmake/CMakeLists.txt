@@ -25,15 +25,6 @@ set(CMAKE_CXX_FLAGS        "${CMAKE_C_FLAGS} -fno-exceptions -fno-rtti")
 set(CMAKE_EXE_LINKER_FLAGS "-T${STARTUP_DIR}/${PROJECT_LINKER_SCRIPT_FILE} -Wl,-Map=${DEPLOY_DIR}/${PROJECT}.map,--gc-sections ")
 
 #Generic include directories
-#cmsis
-include_directories(${CMSIS_DIR}/Include)
-#driver
-include_directories(${DRIVER_HAL_DIR}/Inc)
-include_directories(${DRIVER_BAREMETAL_DIR}/Inc)
-#Os
-include_directories(${FREERTOS_DIR}/Source/CMSIS_RTOS)
-include_directories(${FREERTOS_DIR}/Source/include)
-include_directories(${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F)
 #Project Squeleton include
 include_directories(${APP_DIR})
 include_directories(${BSW_DIR})
