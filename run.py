@@ -3,6 +3,10 @@ import os
 import platform
 import sys
 
+#Variables
+ERROR = -1
+PROJECT_LIST = ["Stm32F429_1", "Stm32L475_1", "Stm32L475_2"]
+
 #Check platform
 PLATFORM   =  platform.system()
 if PLATFORM == "Windows":
@@ -37,12 +41,11 @@ def generateFiles(target):
     os.system ('cd build && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + project + ' ../cmake' )
 
 def getTargetInfo():
-  targetInfo       = open('build/target.info','r')
-  return targetInfo
-
-def getTargetProject():
-  targetProject    = getTargetInfo().readlines()[0].strip()
-  return targetProject
+  if(os.path.exists('build/target.info')):
+    targetInfo       = open('build/target.info','r')
+    return targetInfo
+  else:
+    return ERROR
 
 def build():
   if (len(sys.argv) < 3):
@@ -54,11 +57,14 @@ def build():
     os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
 
 def rebuild():
-  target = getTargetProject() 
-  generateFiles(target)
-  makeTarget = target + ".elf"
-  os.system ('cd build && ' + MAKE + ' clean' )
-  os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+  if not (getTargetInfo() == ERROR):
+    target = getTargetInfo().readlines()[0].strip()
+    generateFiles(target)
+    makeTarget = target + ".elf"
+    os.system ('cd build && ' + MAKE + ' clean' )
+    os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+  else:
+    print("no built target found, please build target before")
 
 def clean():
   if PLATFORM == "Windows" :
@@ -67,20 +73,20 @@ def clean():
     os.system ('rm -r build')
   print('build directory cleaned')
 
-def getTargetDebuger():
-  targetDebuger    = getTargetInfo().readlines()[1].strip()
-  return targetDebuger
-
 def flash():
-  targetDebuger = getTargetDebuger()
-  if targetDebuger == "STLINK":
-    targetBinary  = "./build/bin/" + getTargetProject() + "/" + getTargetProject() + ".hex" 
-    if PLATFORM == "Windows" :
-      os.system('ST-LINK_CLI -c SWD -p ' + targetBinary + ' -Rst -Run')
-    else :
-      os.system('st-flash --format ihex write ' + targetBinary)
+  if not (getTargetInfo() == ERROR):
+    targetDebuger = getTargetInfo().readlines()[1].strip()
+    if targetDebuger == "STLINK":
+      target        = getTargetInfo().readlines()[0].strip()
+      targetBinary  = "./build/bin/" + target + "/" + target + ".hex" 
+      if PLATFORM == "Windows" :
+        os.system('ST-LINK_CLI -c SWD -p ' + targetBinary + ' -Rst -Run')
+      else :
+        os.system('st-flash --format ihex write ' + targetBinary)
+    else:
+      print('Debuger not supported')
   else:
-    print('Debuger not supported')
+    print("no built target found, please build target before")
 
 def optionParser(option):
   switcher = {
