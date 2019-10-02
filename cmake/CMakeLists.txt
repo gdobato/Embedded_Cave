@@ -35,16 +35,14 @@ include_directories(${STARTUP_DIR})
 #Output Files
 #Elf File
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DEPLOY_DIR})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DEPLOY_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEPLOY_DIR})
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DEPLOY_DIR})
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEPLOY_DIR})
 add_executable(${PROJECT}.elf      ${PROJECT_FILES})
 
 #Additional output formats
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJCOPY}       -Oihex            ${DEPLOY_DIR}/${PROJECT}.elf    ${DEPLOY_DIR}/${PROJECT}.hex)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJCOPY}       -Obinary          ${DEPLOY_DIR}/${PROJECT}.elf    ${DEPLOY_DIR}/${PROJECT}.bin)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJDUMP}       -d                ${DEPLOY_DIR}/${PROJECT}.elf  > ${DEPLOY_DIR}/${PROJECT}.disa )
-add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
-add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
 
 #Log target info
