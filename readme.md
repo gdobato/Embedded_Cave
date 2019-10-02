@@ -19,13 +19,13 @@
 ```
  python run.py Build [Project Name]
 ```
-## ReBuild Project
+## Rebuild Project
 ```
 python ./run.py Rebuild
 ```
 ## Clean Project
 ```
-python ./run.py Rebuild
+python ./run.py Clean
 ```
 ## Flash software in target
 ```

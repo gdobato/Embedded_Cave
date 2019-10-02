@@ -13,7 +13,7 @@ include_directories(${IOTOS_DIR})
 
 #Files to include
 set(PROJECT_FILES
-  ${STARTUP_DIR}/SysStartup.c
+  ${STARTUP_DIR}/startup_stm32l475xx.s
   ${BSW_DIR}/system/system_stm32l4xx.c
   ${PROJECT_DIR}/main.c
   ${PROJECT_DIR}/tasks.c
