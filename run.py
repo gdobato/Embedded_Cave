@@ -26,10 +26,12 @@ else:
 #Functions defintions
 def usage():
   print('Invalid Option, usage: ') 
-  print(sys.argv[0] + " [Build]   [Project name]")
+  print(sys.argv[0] + " [Build]   [Project]")
   print(sys.argv[0] + " [ReBuild]")
   print(sys.argv[0] + " [Clean]")
   print(sys.argv[0] + " [Flash]")
+  print("Project List: ")
+  print(*PROJECT_LIST)
 
 def generateFiles(target):
   project = str(target)
