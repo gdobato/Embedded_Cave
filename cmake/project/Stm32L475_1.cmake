@@ -57,7 +57,7 @@ set(PROJECT_FILES
 )
 
 #set additional settings
-#set_property(SOURCE ${IOTOS_DIR}/portable/ARM/CM4F/portAsm.s PROPERTY LANGUAGE C)
+set_property(SOURCE ${STARTUP_DIR}/startup_stm32l475xx.s PROPERTY LANGUAGE C)
 
 #set additional information
 set(TARGET_DEBUGER STLINK)

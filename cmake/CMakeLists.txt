@@ -32,9 +32,6 @@ include_directories(${CONFIG_DIR})
 include_directories(${DEBUG_DIR})
 include_directories(${STARTUP_DIR})
 
-#Some trickery to get CMake to deal with our assembler code.
-set_property(SOURCE ${STARTUP_DIR}/${STARTUP_FILE} PROPERTY LANGUAGE C)
-
 #Output Files
 #Elf File
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DEPLOY_DIR})

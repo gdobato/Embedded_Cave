@@ -3,7 +3,6 @@ set(PROJECT_CDEFS "-DSTM32F429xx")
 set(PROJECT_CPU_FLAGS "-mcpu=cortex-m4 -specs=nano.specs -specs=nosys.specs")        
 set(PROJECT_FPU_FLAGS "-mfpu=fpv4-sp-d16 -mfloat-abi=hard")        
 set(PROJECT_LINKER_SCRIPT_FILE "STM32F429ZITx_FLASH.ld ")        
-set(STARTUP_FILE startup_stm32f429xx.s)
 
 #Specific project paths
 set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
@@ -84,7 +83,7 @@ set(PROJECT_FILES
 )
 
 #set additional settings
-#set_property(SOURCE ${IOTOS_DIR}/portable/ARM/CM4F/portAsm.s PROPERTY LANGUAGE C)
+set_property(SOURCE ${STARTUP_DIR}/startup_stm32f429xx.s PROPERTY LANGUAGE C)
 
 #set additional information
 set(TARGET_DEBUGER STLINK)

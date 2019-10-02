@@ -22,29 +22,19 @@ else:
 #Functions defintions
 def usage():
   print('Invalid Option, usage: ') 
-  print(sys.argv[0] + " [Generate] [Project name]")
-  print(sys.argv[0] + " [Build]")
+  print(sys.argv[0] + " [Build]   [Project name]")
   print(sys.argv[0] + " [ReBuild]")
   print(sys.argv[0] + " [Clean]")
   print(sys.argv[0] + " [Flash]")
-  print(sys.argv[0] + " Generate   Stm32L475_2")
-  print(sys.argv[0] + " Build")
-  print(sys.argv[0] + " Rebuild")
-  print(sys.argv[0] + " Clean")
-  print(sys.argv[0] + " Flash")
 
-def generateFiles():
-  if len(sys.argv) < 3 :
-    usage()
-  else: 
-    PROJECT = str(sys.argv[2])
-    if PLATFORM == "Windows" :
-      os.system ('IF NOT EXIST build ( MKDIR build ) ')
-      os.system ('cd build && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + PROJECT + ' ../cmake')
-      os.system ('cd .. ')
-    else :
-      os.system ('mkdir -p build')
-      os.system ('cd build && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + PROJECT + ' ../cmake' )
+def generateFiles(target):
+  project = str(target)
+  if PLATFORM == "Windows" :
+    os.system ('IF NOT EXIST build ( MKDIR build ) ')
+    os.system ('cd build && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + project + ' ../cmake')
+  else :
+    os.system ('mkdir -p build')
+    os.system ('cd build && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + project + ' ../cmake' )
 
 def getTargetInfo():
   targetInfo       = open('build/target.info','r')
@@ -55,12 +45,20 @@ def getTargetProject():
   return targetProject
 
 def build():
-  makeTarget = getTargetProject() + ".elf"
-  os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+  if (len(sys.argv) < 3):
+    usage()
+  else: 
+    target = sys.argv[2]
+    generateFiles(target)
+    makeTarget = target + ".elf"
+    os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
 
 def rebuild():
+  target = getTargetProject() 
+  generateFiles(target)
+  makeTarget = target + ".elf"
   os.system ('cd build && ' + MAKE + ' clean' )
-  build()
+  os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
 
 def clean():
   if PLATFORM == "Windows" :
@@ -86,7 +84,6 @@ def flash():
 
 def optionParser(option):
   switcher = {
-    "Generate" : generateFiles,
     "Build"    : build,
     "Rebuild"  : rebuild,
     "Clean"    : clean,
