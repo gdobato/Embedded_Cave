@@ -78,7 +78,7 @@ void OS_StartOS(OsAppModeType Mode)
     }
     
     /* Init system tick timer */
-    OS_InitTimer();
+    //OS_InitTimer();
     
     /* Start all autostart task */
     for(int tcbIdx = 0; tcbIdx < NB_OF_TASKS; tcbIdx++)
@@ -102,7 +102,7 @@ void OS_StartOS(OsAppModeType Mode)
     ENABLE_INTERRUPTS();
     
     /* Start system tick timer */
-    OS_StartTimer();
+    //OS_StartTimer();
 
     /* Start all relative autostart alarms */
     for(int alarmIdx = 0; alarmIdx < NB_OF_ALARMS; alarmIdx++)

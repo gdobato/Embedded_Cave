@@ -5,16 +5,20 @@ set(PROJECT_FPU_FLAGS "-mfpu=fpv4-sp-d16 -mfloat-abi=hard")
 set(PROJECT_LINKER_SCRIPT_FILE "STM32L475VGTx_FLASH.ld ")        
 
 #Specific project paths
+set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32L4xx_HAL_Driver)
 
 #specific include directories
 include_directories(${CMSIS_DIR}/Device/ST/STM32L4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
+include_directories(${DRIVER_HAL_DIR}/Inc)
+include_directories(${BSW_DIR}/hal)
 include_directories(${IOTOS_DIR})
 
 #Files to include
 set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32l475xx.s
   ${BSW_DIR}/system/system_stm32l4xx.c
+  ${BSW_DIR}/system/system.c
   ${PROJECT_DIR}/main.c
   ${PROJECT_DIR}/tasks.c
   ${IOTOS_DIR}/portable/ARM/CM4F/PortAsm.s
@@ -24,6 +28,16 @@ set(PROJECT_FILES
   ${IOTOS_DIR}/OsEvt.c
   ${IOTOS_DIR}/OsTask.c
   ${IOTOS_DIR}/TCB.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_cortex.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_gpio.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr_ex.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc_ex.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_tim.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_tim_ex.c
+  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_uart.c
   )
 
 #set additional settings

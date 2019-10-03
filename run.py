@@ -103,8 +103,8 @@ def optionParser(option):
 
 #Main Routine
 if len(sys.argv) > 1 :
-  RUN_OPTION = sys.argv[1]
-  optionParser(RUN_OPTION)
+  runOption = sys.argv[1]
+  optionParser(runOption)
 else :
   usage()
 
