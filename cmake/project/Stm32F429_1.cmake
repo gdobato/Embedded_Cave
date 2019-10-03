@@ -21,6 +21,7 @@ include_directories(${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F)
 #Files to include
 set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32f429xx.s
+  ${STARTUP_DIR}/Startup_Init.c
   ${PROJECT_DIR}/main.c
   ${DRIVER_BAREMETAL_DIR}/Src/stm32f4xx_BareMetal_spi.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal_adc.c
@@ -75,7 +76,6 @@ set(PROJECT_FILES
   ${BSW_DIR}/i2c/i2c.c
   ${BSW_DIR}/ltdc/ltdc.c
   ${BSW_DIR}/spi/spi.c
-  ${BSW_DIR}/system/system.c
   ${BSW_DIR}/timer/timer.c
   ${BSW_DIR}/usart/usart.c
   ${APP_DIR}/led/led.cpp

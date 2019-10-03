@@ -11,23 +11,68 @@
 #include "hal/hal.h"
 
 /************************************
+* Preprocessor definitions
+************************************/
+#define VECT_TAB_OFFSET  0x00 /*!< Vector Table base offset field. 
+                                   This value must be a multiple of 0x200. */
+
+/************************************
 * Private variables
 ************************************/
 
 /************************************
 * Private declarations 
 ************************************/
-static void System_ErrorHandler();
-static void SystemClock_Config(void);
+static void Startup_InitCore(void);
+static void Startup_InitClock(void);
+static void Startup_ErrorHandler(void);
 /************************************
 * Implementation 
 ************************************/
-void System_Init(void)
+void Startup_Init(void)
 {
-  SystemClock_Config();
+  Startup_InitCore();
+  Startup_InitClock();
 }
 
-void SystemClock_Config(void)
+static void Startup_InitCore(void)
+{
+  /* FPU settings ------------------------------------------------------------*/
+  #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
+  #endif
+  /* Reset the RCC clock configuration to the default reset state ------------*/
+  /* Set HSION bit */
+  RCC->CR |= (uint32_t)0x00000001;
+
+  /* Reset CFGR register */
+  RCC->CFGR = 0x00000000;
+
+  /* Reset HSEON, CSSON and PLLON bits */
+  RCC->CR &= (uint32_t)0xFEF6FFFF;
+
+  /* Reset PLLCFGR register */
+  RCC->PLLCFGR = 0x24003010;
+
+  /* Reset HSEBYP bit */
+  RCC->CR &= (uint32_t)0xFFFBFFFF;
+
+  /* Disable all interrupts */
+  RCC->CIR = 0x00000000;
+
+#if defined (DATA_IN_ExtSRAM) || defined (DATA_IN_ExtSDRAM)
+  SystemInit_ExtMemCtl(); 
+#endif /* DATA_IN_ExtSRAM || DATA_IN_ExtSDRAM */
+
+  /* Configure the Vector Table location add offset address ------------------*/
+#ifdef VECT_TAB_SRAM
+  SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
+#else
+  SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
+#endif
+}
+
+static void Startup_InitClock(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
@@ -49,7 +94,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLQ = 3;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
-    System_ErrorHandler();
+    Startup_ErrorHandler();
   }
   /** Initializes the CPU, AHB and APB busses clocks 
   */
@@ -62,7 +107,7 @@ void SystemClock_Config(void)
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
-    System_ErrorHandler();
+    Startup_ErrorHandler();
   }
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
   PeriphClkInitStruct.PLLSAI.PLLSAIN = 50;
@@ -70,11 +115,11 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
-    System_ErrorHandler();
+    Startup_ErrorHandler();
   }
 }
 
-static void System_ErrorHandler(void)
+static void Startup_ErrorHandler(void)
 {
   __asm("nop");
 }

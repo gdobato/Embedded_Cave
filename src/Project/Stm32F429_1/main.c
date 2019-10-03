@@ -68,7 +68,6 @@ static void Error_Handler(void);
 int main(void)
 {
   HAL_Init();
-  System_Init();
   Gpio_Init();
   Adc_Init();
   Dma_Init();
