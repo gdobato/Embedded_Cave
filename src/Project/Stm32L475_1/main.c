@@ -36,7 +36,6 @@ static osThreadId ledThread;
 int main(void)
 {
   HAL_Init();
-  System_Init();
   Gpio_Init();
   Usart_Init();
 

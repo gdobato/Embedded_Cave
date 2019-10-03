@@ -88,7 +88,7 @@
 /** @addtogroup STM32L4xx_System_Private_Includes
   * @{
   */
-
+#include "system.h"
 #include "stm32l4xx.h"
 
 #if !defined  (HSE_VALUE)
@@ -155,61 +155,7 @@
   const uint8_t  APBPrescTable[8] =  {0U, 0U, 0U, 0U, 1U, 2U, 3U, 4U};
   const uint32_t MSIRangeTable[12] = {100000U,   200000U,   400000U,   800000U,  1000000U,  2000000U, \
                                       4000000U, 8000000U, 16000000U, 24000000U, 32000000U, 48000000U};
-/**
-  * @}
-  */
 
-/** @addtogroup STM32L4xx_System_Private_FunctionPrototypes
-  * @{
-  */
-
-/**
-  * @}
-  */
-
-/** @addtogroup STM32L4xx_System_Private_Functions
-  * @{
-  */
-
-/**
-  * @brief  Setup the microcontroller system.
-  * @param  None
-  * @retval None
-  */
-
-void SystemInit(void)
-{
-  /* FPU settings ------------------------------------------------------------*/
-  #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
-    SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
-  #endif
-
-  /* Reset the RCC clock configuration to the default reset state ------------*/
-  /* Set MSION bit */
-  RCC->CR |= RCC_CR_MSION;
-
-  /* Reset CFGR register */
-  RCC->CFGR = 0x00000000U;
-
-  /* Reset HSEON, CSSON , HSION, and PLLON bits */
-  RCC->CR &= 0xEAF6FFFFU;
-
-  /* Reset PLLCFGR register */
-  RCC->PLLCFGR = 0x00001000U;
-
-  /* Reset HSEBYP bit */
-  RCC->CR &= 0xFFFBFFFFU;
-
-  /* Disable all interrupts */
-  RCC->CIER = 0x00000000U;
-
-  /* Configure the Vector Table location add offset address ------------------*/
-#ifdef VECT_TAB_SRAM
-  SCB->VTOR = SRAM_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
-#else
-  SCB->VTOR = FLASH_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal FLASH */
-#endif
-}
 
 /**
   * @brief  Update SystemCoreClock variable according to Clock Register Values.
@@ -253,7 +199,7 @@ void SystemInit(void)
   * @param  None
   * @retval None
   */
-void SystemCoreClockUpdate(void)
+void System_CoreClockUpdate(void)
 {
   uint32_t tmp = 0U, msirange = 0U, pllvco = 0U, pllr = 2U, pllsource = 0U, pllm = 2U;
 

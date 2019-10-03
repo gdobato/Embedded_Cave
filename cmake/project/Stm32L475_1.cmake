@@ -21,6 +21,7 @@ include_directories(${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F)
 #Files to include
 set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32l475xx.s
+  ${STARTUP_DIR}/Startup_Init.c
   ${PROJECT_DIR}/main.c
   ${FREERTOS_DIR}/Source/freertos.c
   ${FREERTOS_DIR}/Source/croutine.c
@@ -47,7 +48,6 @@ set(PROJECT_FILES
   ${DEBUG_DIR}/debugThread.c
   ${BSW_DIR}/gpio/gpio.c
   ${BSW_DIR}/hal/stm32l4xx_hal_msp.c
-  ${BSW_DIR}/system/system.c
   ${BSW_DIR}/system/stm32l4xx_it.c
   ${BSW_DIR}/system/system_stm32l4xx.c
   ${BSW_DIR}/timer/timer.c

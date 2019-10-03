@@ -12,34 +12,31 @@ include_directories(${CMSIS_DIR}/Device/ST/STM32L4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
 include_directories(${DRIVER_HAL_DIR}/Inc)
 include_directories(${BSW_DIR}/hal)
-include_directories(${IOTOS_DIR})
+include_directories(${OSEK_DIR})
 
 #Files to include
 set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32l475xx.s
   ${STARTUP_DIR}/Startup_Init.c
-  ${PROJECT_DIR}/main.c
-  ${PROJECT_DIR}/tasks.c
-  ${IOTOS_DIR}/portable/ARM/CM4F/PortAsm.s
-  ${IOTOS_DIR}/portable/ARM/CM4F/Port.c
-  ${IOTOS_DIR}/Os.c
-  ${IOTOS_DIR}/OsAlarm.c
-  ${IOTOS_DIR}/OsEvt.c
-  ${IOTOS_DIR}/OsTask.c
-  ${IOTOS_DIR}/TCB.c
+  ${OSEK_DIR}/portable/ARM/CM4F/PortAsm.s
+  ${OSEK_DIR}/portable/ARM/CM4F/Port.c
+  ${OSEK_DIR}/Os.c
+  ${OSEK_DIR}/OsAlarm.c
+  ${OSEK_DIR}/OsEvt.c
+  ${OSEK_DIR}/OsTask.c
+  ${OSEK_DIR}/TCB.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_cortex.c
-  #${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_gpio.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr_ex.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc.c
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc_ex.c
-  #${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_tim_ex.c
-  #${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_uart.c
+  ${PROJECT_DIR}/main.c
+  ${PROJECT_DIR}/tasks.c
   )
 
 #set additional settings
-set_property(SOURCE ${IOTOS_DIR}/portable/ARM/CM4F/PortAsm.s PROPERTY LANGUAGE C)
+set_property(SOURCE ${OSEK_DIR}/portable/ARM/CM4F/PortAsm.s  PROPERTY LANGUAGE C)
 set_property(SOURCE ${STARTUP_DIR}/startup_stm32l475xx.s     PROPERTY LANGUAGE C)
 
 #set additional information
