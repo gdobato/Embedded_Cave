@@ -5,7 +5,7 @@ import sys
 
 #Variables
 ERROR = -1
-PROJECT_LIST = ["Stm32F429_1", "Stm32L475_1", "Stm32L475_2"]
+PROJECT_LIST = ["Stm32F429_FreeRTOS", "Stm32L475_FreeRTOS","Stm32L475_IoTOS","Stm32L475_Osek"]
 
 #Check platform
 PLATFORM   =  platform.system()

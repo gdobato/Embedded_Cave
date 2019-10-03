@@ -4,16 +4,16 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build: Stm32F429_1",
+            "label": "Build: Stm32F429_FreeRTOS",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
              },
             "command": "python",
-            "args": [ "./run.py","Build", "Stm32F429_1" ],
+            "args": [ "./run.py","Build", "Stm32F429_FreeRTOS" ],
             "windows": {
               "command": "python",
-              "args": [ ".\\run.py","Build", "Stm32F429_1" ],
+              "args": [ ".\\run.py","Build", "Stm32F429_FreeRTOS" ],
             },
             "group": {
                 "kind": "build",
@@ -22,16 +22,16 @@
             "problemMatcher": []
         },
         {
-            "label": "Build: Stm32L475_1",
+            "label": "Build: Stm32L475_FreeRTOS",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
              },
             "command": "python",
-            "args": [ "./run.py","Build", "Stm32L475_1" ],
+            "args": [ "./run.py","Build", "Stm32L475_FreeRTOS" ],
             "windows": {
               "command": "python",
-              "args": [ ".\\run.py","Build", "Stm32L475_1" ],
+              "args": [ ".\\run.py","Build", "Stm32L475_FreeRTOS" ],
             },
             "group": {
                 "kind": "build",
@@ -40,16 +40,34 @@
             "problemMatcher": []
         },
         {
-            "label": "Build: Stm32L475_2",
+            "label": "Build: Stm32L475_Osek",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
              },
             "command": "python",
-            "args": [ "./run.py","Build", "Stm32L475_2" ],
+            "args": [ "./run.py","Build", "Stm32L475_Osek" ],
             "windows": {
               "command": "python",
-              "args": [ ".\\run.py","Build", "Stm32L475_2" ],
+              "args": [ ".\\run.py","Build", "Stm32L475_Osek" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Stm32L475_IoTOS",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "python",
+            "args": [ "./run.py","Build", "Stm32L475_IoTOS" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32L475_IoTOS" ],
             },
             "group": {
                 "kind": "build",
