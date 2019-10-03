@@ -8,7 +8,9 @@
 /************************************
 * Includes
 ************************************/
-
+#include <OsAPIs.h>
+//#include <core_cm4.h>
+#include <system/system.h>
 /************************************
 * Private definitions 
 ************************************/
@@ -27,11 +29,8 @@
 
 int main(void)
 {
-  while (1)
-  { 
-    __asm("nop");
-  }
-
+  System_Init();
+  OS_StartOS(APP_MODE_DEFAULT);
   return 0;
 }
 

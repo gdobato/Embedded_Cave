@@ -3,7 +3,6 @@ set(PROJECT_CDEFS "-DSTM32F429xx")
 set(PROJECT_CPU_FLAGS "-mcpu=cortex-m4 -specs=nano.specs -specs=nosys.specs")        
 set(PROJECT_FPU_FLAGS "-mfpu=fpv4-sp-d16 -mfloat-abi=hard")        
 set(PROJECT_LINKER_SCRIPT_FILE "STM32F429ZITx_FLASH.ld ")        
-set(STARTUP_FILE startup_stm32f429xx.s)
 
 #Specific project paths
 set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
@@ -12,6 +11,12 @@ set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 #Paths to include
 include_directories(${BSW_DIR}/hal)
 include_directories(${CMSIS_DIR}/Device/ST/STM32F4xx/Include)
+include_directories(${CMSIS_DIR}/Include)
+include_directories(${DRIVER_HAL_DIR}/Inc)
+include_directories(${DRIVER_BAREMETAL_DIR}/Inc)
+include_directories(${FREERTOS_DIR}/Source/CMSIS_RTOS)
+include_directories(${FREERTOS_DIR}/Source/include)
+include_directories(${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F)
 
 #Files to include
 set(PROJECT_FILES
@@ -76,6 +81,9 @@ set(PROJECT_FILES
   ${APP_DIR}/led/led.cpp
   ${APP_DIR}/led/ledThread.cpp
 )
+
+#set additional settings
+set_property(SOURCE ${STARTUP_DIR}/startup_stm32f429xx.s PROPERTY LANGUAGE C)
 
 #set additional information
 set(TARGET_DEBUGER STLINK)

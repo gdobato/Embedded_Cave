@@ -25,15 +25,6 @@ set(CMAKE_CXX_FLAGS        "${CMAKE_C_FLAGS} -fno-exceptions -fno-rtti")
 set(CMAKE_EXE_LINKER_FLAGS "-T${STARTUP_DIR}/${PROJECT_LINKER_SCRIPT_FILE} -Wl,-Map=${DEPLOY_DIR}/${PROJECT}.map,--gc-sections ")
 
 #Generic include directories
-#cmsis
-include_directories(${CMSIS_DIR}/Include)
-#driver
-include_directories(${DRIVER_HAL_DIR}/Inc)
-include_directories(${DRIVER_BAREMETAL_DIR}/Inc)
-#Os
-include_directories(${FREERTOS_DIR}/Source/CMSIS_RTOS)
-include_directories(${FREERTOS_DIR}/Source/include)
-include_directories(${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F)
 #Project Squeleton include
 include_directories(${APP_DIR})
 include_directories(${BSW_DIR})
@@ -41,22 +32,17 @@ include_directories(${CONFIG_DIR})
 include_directories(${DEBUG_DIR})
 include_directories(${STARTUP_DIR})
 
-#Some trickery to get CMake to deal with our assembler code.
-set_property(SOURCE ${STARTUP_DIR}/${STARTUP_FILE} PROPERTY LANGUAGE C)
-
 #Output Files
 #Elf File
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DEPLOY_DIR})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DEPLOY_DIR})
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEPLOY_DIR})
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${DEPLOY_DIR})
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEPLOY_DIR})
 add_executable(${PROJECT}.elf      ${PROJECT_FILES})
 
 #Additional output formats
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJCOPY}       -Oihex            ${DEPLOY_DIR}/${PROJECT}.elf    ${DEPLOY_DIR}/${PROJECT}.hex)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJCOPY}       -Obinary          ${DEPLOY_DIR}/${PROJECT}.elf    ${DEPLOY_DIR}/${PROJECT}.bin)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJDUMP}       -d                ${DEPLOY_DIR}/${PROJECT}.elf  > ${DEPLOY_DIR}/${PROJECT}.disa )
-add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
-add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
 
 #Log target info

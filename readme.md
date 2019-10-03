@@ -15,15 +15,18 @@
 4. Python: sudo apt-get install python
 6. OpenOCD:sudo apt-get install openocd 
 
-## Generate Project 
+## Build Project 
 ```
- python run.py Generate [Project Name]
+ python run.py Build [Project Name]
 ```
-## Build target 
+## Rebuild Project
 ```
-python ./run.py Build
+python ./run.py Rebuild
 ```
-
+## Clean Project
+```
+python ./run.py Clean
+```
 ## Flash software in target
 ```
 python ./run.py Flash
