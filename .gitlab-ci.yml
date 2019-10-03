@@ -3,24 +3,30 @@ before_script:
  - apt-get update  --yes
  - apt-get install --yes cmake
  
-Stm32F429_1:
+Stm32F429_FreeRTOS:
  stage: build
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_1 ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../cmake
    - make
    
-Stm32L475_1:
+Stm32L475_FreeRTOS:
  stage: build 
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_1 ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../cmake
    - make
 
-Stm32L475_2:
+Stm32L475_Osek:
  stage: build 
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_2 ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../cmake
    - make
 
+Stm32L475_IoTOS:
+ stage: build 
+ script:
+   - mkdir -p build && cd build
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../cmake
+   - make
