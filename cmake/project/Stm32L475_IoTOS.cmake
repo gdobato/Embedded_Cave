@@ -16,10 +16,10 @@ include_directories(${IOTOS_DIR})
 
 #Files to include
 set(PROJECT_FILES
-  ${CMSIS_DIR}/Device/ST/STM32L4xx/Source/Templates/system_stm32l4xx.c
   ${STARTUP_DIR}/startup_stm32l475xx.s
+  ${CMSIS_DIR}/Device/ST/STM32L4xx/Source/Templates/system_stm32l4xx.c
   ${IOTOS_DIR}/portable/ARM/CM4F/Port.c
-  ${IOTOS_DIR}/test.c
+  ${IOTOS_DIR}/Os.c
   ${PROJECT_DIR}/main.c
   )
 
