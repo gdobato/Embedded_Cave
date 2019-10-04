@@ -52,7 +52,7 @@ static void Startup_InitClock(void);
 void Startup_Init(void)
 {
   Startup_InitCore();
-  Startup_InitClock();
+  //Startup_InitClock();
 }
 
 static void Startup_InitCore(void)
