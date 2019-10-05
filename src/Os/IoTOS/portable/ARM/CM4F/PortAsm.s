@@ -40,7 +40,7 @@
   bl.w OS_Dispatcher   /* Call the dispatcher to switch the context */
   mov r13,r0           /* Setup the new stack pointer               */
   pop {r4 - r11, lr}   /* Restore the saved context                 */
-  cpsie i	       /* Unlock the dispatcher                     */
+  cpsie i	             /* Unlock the dispatcher                     */
   bx lr
 
   //------------------------------------------------------------------------------------------------------------------

@@ -4,6 +4,7 @@
   #include <portable/ARM/CM4F/Port.h>
 #endif
 
+
 void OsStart(void)
 {
 
@@ -17,4 +18,5 @@ void test_PendSVHandler (void)
 void test_SystickHandler (void)
 {
   __asm("nop");
+  PortContextSwitch();
 }

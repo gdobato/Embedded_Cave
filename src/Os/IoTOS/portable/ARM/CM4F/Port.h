@@ -11,7 +11,7 @@
  * 
  */
 
-void OsPortContextSwitch(void);
-void OsPortCyclicCheck(void);
+void PortContextSwitch(void);
+void PortCyclicCheck(void);
 
 #endif
