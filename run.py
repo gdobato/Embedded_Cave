@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #Modules Import
 import os
 import platform

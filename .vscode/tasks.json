@@ -9,7 +9,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Build", "Stm32F429_FreeRTOS" ],
             "windows": {
               "command": "python",
@@ -27,7 +27,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Build", "Stm32L475_FreeRTOS" ],
             "windows": {
               "command": "python",
@@ -45,7 +45,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Build", "Stm32L475_Osek" ],
             "windows": {
               "command": "python",
@@ -63,7 +63,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Build", "Stm32L475_IoTOS" ],
             "windows": {
               "command": "python",
@@ -81,7 +81,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py", "Rebuild" ],
             "windows": {
               "command": "python",
@@ -99,7 +99,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Clean" ],
             "windows": {
               "command": "python",
@@ -117,7 +117,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Flash"],
             "windows": {
               "command":"python",
