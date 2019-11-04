@@ -12,23 +12,20 @@ include_directories(${CMSIS_DIR}/Device/ST/STM32L4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
 include_directories(${DRIVER_HAL_DIR}/Inc)
 include_directories(${BSW_DIR}/hal)
-include_directories(${IOT_DIR})
+include_directories(${IOTOS_DIR})
 
 #Files to include
 set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32l475xx.s
-  ${STARTUP_DIR}/Startup_Init.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_cortex.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_pwr_ex.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc.c
-  ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_rcc_ex.c
+  ${CMSIS_DIR}/Device/ST/STM32L4xx/Source/Templates/system_stm32l4xx.c
+  ${IOTOS_DIR}/portable/ARM/CM4F/Port.c
+  ${IOTOS_DIR}/Os.c
   ${PROJECT_DIR}/main.c
   )
 
 #set additional settings
-set_property(SOURCE ${STARTUP_DIR}/startup_stm32l475xx.s     PROPERTY LANGUAGE C)
+set_property(SOURCE ${STARTUP_DIR}/startup_stm32l475xx.s         PROPERTY LANGUAGE C)
+set_property(SOURCE ${IOTOS_DIR}/portable/ARM/CM4F/PortAsm.s     PROPERTY LANGUAGE C)
 
 #set additional information
 set(TARGET_DEBUGER STLINK)
