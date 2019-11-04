@@ -46,8 +46,8 @@ add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${OBJDUMP}       -d
 add_custom_command(TARGET ${PROJECT}.elf POST_BUILD  COMMAND ${SIZE}          --format=berkeley ${DEPLOY_DIR}/${PROJECT}.elf)
 
 #Log target info
-file(WRITE   ${BUILD_DIR}/target.info "${PROJECT} \n")
-file(APPEND  ${BUILD_DIR}/target.info "${TARGET_DEBUGER} \n")
+file(WRITE   ${BUILD_DIR}/target/target.info "${PROJECT} \n")
+file(APPEND  ${BUILD_DIR}/target/target.info "${TARGET_DEBUGER} \n")
 
 
 

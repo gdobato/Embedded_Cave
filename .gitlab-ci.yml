@@ -6,27 +6,35 @@ before_script:
 Stm32F429_FreeRTOS:
  stage: build
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../cmake/target
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../../cmake/target
    - make
    
 Stm32L475_FreeRTOS:
  stage: build 
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../cmake/target
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../../cmake/target
    - make
 
 Stm32L475_Osek:
  stage: build 
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../cmake/target
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../../cmake/target
    - make
 
 Stm32L475_IoTOS:
  stage: build 
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../cmake/target
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../../cmake/target
    - make
+
+Unit_Test:
+ stage: build 
+ script:
+   - mkdir -p build/utest && cd build/utest
+   - cmake ../../cmake/utest
+   - make example
+   - ./example
