@@ -31,21 +31,22 @@ def usage():
   print(sys.argv[0] + " [ReBuild]")
   print(sys.argv[0] + " [Clean]")
   print(sys.argv[0] + " [Flash]")
+  print(sys.argv[0] + " [UTest]   [Unit]")
   print("Project List: ")
   print(*PROJECT_LIST)
 
 def generateFiles(target):
   project = str(target)
   if PLATFORM == "Windows" :
-    os.system ('IF NOT EXIST build ( MKDIR build ) ')
-    os.system ('cd build && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + project + ' ../cmake')
+    os.system ('IF NOT EXIST build ( MKDIR build/target ) ')
+    os.system ('cd build/target && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + project + ' ../../cmake/target')
   else :
-    os.system ('mkdir -p build')
-    os.system ('cd build && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + project + ' ../cmake' )
+    os.system ('mkdir -p build/target')
+    os.system ('cd build/target && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + project + ' ../../cmake/target' )
 
 def getTargetInfo():
-  if(os.path.exists('build/target.info')):
-    targetInfo       = open('build/target.info','r')
+  if(os.path.exists('build/target/target.info')):
+    targetInfo       = open('build/target/target.info','r')
     return targetInfo
   else:
     return ERROR
@@ -57,15 +58,15 @@ def build():
     target = sys.argv[2]
     generateFiles(target)
     makeTarget = target + ".elf"
-    os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+    os.system ('cd build/target && ' + MAKE + ' ' + makeTarget + ' -j' )
 
 def rebuild():
   if not (getTargetInfo() == ERROR):
     target = getTargetInfo().readlines()[0].strip()
     generateFiles(target)
     makeTarget = target + ".elf"
-    os.system ('cd build && ' + MAKE + ' clean' )
-    os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+    os.system ('cd build/target && ' + MAKE + ' clean' )
+    os.system ('cd build/target && ' + MAKE + ' ' + makeTarget + ' -j' )
   else:
     print("no built target found, please build target before")
 
@@ -73,15 +74,29 @@ def clean():
   if PLATFORM == "Windows" :
     os.system ('RMDIR /Q/S build')
   else:
-    os.system ('rm -r build')
+    os.system ('rm -rf build')
   print('build directory cleaned')
+
+def utest():
+  if (len(sys.argv) < 3):
+    usage()
+  else: 
+    unit = sys.argv[2]
+    if PLATFORM == "Windows" :
+      os.system ('IF NOT EXIST build ( MKDIR build/utest ) ')
+      os.system ('cd build/utest && ' + CMAKE + ' -G "MinGW Makefiles"  ../../cmake/utest')
+    else :
+      os.system ('mkdir -p build/utest')
+      os.system ('cd build/utest && ' + CMAKE + ' ../../cmake/utest' )  
+    os.system ('cd build/utest' + CMAKE + ' ../../cmake/utest' )  
+    os.system ('cd build/utest && ' + MAKE + ' ' + unit + ' -j' + '&&' + './' + unit )
 
 def flash():
   if not (getTargetInfo() == ERROR):
     targetDebuger = getTargetInfo().readlines()[1].strip()
     if targetDebuger == "STLINK":
       target        = getTargetInfo().readlines()[0].strip()
-      targetBinary  = "./build/bin/" + target + "/" + target + ".hex" 
+      targetBinary  = "./build/target/bin/" + target + "/" + target + ".hex" 
       if PLATFORM == "Windows" :
         os.system('ST-LINK_CLI -c SWD -p ' + targetBinary + ' -Rst -Run')
       else :
@@ -96,7 +111,8 @@ def optionParser(option):
     "Build"    : build,
     "Rebuild"  : rebuild,
     "Clean"    : clean,
-    "Flash"    : flash
+    "Flash"    : flash,
+    "UTest"    : utest 
   }
   func = switcher.get(option, usage)
   func()
