@@ -7,26 +7,26 @@ Stm32F429_FreeRTOS:
  stage: build
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../cmake/target
    - make
    
 Stm32L475_FreeRTOS:
  stage: build 
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../cmake/target
    - make
 
 Stm32L475_Osek:
  stage: build 
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../cmake/target
    - make
 
 Stm32L475_IoTOS:
  stage: build 
  script:
    - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../cmake
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../cmake/target
    - make

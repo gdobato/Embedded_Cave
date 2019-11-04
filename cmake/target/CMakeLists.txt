@@ -9,9 +9,9 @@ cmake_minimum_required (VERSION 3.6)
 project (${PROJECT} C CXX ASM)
 
 #Includes
-include(utils.cmake)
-include(config.cmake)
-include(genpaths.cmake)
+include(../utils.cmake)
+include(../config.cmake)
+include(../genpaths.cmake)
 include(project/${PROJECT}.cmake)
 
 # Toochain / preprocessor Flags

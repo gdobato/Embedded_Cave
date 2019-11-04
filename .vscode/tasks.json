@@ -129,5 +129,23 @@
             },
             "problemMatcher": []
         },
+        {
+            "label": "Unit Test: example",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","UTest", "example"],
+            "windows": {
+              "command":"python",
+              "args": [ ".\\run.py","UTest", "example"],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
     ]
 }
