@@ -9,11 +9,12 @@
 5. OpenOCD: https://gnutoolchains.com/arm-eabi/openocd/
 
 ### Linux
-1. Stlink: https://github.com/texane/stlink
+1. CMake:  sudo apt-get install cmake
 2. Build-Essentials: sudo apt-get install build-essential
-3. CMake:  sudo apt-get install cmake
-4. Python: sudo apt-get install python
-6. OpenOCD:sudo apt-get install openocd 
+3. Python: sudo apt-get install python
+4. Stlink: https://github.com/texane/stlink
+5. OpenOCD:sudo apt-get install openocd 
+
 
 ## Build Project 
 ```
