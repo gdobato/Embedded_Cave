@@ -2,6 +2,11 @@ image: gcc
 before_script:
  - apt-get update  --yes
  - apt-get install --yes cmake
+
+stages:
+  - build
+  - test
+
  
 Stm32F429_FreeRTOS:
  stage: build
@@ -32,7 +37,7 @@ Stm32L475_IoTOS:
    - make
 
 Unit_Test:
- stage: build 
+ stage: test 
  script:
    - mkdir -p build/utest && cd build/utest
    - cmake ../../cmake/utest
