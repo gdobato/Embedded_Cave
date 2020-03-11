@@ -22,6 +22,24 @@
             "problemMatcher": []
         },
         {
+            "label": "Build: Stm32F429_FreeRTOS_GFX",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32F429_FreeRTOS_GFX" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32F429_FreeRTOS_GFX" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Build: Stm32L475_FreeRTOS",
             "type": "shell",
             "options": {
