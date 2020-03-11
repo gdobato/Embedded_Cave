@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "type": "cortex-debug",
             "request": "launch",
@@ -24,6 +25,36 @@
             "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
             "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS/Stm32F429_FreeRTOS.elf",
             "name": "WIN   Stm32F429_FreeRTOS",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS_GFX/Stm32F429_FreeRTOS_GFX.elf",
+            "name": "LINUX Stm32F429_FreeRTOS_GFX",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS_GFX/Stm32F429_FreeRTOS_GFX.elf",
+            "name": "WIN   Stm32F429_FreeRTOS_GFX",
             "device": "STM32F429",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
             "configFiles": [
