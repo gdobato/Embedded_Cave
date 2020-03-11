@@ -22,7 +22,7 @@ set(FPU_FLAGS               ${PROJECT_FPU_FLAGS})
 set(MCU_FLAGS              "${CPU_FLAGS} ${FPU_FLAGS} ${FLOAT_ABI_FLAGS} -mthumb")        
 set(CMAKE_C_FLAGS          "${DEFAULT_FLAGS} ${MCU_FLAGS} ${C_DEFS}" )
 set(CMAKE_CXX_FLAGS        "${CMAKE_C_FLAGS} -fno-exceptions -fno-rtti")
-set(CMAKE_EXE_LINKER_FLAGS "-T${STARTUP_DIR}/${PROJECT_LINKER_SCRIPT_FILE} -L{LIBRARIES} -Wl,-Map=${DEPLOY_DIR}/${PROJECT}.map,--gc-sections ")
+set(CMAKE_EXE_LINKER_FLAGS "-T${STARTUP_DIR}/${PROJECT_LINKER_SCRIPT_FILE} -Wl,-Map=${DEPLOY_DIR}/${PROJECT}.map,--gc-sections ")
 
 #Generic include directories
 #Project Squeleton include
