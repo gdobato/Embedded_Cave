@@ -9,7 +9,7 @@ set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
-include_directories(${BSW_DIR}/hal)
+include_directories(${BSP_DIR}/hal)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${CMSIS_DIR}/Device/ST/STM32F4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
@@ -66,19 +66,19 @@ set(PROJECT_FILES
   ${FREERTOS_DIR}/Source/portable/GCC/ARM_CM4F/port.c
   ${DEBUG_DIR}/debug.c
   ${DEBUG_DIR}/debugThread.c
-  ${BSW_DIR}/system/stm32f4xx_it.c
-  ${BSW_DIR}/system/system_stm32f4xx.c
-  ${BSW_DIR}/hal/stm32f4xx_hal_msp.c
-  ${BSW_DIR}/adc/adc.c
-  ${BSW_DIR}/crc/crc.c
-  ${BSW_DIR}/dma/dma.c
-  ${BSW_DIR}/fmc/fmc.c
-  ${BSW_DIR}/gpio/gpio.c
-  ${BSW_DIR}/i2c/i2c.c
-  ${BSW_DIR}/ltdc/ltdc.c
-  ${BSW_DIR}/spi/spi.c
-  ${BSW_DIR}/timer/timer.c
-  ${BSW_DIR}/usart/usart.c
+  ${BSP_DIR}/system/stm32f4xx_it.c
+  ${BSP_DIR}/system/system_stm32f4xx.c
+  ${BSP_DIR}/hal/stm32f4xx_hal_msp.c
+  ${BSP_DIR}/adc/adc.c
+  ${BSP_DIR}/crc/crc.c
+  ${BSP_DIR}/dma/dma.c
+  ${BSP_DIR}/fmc/fmc.c
+  ${BSP_DIR}/gpio/gpio.c
+  ${BSP_DIR}/i2c/i2c.c
+  ${BSP_DIR}/ltdc/ltdc.c
+  ${BSP_DIR}/spi/spi.c
+  ${BSP_DIR}/timer/timer.c
+  ${BSP_DIR}/usart/usart.c
   ${APP_DIR}/led/led.cpp
   ${APP_DIR}/led/ledThread.cpp
 )

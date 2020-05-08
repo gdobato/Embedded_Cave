@@ -10,7 +10,7 @@ set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
 include_directories(${PROJECT_DIR})
-include_directories(${BSW_DIR}/hal)
+include_directories(${BSP_DIR}/hal)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${CMSIS_DIR}/Device/ST/STM32F4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
@@ -53,19 +53,19 @@ set(PROJECT_FILES
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal_cortex.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal_exti.c
-  ${BSW_DIR}/system/stm32f4xx_it.c
-  ${BSW_DIR}/system/system_stm32f4xx.c
-  ${BSW_DIR}/hal/stm32f4xx_hal_msp.c
-  ${BSW_DIR}/adc/adc.c
-  ${BSW_DIR}/crc/crc.c
-  ${BSW_DIR}/dma/dma.c
-  ${BSW_DIR}/fmc/fmc.c
-  ${BSW_DIR}/gpio/gpio.c
-  ${BSW_DIR}/i2c/i2c.c
-  ${BSW_DIR}/ltdc/ltdc.c
-  ${BSW_DIR}/spi/spi.c
-  ${BSW_DIR}/timer/timer.c
-  ${BSW_DIR}/usart/usart.c
+  ${BSP_DIR}/system/stm32f4xx_it.c
+  ${BSP_DIR}/system/system_stm32f4xx.c
+  ${BSP_DIR}/hal/stm32f4xx_hal_msp.c
+  ${BSP_DIR}/adc/adc.c
+  ${BSP_DIR}/crc/crc.c
+  ${BSP_DIR}/dma/dma.c
+  ${BSP_DIR}/fmc/fmc.c
+  ${BSP_DIR}/gpio/gpio.c
+  ${BSP_DIR}/i2c/i2c.c
+  ${BSP_DIR}/ltdc/ltdc.c
+  ${BSP_DIR}/spi/spi.c
+  ${BSP_DIR}/timer/timer.c
+  ${BSP_DIR}/usart/usart.c
   ${SCHEDULER_DIR}/Os.c
   ${APP_DIR}/led/led.cpp
 )

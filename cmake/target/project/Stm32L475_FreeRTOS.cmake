@@ -9,7 +9,7 @@ set(STARTUP_FILE startup_stm32l475xx.s)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32L4xx_HAL_Driver)
 
 #specific include directories
-include_directories(${BSW_DIR}/hal)
+include_directories(${BSP_DIR}/hal)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${CMSIS_DIR}/Device/ST/STM32L4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
@@ -47,12 +47,12 @@ set(PROJECT_FILES
   ${DRIVER_HAL_DIR}/Src/stm32l4xx_hal_uart.c
   ${DEBUG_DIR}/debug.c
   ${DEBUG_DIR}/debugThread.c
-  ${BSW_DIR}/gpio/gpio.c
-  ${BSW_DIR}/hal/stm32l4xx_hal_msp.c
-  ${BSW_DIR}/system/stm32l4xx_it.c
-  ${BSW_DIR}/system/system_stm32l4xx.c
-  ${BSW_DIR}/timer/timer.c
-  ${BSW_DIR}/usart/usart.c
+  ${BSP_DIR}/gpio/gpio.c
+  ${BSP_DIR}/hal/stm32l4xx_hal_msp.c
+  ${BSP_DIR}/system/stm32l4xx_it.c
+  ${BSP_DIR}/system/system_stm32l4xx.c
+  ${BSP_DIR}/timer/timer.c
+  ${BSP_DIR}/usart/usart.c
   ${APP_DIR}/led/led.cpp
   ${APP_DIR}/led/ledThread.cpp
 )

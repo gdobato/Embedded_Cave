@@ -27,7 +27,7 @@ set(CMAKE_EXE_LINKER_FLAGS "-T${STARTUP_DIR}/${PROJECT_LINKER_SCRIPT_FILE} -Wl,-
 #Generic include directories
 #Project Squeleton include
 include_directories(${APP_DIR})
-include_directories(${BSW_DIR})
+include_directories(${BSP_DIR})
 include_directories(${CONFIG_DIR})
 include_directories(${DEBUG_DIR})
 include_directories(${STARTUP_DIR})
