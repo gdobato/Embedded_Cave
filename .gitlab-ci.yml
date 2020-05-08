@@ -15,6 +15,13 @@ Stm32F429_FreeRTOS:
    - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../../cmake/target
    - make
    
+Stm32F429_Scheduler:
+ stage: build
+ script:
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_Scheduler ../../cmake/target
+   - make
+
 Stm32L475_FreeRTOS:
  stage: build 
  script:
