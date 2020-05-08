@@ -3,56 +3,43 @@
 
 #include "Os_Types.h"
 #include "timer/timer.h"
-
-#define TASK_1         0U
-#define TASK_2         1U
-#define TASK_COUNT     2U
+#include "callouts.h"
+#include "tasks.h"
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
+/******************************************************************************************
+  
+                                  OS CONFIGURATION
 
-void Dummy_Init          (void) {}
-void Task1(void);
-void Task2(void);
-void Dummy_Idle          (void) {}
-void Interrupts_Enable   (void) { __asm("cpsie i");}
-void Interrupts_Disable  (void) { __asm("cpsid i");}
-
-#ifdef __cplusplus
+*******************************************************************************************/
+/***************
+  OS Handler
+****************/
+#define OS_CFG                                                                                       \
+{                                                                                                    \
+    Timer_Start,         /*Function to handle task timeouts*/                                        \
+    Timer_TimeOut,       /*Function to handle task timeouts*/                                        \
+    Dummy_Idle,          /*Task which will be executed if none of the task is running .eg Watchdog*/ \
+    Interrupts_Enable,   /*Function to Enable all interrupts*/                                       \
+    Interrupts_Disable   /*Function to Disable all interrupts*/                                      \
 }
-#endif
-
-tsOsHandler Os_Handler =
-{
-  .fpTimerStart        = Timer_Start, 
-  .fpTimerTimeOut      = Timer_TimeOut, 
-  .fpIdle              = Dummy_Idle,
-  .fpInterruptsEnable  = Interrupts_Enable,
-  .fpInterruptsDisable = Interrupts_Disable,
-};
 
 
-tsOsTaskCfg Os_TaskCfg[TASK_COUNT] =
-{
-  {
-   .unTaskId      = TASK_1, 
-   .fpInit        = Dummy_Init, 
-   .fpRun         = Task1, 
-   .ulRunPeriod   = 500U,
-   .ulRunOffset   = 20U,
-  },
-  {
-   .unTaskId      = TASK_2, 
-   .fpInit        = Dummy_Init, 
-   .fpRun         = Task2, 
-   .ulRunPeriod   = 5000U,
-   .ulRunOffset   = 20U,
-  }
+/**************
+  Tasks 
+***************/
+/* Task IDs*/
+#define TASK_GREEN_LED  0U
+#define TASK_RED_LED    1U
 
-};
+/* Task Cfg */
+#define OS_TASK_CFG                                                                                 \
+{                                                                                                   \
+   /* Task Id          , Init Function   , Run Function  , Period, Offset */                        \
+   {  TASK_GREEN_LED   ,  GreenLed_Init  , GreenLed_Run  , 500   , 0     },                         \
+   {  TASK_RED_LED     ,  RedLed_Init    , RedLed_Run    , 500   , 500   },                         \
+}
 
 
 #endif

@@ -1,26 +1,40 @@
-
+/************************************
+* Includes
+************************************/
 #include <stdint.h>
 #include <stdbool.h>
 #include "Os.h"
 #include "Os_Types.h"
 #include "Os_Cfg.h"
 
-#ifndef NULL_PTR
-  #define NULL_PTR (void*)0
-#endif
+/************************************
+* Private definitions 
+************************************/
 
+/************************************
+* Private variables
+************************************/
+static tsOsHandler Os_Handler   = OS_CFG;
+static tsOsTaskCfg Os_TaskCfg[] = OS_TASK_CFG;
+static tsOsTaskTCB Os_TaskTCB[sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg)];
 
-static tsOsTaskTCB Os_TaskTCB[TASK_COUNT];
+/************************************
+* Private declarations 
+************************************/
 
+/************************************
+* Implementation 
+************************************/
 void Os_Start(void)
 {
-
-  for (uint16_t unTaskIdx = 0; unTaskIdx < TASK_COUNT; unTaskIdx++)
+  //Init Procedure
+  for (uint16_t unTaskIdx = 0; unTaskIdx < sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg); unTaskIdx++)
   {
-    //Call init functions onces
-    Os_TaskCfg[unTaskIdx].fpInit();
     //Initialize Timer to offset
     Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
+
+    //Call init functions onces
+    Os_TaskCfg[unTaskIdx].fpInit();
   }
    
   //Never Return loop
@@ -29,7 +43,7 @@ void Os_Start(void)
 
     bool boTaskWakeUp = false;
 
-    for (uint16_t unTaskIdx = 0; unTaskIdx < TASK_COUNT; unTaskIdx++)
+    for (uint16_t unTaskIdx = 0; unTaskIdx < sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg); unTaskIdx++)
     {
 
       //Check Task Even has been set
@@ -52,6 +66,7 @@ void Os_Start(void)
       }
     }
 
+    //If no task is waken up, call Idle function
     if (boTaskWakeUp != true)
     {
       Os_Handler.fpIdle();

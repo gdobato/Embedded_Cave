@@ -4,13 +4,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-typedef enum teOsTaskState
-{
-  Os_eState_Wait = 0,
-  Os_eState_Ready,
-  Os_eState_Run,
-}tsOsTaskState;
-
 
 typedef void    (*tfpTask)                   (void);
 typedef uint32_t(*tfpTimerStart)             (uint32_t);
@@ -37,7 +30,6 @@ typedef struct tsOsTaskCfg
 
 typedef struct tsOsTaskTCB
 {
-  tsOsTaskState  eState;
   uint8_t        ulEvent;
   uint32_t       ulTimer;
   uint32_t       ulTimeOut;

@@ -9,6 +9,7 @@ set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
+include_directories(${PROJECT_DIR})
 include_directories(${BSW_DIR}/hal)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${CMSIS_DIR}/Device/ST/STM32F4xx/Include)
@@ -22,6 +23,8 @@ set(PROJECT_FILES
   ${STARTUP_DIR}/startup_stm32f429xx.s
   ${STARTUP_DIR}/Startup_Init.c
   ${PROJECT_DIR}/main.cpp
+  ${PROJECT_DIR}/tasks.cpp
+  ${PROJECT_DIR}/callouts.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal_adc.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_hal_hcd.c
   ${DRIVER_HAL_DIR}/Src/stm32f4xx_ll_usb.c
