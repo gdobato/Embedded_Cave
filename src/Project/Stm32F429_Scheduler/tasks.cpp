@@ -1,6 +1,7 @@
 
 #include <Os.h>
 #include <led/led.h> 
+#include <gpio/gpio.h>
 
 
  Led* redLed   = new Led(RED_LED);
@@ -40,7 +41,7 @@
 
   if (ucIdx == 7)
   {
-    Os_SetEvent(TASK_RED_LED, OS_EVENT(0)); 
+    //Os_SetEvent(TASK_RED_LED, OS_EVENT(0)); 
   }
 
   ucIdx++;
@@ -50,14 +51,13 @@
  void RedLed_Run (void)
  {
   static uint8_t ucIdx;
-  static bool boDead = false;
 
-  if (Os_GetEvent(TASK_RED_LED, OS_EVENT(0))== true)
+  if (Os_GetEvent(TASK_RED_LED, OS_EVENT(1))== true)
   {
-     Os_ClearEvent(TASK_RED_LED, OS_EVENT(0));
-     boDead = true;
+     Os_ClearEvent(TASK_RED_LED, OS_EVENT(1));
+     redLed->Off();
   }
-  if (boDead != true)  
+  else
   {
     if (ucIdx % 2)
     { 
@@ -68,13 +68,23 @@
       redLed->On();
     }
   }
-  else
-  {
-    redLed->Off();
-  }
-  
 
 ucIdx++;
 
 }
 
+
+ void UserButton_Init (void){}
+ void UserButton_Run (void)
+ {
+  static uint8_t ucIdx;
+
+  if (Gpio_GetUserButton() == GPIO_PIN_SET ) 
+  {
+    Os_SetEvent(TASK_RED_LED, OS_EVENT(1)); 
+  }
+  
+
+  ucIdx++;
+
+}

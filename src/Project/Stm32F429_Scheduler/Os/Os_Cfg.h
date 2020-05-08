@@ -30,15 +30,17 @@
   Tasks 
 ***************/
 /* Task IDs*/
-#define TASK_GREEN_LED  0U
-#define TASK_RED_LED    1U
+#define TASK_GREEN_LED      0U   
+#define TASK_RED_LED        1U
+#define TASK_USER_BUTTON    2U
 
 /* Task Cfg */
-#define OS_TASK_CFG                                                                                 \
-{                                                                                                   \
-   /* Task Id          , Init Function   , Run Function  , Period, Offset */                        \
-   {  TASK_GREEN_LED   ,  GreenLed_Init  , GreenLed_Run  , 500   , 0     },                         \
-   {  TASK_RED_LED     ,  RedLed_Init    , RedLed_Run    , 500   , 500   },                         \
+#define OS_TASK_CFG                                                                                   \
+{                                                                                                     \
+   /* Task Id          , Init Function    , Run Function     , Period  , Offset */                    \
+   {  TASK_GREEN_LED   ,  GreenLed_Init   , GreenLed_Run     , 100     , 0     },                     \
+   {  TASK_RED_LED     ,  RedLed_Init     , RedLed_Run       , 500     , 5     },                     \
+   {  TASK_USER_BUTTON ,  UserButton_Init , UserButton_Run   , 1       , 0     },                     \
 }
 
 
