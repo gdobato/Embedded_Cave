@@ -1,0 +1,82 @@
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "Os.h"
+#include "Os_Types.h"
+#include "Os_Cfg.h"
+
+#ifndef NULL_PTR
+  #define NULL_PTR (void*)0
+#endif
+
+
+static tsOsTaskTCB Os_TaskTCB[TASK_COUNT];
+
+void Os_Start(void)
+{
+
+  for (uint16_t unTaskIdx = 0; unTaskIdx < TASK_COUNT; unTaskIdx++)
+  {
+    //Call init functions onces
+    Os_TaskCfg[unTaskIdx].fpInit();
+    //Initialize Timer to offset
+    Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
+  }
+   
+  //Never Return loop
+  for (;;)
+  {
+
+    bool boTaskWakeUp = false;
+
+    for (uint16_t unTaskIdx = 0; unTaskIdx < TASK_COUNT; unTaskIdx++)
+    {
+
+      //Check Task Even has been set
+      if (Os_TaskTCB[unTaskIdx].ulEvent != 0U ) 
+      {
+        boTaskWakeUp = true;
+      }
+
+      //Check Task timeout has been elapsed
+      if (Os_Handler.fpTimerTimeOut(Os_TaskTCB[unTaskIdx].ulTimer) == true)
+      {
+        Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunPeriod);
+        boTaskWakeUp = true;
+      }
+
+      if (boTaskWakeUp == true)
+      {
+         Os_TaskCfg[unTaskIdx].fpRun();
+         break;
+      }
+    }
+
+    if (boTaskWakeUp != true)
+    {
+      Os_Handler.fpIdle();
+
+    }
+    
+  }
+
+}
+
+void Os_SetEvent(uint16_t unTaskId, uint32_t ulEvent)
+{
+  Os_Handler.fpInterruptsDisable();
+  Os_TaskTCB[unTaskId].ulEvent |=  ulEvent ;
+  Os_Handler.fpInterruptsEnable();
+}
+
+void Os_ClearEvent(uint16_t unTaskId, uint32_t ulEvent)
+{
+  Os_Handler.fpInterruptsDisable();
+  Os_TaskTCB[unTaskId].ulEvent &=  ~ulEvent ;
+  Os_Handler.fpInterruptsEnable();
+}
+
+bool Os_GetEvent(uint16_t unTaskId, uint32_t ulEvent)
+{
+  return((Os_TaskTCB[unTaskId].ulEvent &=  ulEvent) != 0U) ? true : false;
+}
