@@ -10,6 +10,7 @@ set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32L4xx_HAL_Driver)
 
 #specific include directories
 include_directories(${BSW_DIR}/hal)
+include_directories(${PROJECT_DIR}/Os)
 include_directories(${CMSIS_DIR}/Device/ST/STM32L4xx/Include)
 include_directories(${CMSIS_DIR}/Include)
 include_directories(${DRIVER_HAL_DIR}/Inc)
