@@ -7,7 +7,8 @@
  Led* redLed   = new Led(RED_LED);
  Led* greenLed = new Led(GREEN_LED); 
 
-
+#define LED_SWITCH_OFF 0U
+#define LED_SWITCH_ON  1U
 
 
  void GreenLed_Init (void)
@@ -20,14 +21,13 @@
  void RedLed_Init (void)
  {
 
-    redLed->On();
+    redLed->Off();
 
  }
 
  void GreenLed_Run (void)
  {
   static uint8_t ucIdx;
-
   
   if (ucIdx % 2)
   { 
@@ -39,10 +39,6 @@
     greenLed->On();
   }
 
-  if (ucIdx == 7)
-  {
-    //Os_SetEvent(TASK_RED_LED, OS_EVENT(0)); 
-  }
 
   ucIdx++;
 
@@ -52,39 +48,39 @@
  {
   static uint8_t ucIdx;
 
-  if (Os_GetEvent(TASK_RED_LED, OS_EVENT(1))== true)
+  if (Os_GetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_ON)) == true)
   {
-     Os_ClearEvent(TASK_RED_LED, OS_EVENT(1));
-     redLed->Off();
+    Os_ClearEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_ON));
+    redLed->On();
   }
-  else
+
+  if (Os_GetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_OFF)) == true)
   {
-    if (ucIdx % 2)
-    { 
-      redLed->Off();
-    }
-    else
-    { 
-      redLed->On();
-    }
+    Os_ClearEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_OFF));
+    redLed->Off();
   }
+  
 
 ucIdx++;
 
 }
 
-
  void UserButton_Init (void){}
  void UserButton_Run (void)
  {
-  static uint8_t ucIdx;
-
+  
   if (Gpio_GetUserButton() == GPIO_PIN_SET ) 
   {
-    Os_SetEvent(TASK_RED_LED, OS_EVENT(1)); 
+    Os_SetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_ON)); 
+  }
+  else
+  {
+    Os_SetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_OFF)); 
   }
   
+  
+  
+  
 
-  ucIdx++;
 
 }

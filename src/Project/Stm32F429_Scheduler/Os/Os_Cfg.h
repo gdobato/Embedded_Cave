@@ -6,8 +6,6 @@
 #include "callouts.h"
 #include "tasks.h"
 
-
-
 /******************************************************************************************
   
                                   OS CONFIGURATION
@@ -30,17 +28,17 @@
   Tasks 
 ***************/
 /* Task IDs*/
-#define TASK_GREEN_LED      0U   
-#define TASK_RED_LED        1U
-#define TASK_USER_BUTTON    2U
+#define TASK_USER_BUTTON    0U
+#define TASK_GREEN_LED      1U   
+#define TASK_RED_LED        2U
 
 /* Task Cfg */
-#define OS_TASK_CFG                                                                                   \
-{                                                                                                     \
-   /* Task Id          , Init Function    , Run Function     , Period  , Offset */                    \
-   {  TASK_GREEN_LED   ,  GreenLed_Init   , GreenLed_Run     , 100     , 0     },                     \
-   {  TASK_RED_LED     ,  RedLed_Init     , RedLed_Run       , 500     , 5     },                     \
-   {  TASK_USER_BUTTON ,  UserButton_Init , UserButton_Run   , 1       , 0     },                     \
+#define OS_TASK_CFG                                                                                     \
+{                                                                                                       \
+/*     Task Id         , Init Function    , Run Function  , Alarm  , Alarm Period  , Alarm Offset */    \
+   {  TASK_USER_BUTTON ,  UserButton_Init , UserButton_Run, true   , 1             , 0            },    \
+   {  TASK_GREEN_LED   ,  GreenLed_Init   , GreenLed_Run  , true   , 100           , 0            },    \
+   {  TASK_RED_LED     ,  RedLed_Init     , RedLed_Run    , false  , 0             , 0            },    \
 }
 
 

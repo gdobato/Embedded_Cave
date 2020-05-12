@@ -24,6 +24,7 @@ typedef struct tsOsTaskCfg
   uint16_t      unTaskId; 
   tfpTask       fpInit;
   tfpTask       fpRun;
+  bool          boAlarm;
   int32_t       ulRunPeriod;
   int32_t       ulRunOffset;
 }tsOsTaskCfg;

@@ -31,7 +31,10 @@ void Os_Start(void)
   for (uint16_t unTaskIdx = 0; unTaskIdx < sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg); unTaskIdx++)
   {
     //Initialize Timer to offset
-    Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
+    if (Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].boAlarm) != false)
+    {
+      Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
+    }
 
     //Call init functions onces
     Os_TaskCfg[unTaskIdx].fpInit();
@@ -53,10 +56,13 @@ void Os_Start(void)
       }
 
       //Check Task timeout has been elapsed
-      if (Os_Handler.fpTimerTimeOut(Os_TaskTCB[unTaskIdx].ulTimer) == true)
+      if (Os_TaskCfg[unTaskIdx].boAlarm != false)
       {
-        Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunPeriod);
-        boTaskWakeUp = true;
+        if (Os_Handler.fpTimerTimeOut(Os_TaskTCB[unTaskIdx].ulTimer) == true)
+        {
+          Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunPeriod);
+          boTaskWakeUp = true;
+        }
       }
 
       if (boTaskWakeUp == true)
