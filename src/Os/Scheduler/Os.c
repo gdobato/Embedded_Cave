@@ -99,5 +99,11 @@ void Os_ClearEvent(uint16_t unTaskId, uint32_t ulEvent)
 
 bool Os_GetEvent(uint16_t unTaskId, uint32_t ulEvent)
 {
-  return((Os_TaskTCB[unTaskId].ulEvent &  ulEvent) != 0U) ? true : false;
+  bool boRetVal;
+
+  Os_Handler.fpInterruptsDisable();
+  boRetVal =  ((Os_TaskTCB[unTaskId].ulEvent &  ulEvent) != 0U) ? true : false;
+  Os_Handler.fpInterruptsEnable();
+
+  return boRetVal;
 }
