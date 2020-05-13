@@ -15,6 +15,8 @@ void RedLed_Run(void);
 void UserButton_Init (void);
 void UserButton_Run (void);
 
+void Dummy_Idle (void);
+
 #ifdef __cplusplus
 }
 #endif

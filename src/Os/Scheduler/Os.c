@@ -44,10 +44,12 @@ void Os_Start(void)
   for (;;)
   {
 
-    bool boTaskWakeUp = false;
+    bool boExecuteIdle = true;
 
     for (uint16_t unTaskIdx = 0; unTaskIdx < sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg); unTaskIdx++)
     {
+
+      bool boTaskWakeUp  = false;
 
       //Check Task Even has been set
       if (Os_TaskTCB[unTaskIdx].ulEvent != 0U ) 
@@ -67,13 +69,14 @@ void Os_Start(void)
 
       if (boTaskWakeUp == true)
       {
+         boExecuteIdle = false;
          Os_TaskCfg[unTaskIdx].fpRun();
-         break;
       }
+      
     }
 
     //If no task is waken up, call Idle function
-    if (boTaskWakeUp != true)
+    if (boExecuteIdle == true)
     {
       Os_Handler.fpIdle();
 

@@ -37,7 +37,7 @@
 {                                                                                                       \
 /*     Task Id         , Init Function    , Run Function  , Alarm  , Alarm Period  , Alarm Offset */    \
    {  TASK_USER_BUTTON ,  UserButton_Init , UserButton_Run, true   , 1             , 0            },    \
-   {  TASK_GREEN_LED   ,  GreenLed_Init   , GreenLed_Run  , true   , 100           , 0            },    \
+   {  TASK_GREEN_LED   ,  GreenLed_Init   , GreenLed_Run  , true   , 100           , 5            },    \
    {  TASK_RED_LED     ,  RedLed_Init     , RedLed_Run    , false  , 0             , 0            },    \
 }
 

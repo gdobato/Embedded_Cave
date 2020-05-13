@@ -77,10 +77,12 @@ ucIdx++;
   {
     Os_SetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_OFF)); 
   }
-  
-  
+ } 
+
+ void Dummy_Idle(void)
+ {
+//    redLed->On();
+ } 
   
   
 
-
-}
