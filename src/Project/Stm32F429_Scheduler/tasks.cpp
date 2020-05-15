@@ -7,8 +7,6 @@
  Led* redLed   = new Led(RED_LED);
  Led* greenLed = new Led(GREEN_LED); 
 
-#define LED_SWITCH_OFF 0U
-#define LED_SWITCH_ON  1U
 
 
  void GreenLed_Init (void)

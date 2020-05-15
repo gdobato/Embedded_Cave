@@ -33,7 +33,7 @@ void Os_Start(void)
     //Initialize Timer to offset
     if (Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].boAlarm) != false)
     {
-      Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
+      Os_TaskTCB[unTaskIdx].ulAlarm = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunOffset);
     }
 
     //Call init functions onces
@@ -44,31 +44,28 @@ void Os_Start(void)
   for (;;)
   {
 
+   //By default activate idle task 
     bool boExecuteIdle = true;
 
     for (uint16_t unTaskIdx = 0; unTaskIdx < sizeof(Os_TaskCfg)/sizeof(tsOsTaskCfg); unTaskIdx++)
     {
 
-      bool boTaskWakeUp  = false;
-
       //Check Task Even has been set
-      if (Os_TaskTCB[unTaskIdx].ulEvent != 0U ) 
-      {
-        boTaskWakeUp = true;
-      }
+      bool boTaskWakeUp  =(Os_TaskTCB[unTaskIdx].ulEvent != 0U )? true : false ;
 
       //Check Task timeout has been elapsed
       if (Os_TaskCfg[unTaskIdx].boAlarm != false)
       {
-        if (Os_Handler.fpTimerTimeOut(Os_TaskTCB[unTaskIdx].ulTimer) == true)
+        if (Os_Handler.fpTimerTimeOut(Os_TaskTCB[unTaskIdx].ulAlarm) == true)
         {
-          Os_TaskTCB[unTaskIdx].ulTimer = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunPeriod);
+          Os_TaskTCB[unTaskIdx].ulAlarm = Os_Handler.fpTimerStart(Os_TaskCfg[unTaskIdx].ulRunPeriod);
           boTaskWakeUp = true;
         }
       }
 
       if (boTaskWakeUp == true)
       {
+         //If any task is waken up deactivate execution of Idle Task
          boExecuteIdle = false;
          Os_TaskCfg[unTaskIdx].fpRun();
       }

@@ -32,8 +32,7 @@ typedef struct tsOsTaskCfg
 typedef struct tsOsTaskTCB
 {
   uint8_t        ulEvent;
-  uint32_t       ulTimer;
-  uint32_t       ulTimeOut;
+  uint32_t       ulAlarm;
 }tsOsTaskTCB;
 
 
