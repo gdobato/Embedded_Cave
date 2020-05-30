@@ -79,8 +79,5 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/App/led/led.cpp
 )
 
-#set additional settings
-set_property(SOURCE ${PROJECT_DIR}/Startup/startup_stm32f429xx.s PROPERTY LANGUAGE C)
-
 #set additional information
 set(TARGET_DEBUGER STLINK)
