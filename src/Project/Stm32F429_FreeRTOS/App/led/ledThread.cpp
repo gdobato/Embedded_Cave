@@ -13,9 +13,6 @@ void ledHandler(void const * argument)
     Debug_PrintMsgTime((char *)"Led Thread \n");
 
     redLed->toggle(500);
-    Debug_PrintMsgTime((char *)"  Red  :%d \n", redLed->getState());
-
     greenLed->On();
-    Debug_PrintMsgTime((char *)"  Green:%d \n", greenLed->getState());
   }
 }

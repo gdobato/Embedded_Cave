@@ -54,10 +54,8 @@ defined in linker script */
  *          supplied main() routine is called.
  * @param  None
  * @retval : None
-*/
-
+	*/
     .section	.text.Reset_Handler
-	.weak	Reset_Handler
 	.type	Reset_Handler, %function
 Reset_Handler:
   ldr   sp, =_estack    /* Atollic update: set stack pointer */

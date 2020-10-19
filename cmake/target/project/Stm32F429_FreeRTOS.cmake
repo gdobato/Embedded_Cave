@@ -80,9 +80,11 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/usart/usart.c
   ${PROJECT_DIR}/App/led/led.cpp
   ${PROJECT_DIR}/App/led/ledThread.cpp
+  ${PROJECT_DIR}/App/stats/stats.cpp
+  ${PROJECT_DIR}/App/stats/statsThread.c
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
-  ${PROJECT_DIR}/main.c
+  ${PROJECT_DIR}/main.c  
 )
 
 #set additional settings

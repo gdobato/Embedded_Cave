@@ -12,6 +12,8 @@
 #include "usart/usart.h"
 #include "debug.h"
 #include "timer/timer.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 /************************************
 * Private type definitions 
@@ -35,19 +37,30 @@
 /************************************
 * Implementation 
 ************************************/
+static bool PrintMsgMutex = false;
 void Debug_PrintMsg(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
-  Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
+  if (PrintMsgMutex == false)
+  {
+    PrintMsgMutex = true;
+    CREATE_VAR_BUFF(buff, msg, 1024);
+    Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
+    PrintMsgMutex = false;
+  }
 }
 
 void Debug_PrintMsgTime(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
-  uint32_t timems = Timer_GetTick();
-  char auxStr[90];
-  sprintf(auxStr, "[%lu ms] : ", timems);
-  strcat(auxStr, VAR_BUFF(buff));
-  Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
-
+  if (PrintMsgMutex == false)
+  {
+    PrintMsgMutex = true;
+    //temporal mutex, use os services instead
+    CREATE_VAR_BUFF(buff, msg, 1024);
+    uint32_t timems = Timer_GetTick();
+    char auxStr[90];
+    sprintf(auxStr, "[%lu ms] : ", timems);
+    strcat(auxStr, VAR_BUFF(buff));
+    Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
+    PrintMsgMutex = false;
+  }
 }

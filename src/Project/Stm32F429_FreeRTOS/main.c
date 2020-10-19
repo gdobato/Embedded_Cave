@@ -26,6 +26,7 @@
 #include <usart/usart.h>
 
 #include <led/ledThread.h>
+#include <stats/statsThread.h>
 
 #include <string.h>
 #include "stm32f4xx_hal.h"
@@ -47,6 +48,7 @@ static osThreadId SpiThread;
 static osThreadId I2cThread;
 static osThreadId AdcThread;
 static osThreadId ledThread;
+static osThreadId statsThread;
 
 /************************************
 * Private declarations 
@@ -74,7 +76,7 @@ int main(void)
   Usart_Init();
   Spi_Init();
   I2c_Init();
-  Timer_Init();
+  //Timer_Init();
   Fmc_Init();
 
   /* Create the thread(s) */
@@ -82,7 +84,7 @@ int main(void)
   /* definition and creation of debugTerminal */
   osThreadDef(Debug, DebugHandler, osPriorityNormal, 0, 512);
   DebugThread = osThreadCreate(osThread(Debug), NULL);
-
+  #if 1 
   /* definition and creation of SPI thread */
   osThreadDef(Spi, SpiHandler, osPriorityNormal, 0, 512);
   SpiThread = osThreadCreate(osThread(Spi), NULL);
@@ -98,6 +100,11 @@ int main(void)
  /* definition and creation of Led thread */
   osThreadDef(Led, ledHandler, osPriorityNormal, 0, 512);
   ledThread = osThreadCreate(osThread(Led), NULL);
+  #endif
+
+ /* definition and creation of Led thread */
+  osThreadDef(Stats, statsHandler, osPriorityNormal, 0, 512);
+  statsThread = osThreadCreate(osThread(Stats), NULL);
 
   /* Start scheduler */
   osKernelStart();
@@ -122,7 +129,7 @@ void SpiHandler(void const * argument)
   {
     Debug_PrintMsgTime("SPI Thread \n"); 
     Spi1_Transmit((uint8_t*)message,strlen(message),HAL_MAX_DELAY);
-    osDelay(500);
+    osDelay(10000);
   }
 }
 
@@ -140,7 +147,7 @@ void I2cHandler(void const * argument)
   {
     Debug_PrintMsgTime("I2C Thread \n"); 
     I2c1_Master_Transmit((uint16_t)I2C_ADDRESS, (uint8_t*)message, strlen(message),HAL_MAX_DELAY);
-    osDelay(500);
+    osDelay(10000);
   }
 }
 
@@ -162,7 +169,7 @@ void AdcHandler(void const * argument)
     }
     Debug_PrintMsgTime("ADC Thread \n"); 
     Debug_PrintMsg(" -ADCValue: %i \n", ADCValue); 
-    osDelay(500);
+    osDelay(5000);
   }
 }
 
