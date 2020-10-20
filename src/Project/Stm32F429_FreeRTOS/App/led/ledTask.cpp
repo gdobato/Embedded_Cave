@@ -1,9 +1,11 @@
 #include "led.h"
-#include "ledThread.h"
 #include <debug.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-void ledHandler(void const * argument)
+void vTaskLed(void* pvParameters)
 {
   Led* redLed   = new Led(RED_LED);
   Led* greenLed = new Led(GREEN_LED);
@@ -16,3 +18,8 @@ void ledHandler(void const * argument)
     greenLed->On();
   }
 }
+
+#ifdef __cplusplus
+}
+#endif
+

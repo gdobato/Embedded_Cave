@@ -8,11 +8,18 @@
 /************************************
 * Includes
 ************************************/
-#include "cmsis_os.h"
+//Std
+#include <string.h>
 
-#include <debugThread.h>
+//Os objects
+#include "FreeRTOS.h"
+#include <debugTask.h>
 #include <debug.h>
+#include <led/ledTask.h>
+#include <stats/statsThread.h>
 
+//Bsp
+#include "stm32f4xx_hal.h"
 #include <hal/hal.h>
 #include <adc/adc.h>
 #include <dma/dma.h>
@@ -25,16 +32,9 @@
 #include <timer/timer.h>
 #include <usart/usart.h>
 
-#include <led/ledThread.h>
-#include <stats/statsThread.h>
-
-#include <string.h>
-#include "stm32f4xx_hal.h"
-
 /************************************
 * Private definitions 
 ************************************/
-#define I2C_ADDRESS        0x3E
 
 /************************************
 * Private type definitions 
@@ -43,32 +43,19 @@
 /************************************
 * Private variables
 ************************************/
-static osThreadId DebugThread;
-static osThreadId SpiThread;
-static osThreadId I2cThread;
-static osThreadId AdcThread;
-static osThreadId ledThread;
-static osThreadId statsThread;
+
 
 /************************************
 * Private declarations 
 ************************************/
-static void SpiHandler(void const * argument);
-static void I2cHandler(void const * argument);
-static void AdcHandler(void const * argument);
 static void Error_Handler(void);
 
 /************************************
 * Implementation 
 ************************************/
-
-/**
-  * @brief  main
-  * @param  argument: Not used 
-  * @retval int
-  */
 int main(void)
 {
+  /* Init BSP*/
   HAL_Init();
   Gpio_Init();
   Adc_Init();
@@ -80,34 +67,10 @@ int main(void)
   Fmc_Init();
 
   /* Create the thread(s) */
+  xTaskCreate(vTaskDebug, "Task Debug", 1000, NULL, 1, NULL );
+  xTaskCreate(vTaskLed  , "Task Led"  , 1000, NULL, 1, NULL );
+  vTaskStartScheduler();
 
-  /* definition and creation of debugTerminal */
-  osThreadDef(Debug, DebugHandler, osPriorityNormal, 0, 512);
-  DebugThread = osThreadCreate(osThread(Debug), NULL);
-  #if 1 
-  /* definition and creation of SPI thread */
-  osThreadDef(Spi, SpiHandler, osPriorityNormal, 0, 512);
-  SpiThread = osThreadCreate(osThread(Spi), NULL);
-
- /* definition and creation of I2c thread */
-  osThreadDef(I2c, I2cHandler, osPriorityNormal, 0, 512);
-  I2cThread = osThreadCreate(osThread(I2c), NULL);
-
- /* definition and creation of Adc thread */
-  osThreadDef(Adc, AdcHandler, osPriorityNormal, 0, 512);
-  AdcThread = osThreadCreate(osThread(Adc), NULL);
-
- /* definition and creation of Led thread */
-  osThreadDef(Led, ledHandler, osPriorityNormal, 0, 512);
-  ledThread = osThreadCreate(osThread(Led), NULL);
-  #endif
-
- /* definition and creation of Led thread */
-  osThreadDef(Stats, statsHandler, osPriorityNormal, 0, 512);
-  statsThread = osThreadCreate(osThread(Stats), NULL);
-
-  /* Start scheduler */
-  osKernelStart();
   
   while (1)
   {
@@ -117,66 +80,8 @@ int main(void)
   return 0;
 }
 
-/**
-* @brief Function implementing the SPI thread.
-* @param argument: Not used
-* @retval None
-*/
-void SpiHandler(void const * argument)
-{
-  char message[]="Hello World";
-  for(;;)
-  {
-    Debug_PrintMsgTime("SPI Thread \n"); 
-    Spi1_Transmit((uint8_t*)message,strlen(message),HAL_MAX_DELAY);
-    osDelay(10000);
-  }
-}
-
-/**
-* @brief Function implementing the I2C thread.
-* @param argument: Not used
-* @retval None
-*/
-void I2cHandler(void const * argument)
-{
-  /* USER CODE BEGIN I2CHandler */
-  char message[]="Hello World";
-  /* Infinite loop */
-  for(;;)
-  {
-    Debug_PrintMsgTime("I2C Thread \n"); 
-    I2c1_Master_Transmit((uint16_t)I2C_ADDRESS, (uint8_t*)message, strlen(message),HAL_MAX_DELAY);
-    osDelay(10000);
-  }
-}
-
-/**
-* @brief Function implementing the I2C thread.
-* @param argument: Not used
-* @retval None
-*/
-void AdcHandler(void const * argument)
-{
-  extern ADC_HandleTypeDef hadc1;
-  int ADCValue = 0;
-  for(;;)
-  {
-    HAL_ADC_Start(&hadc1);
-    if (HAL_ADC_PollForConversion(&hadc1, 1000000) == HAL_OK)
-    {
-      ADCValue = HAL_ADC_GetValue(&hadc1);
-    }
-    Debug_PrintMsgTime("ADC Thread \n"); 
-    Debug_PrintMsg(" -ADCValue: %i \n", ADCValue); 
-    osDelay(5000);
-  }
-}
-
-
 void Error_Handler(void)
 {
 
 }
-
 

@@ -14,6 +14,7 @@
 #include "timer/timer.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 
 /************************************
 * Private type definitions 

@@ -1,5 +1,6 @@
 #include <cmsis_os.h>
 #include "debug.h"
+#include "debugTask.h"
 
 /**
 * @brief Function implementing the debugTerminal thread.
@@ -7,7 +8,7 @@
 * @retval None
 */
 
-void DebugHandler(void const * argument)
+void vTaskDebug(void* pvParamters)
 {
   for(;;)
   {

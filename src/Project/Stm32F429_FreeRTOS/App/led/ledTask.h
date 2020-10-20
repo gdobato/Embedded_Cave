@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-void ledHandler(void const * argument);
+void vTaskLed(void * pvParameters);
 
 #ifdef __cplusplus
 }
