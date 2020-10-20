@@ -14,6 +14,7 @@
 #include <usart/usart.h> 
 #include <led/ledThread.h> 
 #include <debugThread.h> 
+#include <timer/timer.h>
 
 /************************************
 * Private definitions 
@@ -36,7 +37,7 @@ static osThreadId ledThread;
 int main(void)
 {
   HAL_Init();
-  Timer_Init() 
+  Timer_Init();
   Gpio_Init();
   Usart_Init();
 

@@ -76,7 +76,7 @@ int main(void)
   Usart_Init();
   Spi_Init();
   I2c_Init();
-  //Timer_Init();
+  Timer_Init();
   Fmc_Init();
 
   /* Create the thread(s) */
