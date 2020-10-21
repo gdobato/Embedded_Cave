@@ -2,17 +2,23 @@
 #include "debug.h"
 #include "debugTask.h"
 
-/**
-* @brief Function implementing the debugTerminal thread.
-* @param argument: Not used
-* @retval None
-*/
 
+extern xQueueHandle xQueueDebug ;
+xQueueHandle xQueueDebug = NULL;
+static char buff[1024];
 void vTaskDebug(void* pvParamters)
 {
   for(;;)
   {
-    Debug_PrintMsgTime("Debug Thread \n");
-    osDelay(5000);
+    if(pdTRUE == xQueueReceive (xQueueDebug, buff, 0))
+    {
+      Debug_PrintMsg("%s \n", buff);
+    }
+    vTaskDelay(pdMS_TO_TICKS(5000));
   }
+}
+
+xQueueHandle* DebugTask_GetQueue(void)
+{
+  return &xQueueDebug;
 }

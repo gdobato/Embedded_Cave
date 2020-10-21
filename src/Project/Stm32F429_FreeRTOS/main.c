@@ -65,10 +65,17 @@ int main(void)
   I2c_Init();
   Timer_Init();
   Fmc_Init();
+  
+  /* Initialize Os objects */
+  //Queues
+  xQueueHandle* xQueueDebug = DebugTask_GetQueue();
+  *xQueueDebug = xQueueCreate(3 ,512);
+  //Tasks
+  xTaskCreate(vTaskDebug , "Debug"  ,  512, NULL, 1, NULL );
+  xTaskCreate(vTaskLed   , "Led"    , 1024, NULL, 1, NULL );
+  xTaskCreate(vTaskStats , "Stats"  , 2048, NULL, 1, NULL );
 
-  /* Create the thread(s) */
-  xTaskCreate(vTaskDebug, "Task Debug", 1000, NULL, 1, NULL );
-  xTaskCreate(vTaskLed  , "Task Led"  , 1000, NULL, 1, NULL );
+  /*Start Os*/
   vTaskStartScheduler();
 
   

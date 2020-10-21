@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-void statsHandler(void const * argument);
+void vTaskStats(void* pvParameters);
 
 #ifdef __cplusplus
 }

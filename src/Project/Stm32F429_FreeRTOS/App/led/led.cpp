@@ -26,7 +26,7 @@ void Led::toggle(uint32_t delay)
 {
     state =!state;
     HAL_GPIO_WritePin(port, pin, (GPIO_PinState)state);
-    osDelay(delay);
+    vTaskDelay(pdMS_TO_TICKS(delay));
 }
 
 void Led::On(void)

@@ -6,16 +6,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 static char stats[1024];
-void statsHandler(void const * argument)
+
+void vTaskStats(void* pvParameters)
 {
+  xQueueHandle* xQueueDebug = DebugTask_GetQueue();
   for(;;)
   {
     vTaskGetRunTimeStats(stats); 
-    Debug_PrintMsg("================== Run Time Measurement ==================================\n");
-    Debug_PrintMsg((char *)"%s \n", stats);
-    Debug_PrintMsg("==========================================================================\n");
-    osDelay(5000);
+    if (pdTRUE == xQueueSend(*xQueueDebug, stats, 0))
+    {
+      vTaskDelay(pdMS_TO_TICKS(5000));
+    }
   }
 }
 
