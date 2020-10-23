@@ -38,30 +38,18 @@
 /************************************
 * Implementation 
 ************************************/
-static bool PrintMsgMutex = false;
 void Debug_PrintMsg(char *msg, ...)
 {
-  if (PrintMsgMutex == false)
-  {
-    PrintMsgMutex = true;
-    CREATE_VAR_BUFF(buff, msg, 1024);
-    Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
-    PrintMsgMutex = false;
-  }
+  CREATE_VAR_BUFF(buff, msg, 1024);
+  Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
 }
 
 void Debug_PrintMsgTime(char *msg, ...)
 {
-  if (PrintMsgMutex == false)
-  {
-    PrintMsgMutex = true;
-    //temporal mutex, use os services instead
     CREATE_VAR_BUFF(buff, msg, 1024);
     uint32_t timems = Timer_GetTick();
     char auxStr[90];
     sprintf(auxStr, "[%lu ms] : ", timems);
     strcat(auxStr, VAR_BUFF(buff));
     Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
-    PrintMsgMutex = false;
-  }
 }

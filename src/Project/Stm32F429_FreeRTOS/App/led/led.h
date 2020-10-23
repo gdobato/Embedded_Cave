@@ -14,7 +14,7 @@ class Led {
    Led(const uint8_t idx);
    ~Led();
 
-   void toggle(uint32_t);
+   void toggle(void);
    void On(void);
    void Off(void);
    bool getState(void);

@@ -16,7 +16,7 @@
 #include <debugTask.h>
 #include <debug.h>
 #include <led/ledTask.h>
-#include <stats/statsThread.h>
+#include <stats/statsTask.h>
 
 //Bsp
 #include "stm32f4xx_hal.h"
@@ -69,11 +69,11 @@ int main(void)
   /* Initialize Os objects */
   //Queues
   xQueueHandle* xQueueDebug = DebugTask_GetQueue();
-  *xQueueDebug = xQueueCreate(3 ,512);
+  *xQueueDebug = xQueueCreate(3 ,sizeof(xQueueDebugData));
   //Tasks
-  xTaskCreate(vTaskDebug , "Debug"  ,  512, NULL, 1, NULL );
-  xTaskCreate(vTaskLed   , "Led"    , 1024, NULL, 1, NULL );
-  xTaskCreate(vTaskStats , "Stats"  , 2048, NULL, 1, NULL );
+  xTaskCreate(vTaskStats , "Stats"  , 1024, NULL, 1, NULL );
+  xTaskCreate(vTaskDebug , "Debug"  , 1024, NULL, 1, NULL );
+  xTaskCreate(vTaskLed   , "Led"    , 512 , NULL, 1, NULL );
 
   /*Start Os*/
   vTaskStartScheduler();

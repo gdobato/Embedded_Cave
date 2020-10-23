@@ -2,7 +2,6 @@
 #include <string>
 #include "led.h"
 
-#include <cmsis_os.h>
 #include <hal/hal.h>
 
 Led::Led(const uint8_t idx)
@@ -22,11 +21,11 @@ Led::Led(const uint8_t idx)
   }
 }
 
-void Led::toggle(uint32_t delay)
+void Led::toggle(void)
 {
     state =!state;
     HAL_GPIO_WritePin(port, pin, (GPIO_PinState)state);
-    vTaskDelay(pdMS_TO_TICKS(delay));
+    
 }
 
 void Led::On(void)

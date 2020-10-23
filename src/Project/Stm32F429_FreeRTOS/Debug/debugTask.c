@@ -3,18 +3,37 @@
 #include "debugTask.h"
 
 
-extern xQueueHandle xQueueDebug ;
 xQueueHandle xQueueDebug = NULL;
 static char buff[1024];
+
+
+
 void vTaskDebug(void* pvParamters)
 {
+  xQueueDebugData xQueueData;
   for(;;)
   {
-    if(pdTRUE == xQueueReceive (xQueueDebug, buff, 0))
+    #if 1
+    if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData, portMAX_DELAY))
     {
-      Debug_PrintMsg("%s \n", buff);
+      switch(xQueueData.ucType)
+      {
+        case DEBUG_QUEUE_PRINTMSG_TIMESTAMP:
+          Debug_PrintMsgTime("%s \n", xQueueData.pucBuff);
+          break;
+        case DEBUG_QUEUE_PRINTMSG:
+        default:
+          Debug_PrintMsg("%s \n", xQueueData.pucBuff);
+          break;
+
+      }
     }
-    vTaskDelay(pdMS_TO_TICKS(5000));
+    #else
+    if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData.pucBuff,portMAX_DELAY))
+    {
+      Debug_PrintMsg("%s \n", xQueueData.pucBuff);
+    }
+    #endif
   }
 }
 
