@@ -64,7 +64,7 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
   ${BSP_DIR}/STM32F4xx/Src/stm32f4xx_BareMetal_spi.c
   ${PROJECT_DIR}/Debug/debug.c
-  ${PROJECT_DIR}/Debug/debugTask.c
+  ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
@@ -79,9 +79,11 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
   ${PROJECT_DIR}/App/led/led.cpp
-  ${PROJECT_DIR}/App/led/ledTask.cpp
+  ${PROJECT_DIR}/App/led/taskLed.cpp
   ${PROJECT_DIR}/App/stats/stats.cpp
-  ${PROJECT_DIR}/App/stats/statsTask.c
+  ${PROJECT_DIR}/App/stats/taskStats.cpp
+  ${PROJECT_DIR}/App/button/button.cpp
+  ${PROJECT_DIR}/App/button/taskButton.cpp
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.c  

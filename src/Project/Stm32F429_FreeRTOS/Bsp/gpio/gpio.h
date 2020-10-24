@@ -10,8 +10,8 @@
 /************************************
 * Public includes 
 ************************************/
-//#include "hal.h"
 #include "hal/hal.h"
+
 /************************************
 * Public type definitions 
 ************************************/
@@ -19,7 +19,13 @@
 /************************************
 * APIs
 ************************************/
-void Gpio_Init(void);
-GPIO_PinState Gpio_GetUserButton(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+void    Gpio_Init(void);
+uint8_t Gpio_GetUserButton(void);
+#ifdef __cplusplus
+}
+#endif
 
 #endif

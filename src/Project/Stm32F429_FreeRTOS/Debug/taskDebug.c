@@ -1,19 +1,15 @@
 #include <cmsis_os.h>
 #include "debug.h"
-#include "debugTask.h"
+#include "taskDebug.h"
 
 
 xQueueHandle xQueueDebug = NULL;
-static char buff[1024];
-
-
 
 void vTaskDebug(void* pvParamters)
 {
   xQueueDebugData xQueueData;
   for(;;)
   {
-    #if 1
     if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData, portMAX_DELAY))
     {
       switch(xQueueData.ucType)
@@ -28,16 +24,15 @@ void vTaskDebug(void* pvParamters)
 
       }
     }
-    #else
-    if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData.pucBuff,portMAX_DELAY))
-    {
-      Debug_PrintMsg("%s \n", xQueueData.pucBuff);
-    }
-    #endif
   }
 }
 
 xQueueHandle* DebugTask_GetQueue(void)
 {
   return &xQueueDebug;
+}
+
+xQueueHandle  xTaskDebug_GetQueue(void)
+{
+  return xQueueDebug;
 }

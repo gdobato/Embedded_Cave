@@ -1,4 +1,5 @@
-#ifndef __LED_TASK_H__
+#ifndef __TASK_LED_H__
+  #define __TASK_LED_H__
 
 #include <cmsis_os.h>
 

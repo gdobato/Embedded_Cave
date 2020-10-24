@@ -113,5 +113,5 @@ void Gpio_Init(void)
 }
 GPIO_PinState Gpio_GetUserButton(void)
 {
-  return HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
+  return (uint8_t)HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
 }

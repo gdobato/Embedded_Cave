@@ -1,5 +1,5 @@
-#ifndef __DEBUG_TASK_H__
-#define __DEBUG_TASK_H__
+#ifndef __TASK_DEBUG_H__
+#define __TASK_DEBUG_H__
 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -20,6 +20,7 @@ extern "C" {
 
 void          vTaskDebug        (void* pvParameters);
 xQueueHandle* DebugTask_GetQueue(void);
+xQueueHandle  xTaskDebug_GetQueue(void);
 
 #ifdef __cplusplus
 }

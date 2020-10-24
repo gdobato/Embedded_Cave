@@ -13,10 +13,10 @@
 
 //Os objects
 #include "FreeRTOS.h"
-#include <debugTask.h>
-#include <debug.h>
-#include <led/ledTask.h>
-#include <stats/statsTask.h>
+#include <taskDebug.h>
+#include <led/taskLed.h>
+#include <stats/taskStats.h>
+#include <button/taskButton.h>
 
 //Bsp
 #include "stm32f4xx_hal.h"
@@ -71,9 +71,10 @@ int main(void)
   xQueueHandle* xQueueDebug = DebugTask_GetQueue();
   *xQueueDebug = xQueueCreate(3 ,sizeof(xQueueDebugData));
   //Tasks
-  xTaskCreate(vTaskStats , "Stats"  , 1024, NULL, 1, NULL );
-  xTaskCreate(vTaskDebug , "Debug"  , 1024, NULL, 1, NULL );
-  xTaskCreate(vTaskLed   , "Led"    , 512 , NULL, 1, NULL );
+  xTaskCreate(vTaskStats  , "Stats"  , 1024, NULL, 2, NULL );
+  xTaskCreate(vTaskDebug  , "Debug"  , 1024, NULL, 2, NULL );
+  xTaskCreate(vTaskLed    , "Led"    , 256 , NULL, 1, NULL );
+  xTaskCreate(vTaskButton , "Button" , 256 , NULL, 1, NULL );
 
   /*Start Os*/
   vTaskStartScheduler();

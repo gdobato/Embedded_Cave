@@ -30,7 +30,9 @@ include_directories(${APP_DIR})
 include_directories(${BSP_DIR})
 include_directories(${CONFIG_DIR})
 include_directories(${DEBUG_DIR})
+include_directories(${PROJECT_DIR})
 include_directories(${STARTUP_DIR})
+include_directories(${UTIL_DIR})
 
 #Output Files
 #Elf File
