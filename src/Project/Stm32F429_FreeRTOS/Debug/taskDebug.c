@@ -27,11 +27,6 @@ void vTaskDebug(void* pvParamters)
   }
 }
 
-xQueueHandle* DebugTask_GetQueue(void)
-{
-  return &xQueueDebug;
-}
-
 xQueueHandle  xTaskDebug_GetQueue(void)
 {
   return xQueueDebug;
