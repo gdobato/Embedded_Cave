@@ -67,6 +67,7 @@ int main(void)
   Fmc_Init();
   
   /* Initialize Os objects */
+  //Queues
   vTaskDebug_CreateQueue(3U);
 
   //Tasks

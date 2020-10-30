@@ -3,7 +3,7 @@
 #include "taskDebug.h"
 
 
-xQueueHandle xQueueDebug = NULL;
+static xQueueHandle xQueueDebug = NULL;
 
 void vTaskDebug(void* pvParamters)
 {
@@ -34,5 +34,5 @@ xQueueHandle  xTaskDebug_GetQueue(void)
 
 void vTaskDebug_CreateQueue(uint8_t ucLength)
 {
-  xQueueCreate(ucLength ,sizeof(xQueueDebugData));
+  xQueueDebug = xQueueCreate(ucLength ,sizeof(xQueueDebugData));
 }
