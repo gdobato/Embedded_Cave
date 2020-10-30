@@ -18,9 +18,9 @@ typedef struct xQueueDebugData
 extern "C" {
 #endif
 
-void          vTaskDebug        (void* pvParameters);
-xQueueHandle* DebugTask_GetQueue(void);
+void          vTaskDebug(void* pvParameters);
 xQueueHandle  xTaskDebug_GetQueue(void);
+void          vTaskDebug_CreateQueue(uint8_t ucLength);    
 
 #ifdef __cplusplus
 }

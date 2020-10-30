@@ -67,9 +67,8 @@ int main(void)
   Fmc_Init();
   
   /* Initialize Os objects */
-  //Queues
-  xQueueHandle* xQueueDebug = DebugTask_GetQueue();
-  *xQueueDebug = xQueueCreate(3 ,sizeof(xQueueDebugData));
+  vTaskDebug_CreateQueue(3U);
+
   //Tasks
   xTaskCreate(vTaskStats  , "Stats"  , 1024, NULL, 2, NULL );
   xTaskCreate(vTaskDebug  , "Debug"  , 1024, NULL, 2, NULL );

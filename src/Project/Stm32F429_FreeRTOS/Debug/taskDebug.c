@@ -31,3 +31,8 @@ xQueueHandle  xTaskDebug_GetQueue(void)
 {
   return xQueueDebug;
 }
+
+void vTaskDebug_CreateQueue(uint8_t ucLength)
+{
+  xQueueCreate(ucLength ,sizeof(xQueueDebugData));
+}
