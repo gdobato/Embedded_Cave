@@ -14,6 +14,10 @@ include_directories(${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
+include_directories(${THIRD_PARTY_DIR}/SEGGER/Config)
+include_directories(${THIRD_PARTY_DIR}/SEGGER/OS)
+include_directories(${THIRD_PARTY_DIR}/SEGGER/Patch)
+include_directories(${THIRD_PARTY_DIR}/SEGGER/SEGGER)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${PROJECT_DIR}/App)
 include_directories(${PROJECT_DIR}/Bsp)
@@ -63,6 +67,12 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/MemMang/heap_4.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
+  ${THIRD_PARTY_DIR}/SEGGER/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c
+  ${THIRD_PARTY_DIR}/SEGGER/OS/SEGGER_SYSVIEW_FreeRTOS.c
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT_ASM_ARMv7M.S
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT_printf.c
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT.c
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_SYSVIEW.c
   ${BSP_DIR}/STM32F4xx/Src/stm32f4xx_BareMetal_spi.c
   ${PROJECT_DIR}/Debug/debug.c
   ${PROJECT_DIR}/Debug/taskDebug.c
