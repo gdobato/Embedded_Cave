@@ -55,6 +55,9 @@ static void Error_Handler(void);
 ************************************/
 int main(void)
 {
+  /* Enable Counter of DWT Cell*/
+  DWT->CTRL |= 0x01;
+
   /* Init BSP*/
   HAL_Init();
   Gpio_Init();
@@ -65,7 +68,12 @@ int main(void)
   I2c_Init();
   Timer_Init();
   Fmc_Init();
-  
+
+  /* Start System recording*/
+  NVIC_SetPriorityGrouping( 0 ); 
+  SEGGER_SYSVIEW_Conf();
+  SEGGER_SYSVIEW_Start();
+
   /* Initialize Os objects */
   //Queues
   vTaskDebug_CreateQueue(3U);

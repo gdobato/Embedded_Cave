@@ -63,7 +63,7 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 **********************************************************************
 */
 // The application name to be displayed in SystemViewer
-#define SYSVIEW_APP_NAME        "FreeRTOS Demo Application"
+#define SYSVIEW_APP_NAME        "FreeRTOS"
 
 // The target device name
 #define SYSVIEW_DEVICE_NAME     "Cortex-M4"
@@ -75,7 +75,7 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 #define SYSVIEW_CPU_FREQ        configCPU_CLOCK_HZ
 
 // The lowest RAM address used for IDs (pointers)
-#define SYSVIEW_RAM_BASE        (0x10000000)
+#define SYSVIEW_RAM_BASE        (0x20000000)
 
 /********************************************************************* 
 *

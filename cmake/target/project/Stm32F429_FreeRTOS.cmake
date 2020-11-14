@@ -102,6 +102,6 @@ set(PROJECT_FILES
 
 #set additional settings
 #set_property(SOURCE ${STARTUP_DIR}/startup_stm32f429xx.s PROPERTY LANGUAGE C)
-
+set_property(SOURCE ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT_ASM_ARMv7M.S PROPERTY LANGUAGE C)
 #set additional information
 set(TARGET_DEBUGER STLINK)
