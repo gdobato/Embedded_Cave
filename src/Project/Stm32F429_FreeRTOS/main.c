@@ -55,22 +55,20 @@ static void Error_Handler(void);
 ************************************/
 int main(void)
 {
-  /* Enable Counter of DWT Cell*/
+  /* Enable Counter of DWT Cell. ToDo:it needs to be encapsulated. Remove CMSIS dependencies*/
   DWT->CTRL |= 0x01;
 
   /* Init BSP*/
   HAL_Init();
   Gpio_Init();
-  Adc_Init();
-  Dma_Init();
   Usart_Init();
-  Spi_Init();
-  I2c_Init();
   Timer_Init();
-  Fmc_Init();
+
+  /* ToDo: Implement own API. Remove CMSIS depenencies */
+  /* Analyse why sysgroup bit is not 0 by default*/
+  NVIC_SetPriorityGrouping( 0 ); 
 
   /* Start System recording*/
-  NVIC_SetPriorityGrouping( 0 ); 
   SEGGER_SYSVIEW_Conf();
   SEGGER_SYSVIEW_Start();
 
