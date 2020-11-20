@@ -4,5 +4,6 @@
 #include <Platform_Types.h>
 
 #define DEBUG_TRACE STD_OFF
+#define SYSTEMVIEW  STD_ON
 
 #endif

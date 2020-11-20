@@ -32,6 +32,9 @@
 #include <timer/timer.h>
 #include <usart/usart.h>
 
+//Cfg
+#include <Cfg.h>
+
 /************************************
 * Private definitions 
 ************************************/
@@ -69,8 +72,10 @@ int main(void)
   NVIC_SetPriorityGrouping( 0 ); 
 
   /* Start System recording*/
+  #if (SYSTEMVIEW == STD_ON)
   SEGGER_SYSVIEW_Conf();
   SEGGER_SYSVIEW_Start();
+  #endif
 
   /* Initialize Os objects */
   //Queues
