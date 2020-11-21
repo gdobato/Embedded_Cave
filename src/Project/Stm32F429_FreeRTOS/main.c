@@ -59,7 +59,9 @@ static void Error_Handler(void);
 int main(void)
 {
   /* Enable Counter of DWT Cell. ToDo:it needs to be encapsulated. Remove CMSIS dependencies*/
-  DWT->CTRL |= 0x01;
+  #if (SYSTEMVIEW == STD_ON)
+  System_EnableCycleCounter();
+  #endif
 
   /* Init BSP*/
   HAL_Init();
