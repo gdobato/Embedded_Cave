@@ -33,11 +33,5 @@ python ./run.py Clean
 python ./run.py Flash
 ```
 
-## Credits
-Jenifer Blanco jenifer_blanco@hotmail.com
-
-Gabriel Dobato dobatog@gmail.com
-
-Amine Chalandi
 
 
