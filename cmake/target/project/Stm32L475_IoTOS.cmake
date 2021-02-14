@@ -26,7 +26,6 @@ include_directories(${PROJECT_DIR}/Bsp/hal)
 #Files to include
 set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Source/Templates/system_stm32l4xx.c
-  ${OS_DIR}/IoTOS/portable/ARM/CM4F/Port.c
   ${OS_DIR}/IoTOS/Os.c
   ${PROJECT_DIR}/main.c
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
