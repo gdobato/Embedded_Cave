@@ -1,5 +1,6 @@
 src/STM32F429I/Makefile
 src/STM32F429I/.mxproject
+tools/ozone/STM32F429.jdebug.user
 build/*
 .vscode/*
 !.vscode/tasks.json

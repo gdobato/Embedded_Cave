@@ -2,25 +2,44 @@ image: gcc
 before_script:
  - apt-get update  --yes
  - apt-get install --yes cmake
+
+stages:
+  - build
+  - test
+
  
-Stm32F429_1:
+Stm32F429_FreeRTOS:
  stage: build
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_1 ../cmake
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../../cmake/target
    - make
    
-Stm32L475_1:
- stage: build 
+Stm32F429_Scheduler:
+ stage: build
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_1 ../cmake
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_Scheduler ../../cmake/target
    - make
 
-Stm32L475_2:
+Stm32L475_FreeRTOS:
  stage: build 
  script:
-   - mkdir -p build && cd build
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_2 ../cmake
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../../cmake/target
    - make
 
+Stm32L475_IoTOS:
+ stage: build 
+ script:
+   - mkdir -p build/target && cd build/target
+   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_IoTOS ../../cmake/target
+   - make
+
+Unit_Test:
+ stage: test 
+ script:
+   - mkdir -p build/utest && cd build/utest
+   - cmake ../../cmake/utest
+   - make example
+   - ./example

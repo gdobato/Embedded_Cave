@@ -4,16 +4,88 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Build: Stm32F429_FreeRTOS",
             "type": "shell",
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
-            "args": [ "./run.py", "Build" ],
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32F429_FreeRTOS" ],
             "windows": {
               "command": "python",
-               "args": [ ".\\run.py", "Build" ],
+              "args": [ ".\\run.py","Build", "Stm32F429_FreeRTOS" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Stm32F429_Scheduler",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32F429_Scheduler" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32F429_Scheduler" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Stm32F429_FreeRTOS_GFX",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32F429_FreeRTOS_GFX" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32F429_FreeRTOS_GFX" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Stm32L475_FreeRTOS",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32L475_FreeRTOS" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32L475_FreeRTOS" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build: Stm32L475_IoTOS",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32L475_IoTOS" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32L475_IoTOS" ],
             },
             "group": {
                 "kind": "build",
@@ -27,7 +99,7 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py", "Rebuild" ],
             "windows": {
               "command": "python",
@@ -45,65 +117,11 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Clean" ],
             "windows": {
               "command": "python",
               "args": [ ".\\run.py","Clean" ],
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Generate: Stm32L475_1",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-             },
-            "command": "python",
-            "args": [ "./run.py","Generate", "Stm32L475_1" ],
-            "windows": {
-              "command": "python",
-              "args": [ ".\\run.py","Generate", "Stm32L475_1" ],
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Generate: Stm32L475_2",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-             },
-            "command": "python",
-            "args": [ "./run.py","Generate", "Stm32L475_2" ],
-            "windows": {
-              "command": "python",
-              "args": [ ".\\run.py","Generate", "Stm32L475_2" ],
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "Generate: Stm32F429_1",
-            "type": "shell",
-            "options": {
-                "cwd": "${workspaceFolder}",
-             },
-            "command": "python",
-            "args": [ "./run.py","Generate", "Stm32F429_1" ],
-            "windows": {
-              "command": "python",
-              "args": [ ".\\run.py","Generate", "Stm32F429_1" ],
             },
             "group": {
                 "kind": "build",
@@ -117,11 +135,29 @@
             "options": {
                 "cwd": "${workspaceFolder}",
              },
-            "command": "python",
+            "command": "",
             "args": [ "./run.py","Flash"],
             "windows": {
               "command":"python",
               "args": [ ".\\run.py","Flash"],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Unit Test: example",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","UTest", "example"],
+            "windows": {
+              "command":"python",
+              "args": [ ".\\run.py","UTest", "example"],
             },
             "group": {
                 "kind": "build",

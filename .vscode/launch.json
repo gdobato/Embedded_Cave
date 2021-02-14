@@ -1,14 +1,42 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "type": "cortex-debug",
             "request": "launch",
             "servertype": "openocd",
             "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2018-q4-major/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32F429_1/Stm32F429_1.elf",
-            "name": "LINUX Debug Stm32F429_1",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS/Stm32F429_FreeRTOS.elf",
+            "name": "LINUX ST-Link Stm32F429_FreeRTOS",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS/Stm32F429_FreeRTOS.elf",
+            "name": "LINUX J-Link Stm32F429_FreeRTOS",
+            "device": "STM32F429II",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS/Stm32F429_FreeRTOS.elf",
+            "name": "WIN ST-Link  Stm32F429_FreeRTOS",
             "device": "STM32F429",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
             "configFiles": [
@@ -21,9 +49,9 @@
             "request": "launch",
             "servertype": "openocd",
             "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2018-q4-major/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32F429_1/Stm32F429_1.elf",
-            "name": "WIN Debug Stm32F429_1",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_Scheduler/Stm32F429_Scheduler.elf",
+            "name": "LINUX ST-Link Stm32F429_Scheduler",
             "device": "STM32F429",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
             "configFiles": [
@@ -36,9 +64,69 @@
             "request": "launch",
             "servertype": "openocd",
             "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2018-q4-major/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32L475_1/Stm32L475_1.elf",
-            "name": "LINUX Debug Stm32L475_1",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_Scheduler/Stm32F429_Scheduler.elf",
+            "name": "WIN ST-Link  Stm32F429_Scheduler",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS_GFX/Stm32F429_FreeRTOS_GFX.elf",
+            "name": "LINUX ST-Link Stm32F429_FreeRTOS_GFX",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32F429_FreeRTOS_GFX/Stm32F429_FreeRTOS_GFX.elf",
+            "name": "WIN ST-Link Stm32F429_FreeRTOS_GFX",
+            "device": "STM32F429",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32F439x.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32f429disc1.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_FreeRTOS/Stm32L475_FreeRTOS.elf",
+            "name": "LINUX ST-Link Stm32L475_FreeRTOS",
+            "device": "STM32L475",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "configFiles": [
+                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
+            ],
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_FreeRTOS/Stm32L475_FreeRTOS.elf",
+            "name": "WIN ST-Link Stm32L475_FreeRTOS",
             "device": "STM32L475",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
             "configFiles": [
@@ -52,8 +140,8 @@
             "servertype": "openocd",
             "cwd": "/",
             "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32L475_2/Stm32L475_2.elf",
-            "name": "LINUX Debug Stm32L475_2",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_IoTOS/Stm32L475_IoTOS.elf",
+            "name": "LINUX ST-Link Debug Stm32L475_IoTOS",
             "device": "STM32L475",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
             "configFiles": [
@@ -67,23 +155,8 @@
             "servertype": "openocd",
             "cwd": "/",
             "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32L475_1/Stm32L475_1.elf",
-            "name": "WIN Debug Stm32L475_1",
-            "device": "STM32L475",
-            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
-            "configFiles": [
-                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
-            ],
-            "showDevDebugOutput": true,
-        },
-        {
-            "type": "cortex-debug",
-            "request": "launch",
-            "servertype": "openocd",
-            "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
-            "executable": "${workspaceFolder}/build/bin/Stm32L475_2/Stm32L475_2.elf",
-            "name": "WIN Debug Stm32L475_2",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_IoTOS/Stm32L475_IoTOS.elf",
+            "name": "WIN ST-Link Stm32L475_IoTOS",
             "device": "STM32L475",
             "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
             "configFiles": [

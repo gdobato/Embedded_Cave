@@ -1,7 +1,12 @@
+#!/usr/bin/python3
 #Modules Import
 import os
 import platform
 import sys
+
+#Variables
+ERROR = -1
+PROJECT_LIST = ["Stm32F429_FreeRTOS", "Stm32L475_FreeRTOS","Stm32L475_IoTOS","Stm32L475_Osek"]
 
 #Check platform
 PLATFORM   =  platform.system()
@@ -22,75 +27,92 @@ else:
 #Functions defintions
 def usage():
   print('Invalid Option, usage: ') 
-  print(sys.argv[0] + " [Generate] [Project name]")
-  print(sys.argv[0] + " [Build]")
+  print(sys.argv[0] + " [Build]   [Project]")
   print(sys.argv[0] + " [ReBuild]")
   print(sys.argv[0] + " [Clean]")
   print(sys.argv[0] + " [Flash]")
-  print(sys.argv[0] + " Generate   Stm32L475_2")
-  print(sys.argv[0] + " Build")
-  print(sys.argv[0] + " Rebuild")
-  print(sys.argv[0] + " Clean")
-  print(sys.argv[0] + " Flash")
+  print(sys.argv[0] + " [UTest]   [Unit]")
+  print("Project List: ")
+  print(*PROJECT_LIST)
 
-def generateFiles():
-  if len(sys.argv) < 3 :
-    usage()
-  else: 
-    PROJECT = str(sys.argv[2])
-    if PLATFORM == "Windows" :
-      os.system ('IF NOT EXIST build ( MKDIR build ) ')
-      os.system ('cd build && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + PROJECT + ' ../cmake')
-      os.system ('cd .. ')
-    else :
-      os.system ('mkdir -p build')
-      os.system ('cd build && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + PROJECT + ' ../cmake' )
+def generateFiles(target):
+  project = str(target)
+  if PLATFORM == "Windows" :
+    os.system ('IF NOT EXIST build ( MKDIR build/target ) ')
+    os.system ('cd build/target && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + project + ' ../../cmake/target')
+  else :
+    os.system ('mkdir -p build/target')
+    os.system ('cd build/target && ' + CMAKE + ' -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=' + project + ' ../../cmake/target' )
 
 def getTargetInfo():
-  targetInfo       = open('build/target.info','r')
-  return targetInfo
-
-def getTargetProject():
-  targetProject    = getTargetInfo().readlines()[0].strip()
-  return targetProject
+  if(os.path.exists('build/target/target.info')):
+    targetInfo       = open('build/target/target.info','r')
+    return targetInfo
+  else:
+    return ERROR
 
 def build():
-  makeTarget = getTargetProject() + ".elf"
-  os.system ('cd build && ' + MAKE + ' ' + makeTarget + ' -j' )
+  if (len(sys.argv) < 3):
+    usage()
+  else: 
+    target = sys.argv[2]
+    generateFiles(target)
+    makeTarget = target + ".elf"
+    os.system ('cd build/target && ' + MAKE + ' ' + makeTarget + ' -j' )
 
 def rebuild():
-  os.system ('cd build && ' + MAKE + ' clean' )
-  build()
+  if not (getTargetInfo() == ERROR):
+    target = getTargetInfo().readlines()[0].strip()
+    generateFiles(target)
+    makeTarget = target + ".elf"
+    os.system ('cd build/target && ' + MAKE + ' clean' )
+    os.system ('cd build/target && ' + MAKE + ' ' + makeTarget + ' -j' )
+  else:
+    print("no built target found, please build target before")
 
 def clean():
   if PLATFORM == "Windows" :
     os.system ('RMDIR /Q/S build')
   else:
-    os.system ('rm -r build')
+    os.system ('rm -rf build')
   print('build directory cleaned')
 
-def getTargetDebuger():
-  targetDebuger    = getTargetInfo().readlines()[1].strip()
-  return targetDebuger
+def utest():
+  if (len(sys.argv) < 3):
+    usage()
+  else: 
+    unit = sys.argv[2]
+    if PLATFORM == "Windows" :
+      os.system ('IF NOT EXIST build ( MKDIR build/utest ) ')
+      os.system ('cd build/utest && ' + CMAKE + ' -G "MinGW Makefiles"  ../../cmake/utest')
+    else :
+      os.system ('mkdir -p build/utest')
+      os.system ('cd build/utest && ' + CMAKE + ' ../../cmake/utest' )  
+    os.system ('cd build/utest' + CMAKE + ' ../../cmake/utest' )  
+    os.system ('cd build/utest && ' + MAKE + ' ' + unit + ' -j' + '&&' + './' + unit )
 
 def flash():
-  targetDebuger = getTargetDebuger()
-  if targetDebuger == "STLINK":
-    targetBinary  = "./build/bin/" + getTargetProject() + "/" + getTargetProject() + ".hex" 
-    if PLATFORM == "Windows" :
-      os.system('ST-LINK_CLI -c SWD -p ' + targetBinary + ' -Rst -Run')
-    else :
-      os.system('st-flash --format ihex write ' + targetBinary)
+  if not (getTargetInfo() == ERROR):
+    targetDebuger = getTargetInfo().readlines()[1].strip()
+    if targetDebuger == "STLINK":
+      target        = getTargetInfo().readlines()[0].strip()
+      targetBinary  = "./build/target/bin/" + target + "/" + target + ".hex" 
+      if PLATFORM == "Windows" :
+        os.system('ST-LINK_CLI -c SWD -p ' + targetBinary + ' -Rst -Run')
+      else :
+        os.system('st-flash --format ihex write ' + targetBinary)
+    else:
+      print('Debuger not supported')
   else:
-    print('Debuger not supported')
+    print("no built target found, please build target before")
 
 def optionParser(option):
   switcher = {
-    "Generate" : generateFiles,
     "Build"    : build,
     "Rebuild"  : rebuild,
     "Clean"    : clean,
-    "Flash"    : flash
+    "Flash"    : flash,
+    "UTest"    : utest 
   }
   func = switcher.get(option, usage)
   func()
@@ -98,8 +120,8 @@ def optionParser(option):
 
 #Main Routine
 if len(sys.argv) > 1 :
-  RUN_OPTION = sys.argv[1]
-  optionParser(RUN_OPTION)
+  runOption = sys.argv[1]
+  optionParser(runOption)
 else :
   usage()
 
