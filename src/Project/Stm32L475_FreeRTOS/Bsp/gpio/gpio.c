@@ -186,3 +186,9 @@ void Gpio_Init(void)
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
+
+void Gpio_WriteGreenLed(uint8_t level)
+{
+  //ToDo
+  //HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, level);
+}

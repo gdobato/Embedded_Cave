@@ -1,8 +1,6 @@
-#ifndef __IOTOS_CFG_H__
-  #define __IOTOS_CFG_H__
-//#include <types.h>
+#ifndef __OS_CFG_H__
+  #define __OS_CFG_H__
 
-#define MCU  CM4F
 
 
 #endif

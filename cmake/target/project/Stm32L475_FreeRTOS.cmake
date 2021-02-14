@@ -46,15 +46,15 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c
   ${PROJECT_DIR}/Debug/debug.c
-  ${PROJECT_DIR}/Debug/debugThread.c
+  ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.c
   ${PROJECT_DIR}/Bsp/hal/stm32l4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/system/stm32l4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32l4xx.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
-  ${PROJECT_DIR}/App/led/led.cpp
-  ${PROJECT_DIR}/App/led/ledThread.cpp
+  ${PROJECT_DIR}/App/userLed/userLed.cpp
+  ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.c

@@ -76,7 +76,7 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/main.cpp
   ${PROJECT_DIR}/tasks.cpp
   ${PROJECT_DIR}/callouts.c
-  ${PROJECT_DIR}/App/led/led.cpp
+  ${PROJECT_DIR}/App/userLed/userLed.cpp
 )
 
 #set additional information
