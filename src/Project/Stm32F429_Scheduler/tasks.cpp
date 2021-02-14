@@ -1,12 +1,10 @@
-
 #include <Os.h>
-#include <led/led.h> 
+#include <userLed/userLed.h> 
+#include <memory>
 #include <gpio/gpio.h>
 
-
- Led* redLed   = new Led(RED_LED);
- Led* greenLed = new Led(GREEN_LED); 
-
+auto redLed    = std::make_unique<UserLed>(Gpio_WriteRedLed);
+auto greenLed  = std::make_unique<UserLed>(Gpio_WriteGreenLed);
 
 
  void GreenLed_Init (void)

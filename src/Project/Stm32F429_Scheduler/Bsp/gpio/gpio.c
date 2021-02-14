@@ -111,7 +111,18 @@ void Gpio_Init(void)
   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
 
 }
+
 GPIO_PinState Gpio_GetUserButton(void)
 {
-  return HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
+  return (uint8_t)HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
+}
+
+void Gpio_WriteGreenLed(uint8_t level)
+{
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, level);
+}
+
+void Gpio_WriteRedLed(uint8_t level)
+{
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, level);
 }

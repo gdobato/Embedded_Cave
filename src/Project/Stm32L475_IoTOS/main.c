@@ -9,7 +9,7 @@
 * Includes
 ************************************/
 #include <stm32l475xx.h>
-#include <OsAPI.h>
+
 /************************************
 * Private definitions 
 ************************************/
@@ -29,12 +29,13 @@ extern uint32_t SystemCoreClock;
 
 int main(void)
 {
-  SystemCoreClockUpdate();
-  SysTick_Config(SystemCoreClock/1000);
-  OsStart();
   while(1)
   {
     __asm("nop");
   }
 }
+
+
+void test_PendSVHandler(void);
+void test_SystickHandler(void);
 

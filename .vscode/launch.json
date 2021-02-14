@@ -164,36 +164,6 @@
             ],
             "showDevDebugOutput": true,
         }
-        {
-            "type": "cortex-debug",
-            "request": "launch",
-            "servertype": "openocd",
-            "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
-            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_Osek/Stm32L475_Osek.elf",
-            "name": "LINUX ST-Link Stm32L475_Osek",
-            "device": "STM32L475",
-            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
-            "configFiles": [
-                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
-            ],
-            "showDevDebugOutput": true,
-        },
-        {
-            "type": "cortex-debug",
-            "request": "launch",
-            "servertype": "openocd",
-            "cwd": "/",
-            "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",
-            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_Osek/Stm32L475_Osek.elf",
-            "name": "WIN ST-Link Stm32L475_Osek",
-            "device": "STM32L475",
-            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
-            "configFiles": [
-                "${workspaceFolder}/tools/openocd/board/stm32l4discovery.cfg"
-            ],
-            "showDevDebugOutput": true,
-        },
     ],
     "commands": [
         {

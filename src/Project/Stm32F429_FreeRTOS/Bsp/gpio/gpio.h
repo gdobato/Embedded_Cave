@@ -24,6 +24,8 @@ extern "C" {
 #endif
 void    Gpio_Init(void);
 uint8_t Gpio_GetUserButton(void);
+void    Gpio_WriteGreenLed(uint8_t level);
+void    Gpio_WriteRedLed(uint8_t level);
 #ifdef __cplusplus
 }
 #endif

@@ -14,9 +14,9 @@
 //Os objects
 #include "FreeRTOS.h"
 #include <taskDebug.h>
-#include <led/taskLed.h>
+#include <userLed/taskUserLed.h>
 #include <stats/taskStats.h>
-#include <button/taskButton.h>
+#include <userButton/taskUserButton.h>
 
 //Bsp
 #include "stm32f4xx_hal.h"
@@ -84,10 +84,10 @@ int main(void)
   vTaskDebug_CreateQueue(3U);
 
   //Tasks
-  xTaskCreate(vTaskStats  , "Stats"  , 1024, NULL, 2, NULL );
-  xTaskCreate(vTaskDebug  , "Debug"  , 1024, NULL, 2, NULL );
-  xTaskCreate(vTaskLed    , "Led"    , 256 , NULL, 1, NULL );
-  xTaskCreate(vTaskButton , "Button" , 256 , NULL, 1, NULL );
+  xTaskCreate(vTaskStats  , "Stats"     , 1024, NULL, 2, NULL );
+  xTaskCreate(vTaskDebug  , "Debug"     , 1024, NULL, 2, NULL );
+  xTaskCreate(vTaskLed    , "UserLed"   , 256 , NULL, 1, NULL );
+  xTaskCreate(vTaskButton , "UserButton", 256 , NULL, 1, NULL );
 
   /*Start Os*/
   vTaskStartScheduler();
@@ -105,5 +105,4 @@ void Error_Handler(void)
 {
 
 }
-//Test change 1
 

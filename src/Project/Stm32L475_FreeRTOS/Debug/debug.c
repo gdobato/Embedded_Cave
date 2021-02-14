@@ -12,6 +12,9 @@
 #include "usart/usart.h"
 #include "debug.h"
 #include "timer/timer.h"
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
 
 /************************************
 * Private type definitions 
@@ -37,17 +40,16 @@
 ************************************/
 void Debug_PrintMsg(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
+  CREATE_VAR_BUFF(buff, msg, 1024);
   Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
 }
 
 void Debug_PrintMsgTime(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
-  uint32_t timems = Timer_GetTick();
-  char auxStr[90];
-  sprintf(auxStr, "[%lu ms] : ", timems);
-  strcat(auxStr, VAR_BUFF(buff));
-  Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
-
+    CREATE_VAR_BUFF(buff, msg, 1024);
+    uint32_t timems = Timer_GetTick();
+    char auxStr[90];
+    sprintf(auxStr, "[%lu ms] : ", timems);
+    strcat(auxStr, VAR_BUFF(buff));
+    Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
 }

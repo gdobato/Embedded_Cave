@@ -19,6 +19,12 @@
 /************************************
 * APIs
 ************************************/
+#ifdef __cplusplus
+extern "C" {
+#endif
 void Gpio_Init(void);
-
+void Gpio_WriteGreenLed(uint8_t level);
+#ifdef __cplusplus
+}
+#endif
 #endif

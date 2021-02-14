@@ -89,12 +89,12 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/spi/spi.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
-  ${PROJECT_DIR}/App/led/led.cpp
-  ${PROJECT_DIR}/App/led/taskLed.cpp
+  ${PROJECT_DIR}/App/userLed/userLed.cpp
+  ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
   ${PROJECT_DIR}/App/stats/stats.cpp
   ${PROJECT_DIR}/App/stats/taskStats.cpp
-  ${PROJECT_DIR}/App/button/button.cpp
-  ${PROJECT_DIR}/App/button/taskButton.cpp
+  ${PROJECT_DIR}/App/userButton/userButton.cpp
+  ${PROJECT_DIR}/App/userButton/taskUserButton.cpp
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.c  

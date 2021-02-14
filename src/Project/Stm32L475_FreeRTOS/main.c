@@ -12,8 +12,8 @@
 #include <system/system.h> 
 #include <gpio/gpio.h> 
 #include <usart/usart.h> 
-#include <led/ledThread.h> 
-#include <debugThread.h> 
+#include <userLed/taskUserLed.h> 
+#include <taskDebug.h> 
 #include <timer/timer.h>
 
 /************************************
@@ -27,8 +27,6 @@
 /************************************
 * Private variables
 ************************************/
-static osThreadId DebugThread;
-static osThreadId ledThread;
 
 /************************************
 * Private declarations 
@@ -41,15 +39,14 @@ int main(void)
   Gpio_Init();
   Usart_Init();
 
-  /* definition and creation of debugTerminal */
-  osThreadDef(Debug, DebugHandler, osPriorityNormal, 0, 512);
-  DebugThread = osThreadCreate(osThread(Debug), NULL);
+  vTaskDebug_CreateQueue(3U);
   
   /* definition and creation of Led thread */
-  osThreadDef(Led, ledHandler, osPriorityNormal, 0, 512);
-  ledThread = osThreadCreate(osThread(Led), NULL);
+  xTaskCreate(vTaskLed    , "UserLed"   , 256 , NULL, 1, NULL );
+  xTaskCreate(vTaskDebug  , "Debug"     , 256 , NULL, 1, NULL );
 
-  osKernelStart();
+  vTaskStartScheduler();
+
 
   while (1)
   {

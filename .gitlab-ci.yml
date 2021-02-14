@@ -29,13 +29,6 @@ Stm32L475_FreeRTOS:
    - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_FreeRTOS ../../cmake/target
    - make
 
-Stm32L475_Osek:
- stage: build 
- script:
-   - mkdir -p build/target && cd build/target
-   - cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32L475_Osek ../../cmake/target
-   - make
-
 Stm32L475_IoTOS:
  stage: build 
  script:
