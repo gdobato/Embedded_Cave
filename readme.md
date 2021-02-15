@@ -1,4 +1,4 @@
-# MCUPlatform
+# Development of STM32 MCUS
 
 ## Prerequisites
 ### Windows
