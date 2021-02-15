@@ -1,0 +1,27 @@
+name: EC-Integration-Test
+
+on: [push, pull_request]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+        matrix:
+          targets: [ Stm32F429_FreeRTOS, Stm32F429_Scheduler, Stm32L475_FreeRTOS, Stm32L475_IoTOS ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: install tool-chain
+        run: sudo apt install gcc-arm-none-eabi
+      - name: ${{ matrix.targets }}
+        run: |
+          mkdir -p build/target && cd build/target
+          cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=${{ matrix.targets }} ../../cmake/target
+          make -j all
+        working-directory: ./
