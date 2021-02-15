@@ -23,5 +23,5 @@ jobs:
         run: |
           mkdir -p build/target && cd build/target
           cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=${{ matrix.targets }} ../../cmake/target
-          make -j ${{ matrix.targets }}
+          make -j all
         working-directory: ./
