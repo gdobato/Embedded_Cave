@@ -5,23 +5,3 @@ on: [push, pull_request]
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
-  
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@v2
-      - name: update-tools
-        run: sudo apt install gcc-arm-none-eabi
-      - name: Stm32F429_FreeRTOS
-        run:
-          mkdir -p build/target &&
-          cd build/target
-          cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=Stm32F429_FreeRTOS ../../cmake/target
-          make -j 
-        working-directory: ./
