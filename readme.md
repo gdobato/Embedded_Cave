@@ -1,4 +1,4 @@
-# Development of STM32 MCUs
+# Development on STM32 MCUs
 
 ## Prerequisites
 ### Windows
