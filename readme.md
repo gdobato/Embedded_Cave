@@ -1,4 +1,4 @@
-# Mcu Platform
+# Development on STM32 MCUs
 
 ## Prerequisites
 
