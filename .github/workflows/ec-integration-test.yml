@@ -25,3 +25,19 @@ jobs:
           cmake -D"CMAKE_TOOLCHAIN_FILE=linux.cmake" -DPROJECT=${{ matrix.targets }} ../../cmake/target
           make -j all
         working-directory: ./
+  unit-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v2
+      - name: install tool-chain
+        run: sudo apt install gcc-arm-none-eabi
+      - name: google-test
+        run: |
+          mkdir -p build/utest && cd build/utest
+          cmake ../../cmake/utest
+          make example
+          ./example
+        working-directory: ./
