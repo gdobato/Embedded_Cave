@@ -23,7 +23,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "RTE_Components.h"
-
 #include "hci_tl.h"
 
 #define HEADER_SIZE       5U

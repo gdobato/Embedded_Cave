@@ -11,12 +11,20 @@ set(STARTUP_FILE startup_stm32l475xx.s)
 include_directories(${BSP_DIR}/STM32F4xx/Inc)
 include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Include)
 include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
+include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
 include_directories(${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/includes)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${PROJECT_DIR}/App)
+include_directories(${PROJECT_DIR}/App/bleServer)
 include_directories(${PROJECT_DIR}/Bsp)
+include_directories(${PROJECT_DIR}/Bsp/ble)
+include_directories(${PROJECT_DIR}/Bsp/hal)
 include_directories(${PROJECT_DIR}/Debug)
 include_directories(${PROJECT_DIR}/Startup)
+include_directories(${PROJECT_DIR}/Stubs)
 include_directories(${PROJECT_DIR}/Bsp/hal)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
@@ -45,8 +53,19 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic/hci_tl.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_le.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_gap_aci.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_gatt_aci.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_hal_aci.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_IFR.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_l2cap_aci.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_updater_aci.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_utils_small.c
   ${PROJECT_DIR}/Debug/debug.c
   ${PROJECT_DIR}/Debug/taskDebug.c
+  ${PROJECT_DIR}/Bsp/ble/b_l475e_iot01a1_bus.c
+  ${PROJECT_DIR}/Bsp/ble/hci_tl_interface.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.c
   ${PROJECT_DIR}/Bsp/hal/stm32l4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/system/stm32l4xx_it.c

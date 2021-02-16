@@ -18,6 +18,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "b_l475e_iot01a1_bus.h"
+#include <hal.h>
 
 __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
 

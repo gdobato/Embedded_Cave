@@ -1,10 +1,3 @@
-#
-# Main project cmake file
-#  
-# Author: Gabriel Dobato  dobatog@gmail.com 
-# Author: Jenifer Blanco  jenifer_blanco@hotmail.com
-#
-#
 cmake_minimum_required (VERSION 3.6)
 project (${PROJECT} C CXX ASM)
 
