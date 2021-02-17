@@ -45,11 +45,13 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c
+  ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.c
+  ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_tim_ex.c
   ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c
@@ -62,6 +64,7 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_l2cap_aci.c
   ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_updater_aci.c
   ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/controller/bluenrg_utils_small.c
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils/ble_list.c
   ${PROJECT_DIR}/Debug/debug.c
   ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Bsp/ble/b_l475e_iot01a1_bus.c
@@ -72,6 +75,8 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/system/system_stm32l4xx.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
+  ${PROJECT_DIR}/App/ble/ble_server.cpp
+  ${PROJECT_DIR}/App/ble/ble_server_task.cpp
   ${PROJECT_DIR}/App/userLed/userLed.cpp
   ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
