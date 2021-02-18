@@ -328,7 +328,10 @@ tBleStatus aci_gap_set_auth_requirement(uint8_t mitm_mode,
     
   cp.mitm_mode = mitm_mode;
   cp.oob_enable = oob_enable;
-  BLUENRG_memcpy(cp.oob_data, oob_data, 16);
+  /* FIX: check on oob_enable introduced to fix issue in projects for Cortex-M33 */
+  if (oob_enable) {
+    BLUENRG_memcpy(cp.oob_data, oob_data, 16);
+  }
   cp.min_encryption_key_size = min_encryption_key_size;
   cp.max_encryption_key_size = max_encryption_key_size;
   cp.use_fixed_pin = use_fixed_pin;

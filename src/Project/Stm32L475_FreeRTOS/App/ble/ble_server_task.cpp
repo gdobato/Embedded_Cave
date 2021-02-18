@@ -19,7 +19,7 @@ void vTaskBleServer(void* pvParameters)
 
   for(;;)
   {
-    ble_server_process();
+    Ble_server_process();
     vTaskDelay(pdMS_TO_TICKS(250));
   }
 }

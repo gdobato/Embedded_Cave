@@ -1,10 +1,10 @@
 /**
  ******************************************************************************
- * File Name bluenrg_conf.h
+ * File Name Target/bluenrg_conf.h
  * @author   CL
  * @version  V1.0.0
  * @date     05-Mar-2018
- * @brief 
+ * @brief
  ******************************************************************************
   * @attention
   *
@@ -71,7 +71,7 @@ extern "C" {
 
 #define BLUENRG_memcpy                memcpy
 #define BLUENRG_memset                memset
-  
+
 #if (BLE1_DEBUG == 1)
 #include <stdio.h>
 #define PRINTF(...)                   printf(__VA_ARGS__)

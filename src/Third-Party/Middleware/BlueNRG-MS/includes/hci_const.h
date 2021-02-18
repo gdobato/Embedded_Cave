@@ -10,6 +10,10 @@
 #ifndef __HCI_CONST_H_
 #define __HCI_CONST_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "link_layer.h"
 #include "hci_tl.h"
 #include "compiler.h"
@@ -531,5 +535,9 @@ typedef enum {
 } hci_state;
 
 typedef void (*hci_packet_complete_callback)(void *pckt, uint16_t len);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __HCI_CONST_H_ */

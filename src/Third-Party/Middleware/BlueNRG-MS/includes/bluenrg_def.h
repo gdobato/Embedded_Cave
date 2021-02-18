@@ -15,6 +15,10 @@
 #ifndef __BLE_DEF_H__
 #define __BLE_DEF_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "bluenrg_types.h"
 
 /** 
@@ -193,5 +197,9 @@ typedef uint8_t tBleStatus;
 /**
  * @}
  */
+ 
+#ifdef __cplusplus
+}
+#endif
  
 #endif /* __BLE_DEF_H__ */

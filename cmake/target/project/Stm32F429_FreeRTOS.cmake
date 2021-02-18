@@ -73,7 +73,6 @@ set(PROJECT_FILES
   ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT_printf.c
   ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_RTT.c
   ${THIRD_PARTY_DIR}/SEGGER/SEGGER/SEGGER_SYSVIEW.c
-  ${BSP_DIR}/STM32F4xx/Src/stm32f4xx_BareMetal_spi.c
   ${PROJECT_DIR}/Debug/debug.c
   ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c

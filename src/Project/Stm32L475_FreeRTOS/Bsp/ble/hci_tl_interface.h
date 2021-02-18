@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file  : hci_tl_interface.h
   * @brief : This file contains all the functions prototypes for the STM32
-  *          BlueNRG-MS HCI Transport Layer interface
+  *          BlueNRG HCI Transport Layer interface
   ******************************************************************************
   *
   * COPYRIGHT 2021 STMicroelectronics
@@ -13,8 +13,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.

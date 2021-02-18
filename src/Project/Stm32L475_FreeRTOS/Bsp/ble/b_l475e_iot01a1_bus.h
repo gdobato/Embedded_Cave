@@ -45,26 +45,27 @@
   */
 
 #define BUS_SPI3_INSTANCE SPI3
+#define BUS_SPI3_SCK_GPIO_PORT GPIOC
+#define BUS_SPI3_SCK_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
+#define BUS_SPI3_SCK_GPIO_CLK_DISABLE() __HAL_RCC_GPIOC_CLK_DISABLE()
 #define BUS_SPI3_SCK_GPIO_PIN GPIO_PIN_10
 #define BUS_SPI3_SCK_GPIO_AF GPIO_AF6_SPI3
-#define BUS_SPI3_SCK_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
-#define BUS_SPI3_SCK_GPIO_PORT GPIOC
-#define BUS_SPI3_SCK_GPIO_CLK_DISABLE() __HAL_RCC_GPIOC_CLK_DISABLE()
-#define BUS_SPI3_MISO_GPIO_PIN GPIO_PIN_11
-#define BUS_SPI3_MISO_GPIO_AF GPIO_AF6_SPI3
 #define BUS_SPI3_MISO_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
+#define BUS_SPI3_MISO_GPIO_PIN GPIO_PIN_11
 #define BUS_SPI3_MISO_GPIO_PORT GPIOC
 #define BUS_SPI3_MISO_GPIO_CLK_DISABLE() __HAL_RCC_GPIOC_CLK_DISABLE()
-#define BUS_SPI3_MOSI_GPIO_PIN GPIO_PIN_12
-#define BUS_SPI3_MOSI_GPIO_AF GPIO_AF6_SPI3
+#define BUS_SPI3_MISO_GPIO_AF GPIO_AF6_SPI3
 #define BUS_SPI3_MOSI_GPIO_CLK_ENABLE() __HAL_RCC_GPIOC_CLK_ENABLE()
+#define BUS_SPI3_MOSI_GPIO_AF GPIO_AF6_SPI3
 #define BUS_SPI3_MOSI_GPIO_PORT GPIOC
+#define BUS_SPI3_MOSI_GPIO_PIN GPIO_PIN_12
 #define BUS_SPI3_MOSI_GPIO_CLK_DISABLE() __HAL_RCC_GPIOC_CLK_DISABLE()
+
 #ifndef BUS_SPI3_POLL_TIMEOUT
   #define BUS_SPI3_POLL_TIMEOUT                   0x1000U
 #endif
 /* SPI3 Baud rate in bps  */
-#ifndef BUS_SPI3_BAUDRATE   
+#ifndef BUS_SPI3_BAUDRATE
    #define BUS_SPI3_BAUDRATE   10000000U /* baud rate of SPIn = 10 Mbps*/
 #endif
 
@@ -75,7 +76,7 @@
 /** @defgroup B_L475E_IOT01A1_BUS_Private_Types B_L475E_IOT01A1 BUS Private types
   * @{
   */
-#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U) 
+#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
 typedef struct
 {
   pSPI_CallbackTypeDef  pMspInitCb;
@@ -85,7 +86,7 @@ typedef struct
 /**
   * @}
   */
-  
+
 /** @defgroup B_L475E_IOT01A1_LOW_LEVEL_Exported_Variables LOW LEVEL Exported Constants
   * @{
   */
@@ -98,7 +99,7 @@ extern SPI_HandleTypeDef hspi3;
 
 /** @addtogroup B_L475E_IOT01A1_BUS_Exported_Functions
   * @{
-  */    
+  */
 
 /* BUS IO driver over SPI Peripheral */
 HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
