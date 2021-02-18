@@ -4,8 +4,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-void ble_server_init(void);
-void ble_server_process(void);
+void Ble_server_init(void);
+void Ble_server_process(void);
+
 #ifdef __cplusplus
 }
 #endif

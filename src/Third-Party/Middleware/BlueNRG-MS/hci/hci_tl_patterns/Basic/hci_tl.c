@@ -142,7 +142,7 @@ static void move_list(tListNode * dest_list, tListNode * src_list)
 static void free_event_list(void)
 {
   tHciDataPacket * pckt;
-  
+
   while(list_get_size(&hciReadPktPool) < HCI_READ_PACKET_NUM_MAX/2){
     list_remove_head(&hciReadPktRxQueue, (tListNode **)&pckt);    
     list_insert_tail(&hciReadPktPool, (tListNode *)pckt);
@@ -154,19 +154,19 @@ static void free_event_list(void)
 void hci_init(void(* UserEvtRx)(void* pData), void* pConf)
 {
   uint8_t index;
-  
+
   if(UserEvtRx != NULL)
   {
     hciContext.UserEvtRx = UserEvtRx;
   }
   
-  /* Initialize TL BLE layer */
-  hci_tl_lowlevel_init();
-  
   /* Initialize list heads of ready and free hci data packet queues */
   list_init_head(&hciReadPktPool);
   list_init_head(&hciReadPktRxQueue);
-  
+
+  /* Initialize TL BLE layer */
+  hci_tl_lowlevel_init();
+    
   /* Initialize the queue of free hci data packets */
   for (index = 0; index < HCI_READ_PACKET_NUM_MAX; index++)
   {
@@ -185,7 +185,7 @@ void hci_register_io_bus(tHciIO* fops)
   hciContext.io.Receive = fops->Receive;  
   hciContext.io.Send    = fops->Send;
   hciContext.io.GetTick = fops->GetTick;
-  hciContext.io.Reset   = fops->Reset;    
+  hciContext.io.Reset   = fops->Reset;
 }
 
 int hci_send_req(struct hci_request* r, BOOL async)
@@ -316,13 +316,15 @@ failed:
   if (hciReadPacket!=NULL) {
     list_insert_head(&hciReadPktPool, (tListNode *)hciReadPacket);
   }
-  move_list(&hciReadPktRxQueue, &hciTempQueue);  
+  move_list(&hciReadPktRxQueue, &hciTempQueue);
+
   return -1;
   
 done:
   /* Insert the packet back into the pool.*/
   list_insert_head(&hciReadPktPool, (tListNode *)hciReadPacket); 
   move_list(&hciReadPktRxQueue, &hciTempQueue);
+
   return 0;
 }
 
@@ -334,10 +336,12 @@ void hci_user_evt_proc(void)
   while (list_is_empty(&hciReadPktRxQueue) == FALSE)
   {
     list_remove_head (&hciReadPktRxQueue, (tListNode **)&hciReadPacket);
+
     if (hciContext.UserEvtRx != NULL)
     {
       hciContext.UserEvtRx(hciReadPacket->dataBuff);
     }
+
     list_insert_tail(&hciReadPktPool, (tListNode *)hciReadPacket);
   }
 }

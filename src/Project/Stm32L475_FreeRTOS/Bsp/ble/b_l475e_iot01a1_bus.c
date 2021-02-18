@@ -18,7 +18,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "b_l475e_iot01a1_bus.h"
-#include <hal.h>
 
 __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
 
@@ -33,13 +32,12 @@ __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi);
 /** @defgroup B_L475E_IOT01A1_BUS B_L475E_IOT01A1 BUS
   * @{
   */
-  
 
 /** @defgroup B_L475E_IOT01A1_BUS_Exported_Variables BUS Exported Variables
   * @{
   */
 
-SPI_HandleTypeDef hspi3;						
+SPI_HandleTypeDef hspi3;
 /**
   * @}
   */
@@ -48,10 +46,10 @@ SPI_HandleTypeDef hspi3;
   * @{
   */
 
-#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)						
-static uint32_t IsSPI3MspCbValid = 0;	
+#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
+static uint32_t IsSPI3MspCbValid = 0;
 #endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
-static uint32_t SPI3InitCounter = 0;	
+static uint32_t SPI3InitCounter = 0;
 
 /**
   * @}
@@ -59,9 +57,9 @@ static uint32_t SPI3InitCounter = 0;
 
 /** @defgroup B_L475E_IOT01A1_BUS_Private_FunctionPrototypes  BUS Private Function
   * @{
-  */  
+  */
 
-static void SPI3_MspInit(SPI_HandleTypeDef* hSPI); 
+static void SPI3_MspInit(SPI_HandleTypeDef* hSPI);
 static void SPI3_MspDeInit(SPI_HandleTypeDef* hSPI);
 #if (USE_CUBEMX_BSP_V2 == 1)
 static uint32_t SPI_GetPrescaler( uint32_t clk_src_hz, uint32_t baudrate_mbps );
@@ -73,30 +71,30 @@ static uint32_t SPI_GetPrescaler( uint32_t clk_src_hz, uint32_t baudrate_mbps );
 
 /** @defgroup B_L475E_IOT01A1_LOW_LEVEL_Private_Functions B_L475E_IOT01A1 LOW LEVEL Private Functions
   * @{
-  */ 
-  
+  */
+
 /** @defgroup B_L475E_IOT01A1_BUS_Exported_Functions B_L475E_IOT01A1_BUS Exported Functions
   * @{
-  */   
+  */
 
 /* BUS IO driver over SPI Peripheral */
 /*******************************************************************************
                             BUS OPERATIONS OVER SPI
 *******************************************************************************/
 /**
-  * @brief  Initializes SPI HAL. 
+  * @brief  Initializes SPI HAL.
   * @retval BSP status
   */
-int32_t BSP_SPI3_Init(void) 
+int32_t BSP_SPI3_Init(void)
 {
   int32_t ret = BSP_ERROR_NONE;
-  
+
   hspi3.Instance  = SPI3;
-  
+
   if(SPI3InitCounter++ == 0)
-  {    
-	if (HAL_SPI_GetState(&hspi3) == HAL_SPI_STATE_RESET) 
-	{ 
+  {
+	if (HAL_SPI_GetState(&hspi3) == HAL_SPI_STATE_RESET)
+	{
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 0U)
 		/* Init the SPI Msp */
 		SPI3_MspInit(&hspi3);
@@ -107,8 +105,8 @@ int32_t BSP_SPI3_Init(void)
 			{
 				return BSP_ERROR_MSP_FAILURE;
 			}
-		}	
-#endif   
+		}
+#endif
 		if(ret == BSP_ERROR_NONE)
 		{
 			/* Init the SPI */
@@ -118,7 +116,7 @@ int32_t BSP_SPI3_Init(void)
 			}
 		}
 	}
-  }	
+  }
 
   return ret;
 }
@@ -128,20 +126,20 @@ int32_t BSP_SPI3_Init(void)
   * @retval None
   * @retval BSP status
   */
-int32_t BSP_SPI3_DeInit(void) 
+int32_t BSP_SPI3_DeInit(void)
 {
   int32_t ret = BSP_ERROR_BUS_FAILURE;
   if (SPI3InitCounter > 0)
-  {    
+  {
     if (--SPI3InitCounter == 0)
-    {   
+    {
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 0U)
 	  SPI3_MspDeInit(&hspi3);
-#endif  
+#endif
 	  /* DeInit the SPI*/
-	  if (HAL_SPI_DeInit(&hspi3) == HAL_OK) 
+	  if (HAL_SPI_DeInit(&hspi3) == HAL_OK)
 	  {
-		ret = BSP_ERROR_NONE;		
+		ret = BSP_ERROR_NONE;
 	  }
 	}
   }
@@ -157,7 +155,7 @@ int32_t BSP_SPI3_DeInit(void)
 int32_t BSP_SPI3_Send(uint8_t *pData, uint16_t Length)
 {
   int32_t ret = BSP_ERROR_NONE;
-  
+
   if(HAL_SPI_Transmit(&hspi3, pData, Length, BUS_SPI3_POLL_TIMEOUT) != HAL_OK)
   {
       ret = BSP_ERROR_UNKNOWN_FAILURE;
@@ -174,7 +172,7 @@ int32_t BSP_SPI3_Send(uint8_t *pData, uint16_t Length)
 int32_t  BSP_SPI3_Recv(uint8_t *pData, uint16_t Length)
 {
   int32_t ret = BSP_ERROR_NONE;
-  
+
   if(HAL_SPI_Receive(&hspi3, pData, Length, BUS_SPI3_POLL_TIMEOUT) != HAL_OK)
   {
       ret = BSP_ERROR_UNKNOWN_FAILURE;
@@ -191,7 +189,7 @@ int32_t  BSP_SPI3_Recv(uint8_t *pData, uint16_t Length)
 int32_t BSP_SPI3_SendRecv(uint8_t *pTxData, uint8_t *pRxData, uint16_t Length)
 {
   int32_t ret = BSP_ERROR_NONE;
-  
+
   if(HAL_SPI_TransmitReceive(&hspi3, pTxData, pRxData, Length, BUS_SPI3_POLL_TIMEOUT) != HAL_OK)
   {
       ret = BSP_ERROR_UNKNOWN_FAILURE;
@@ -199,7 +197,7 @@ int32_t BSP_SPI3_SendRecv(uint8_t *pTxData, uint8_t *pRxData, uint16_t Length)
   return ret;
 }
 
-#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)  
+#if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
 /**
   * @brief Register Default BSP SPI3 Bus Msp Callbacks
   * @retval BSP status
@@ -208,21 +206,21 @@ int32_t BSP_SPI3_RegisterDefaultMspCallbacks (void)
 {
 
   __HAL_SPI_RESET_HANDLE_STATE(&hspi3);
-  
+
   /* Register MspInit Callback */
   if (HAL_SPI_RegisterCallback(&hspi3, HAL_SPI_MSPINIT_CB_ID, SPI3_MspInit)  != HAL_OK)
   {
     return BSP_ERROR_PERIPH_FAILURE;
   }
-  
+
   /* Register MspDeInit Callback */
   if (HAL_SPI_RegisterCallback(&hspi3, HAL_SPI_MSPDEINIT_CB_ID, SPI3_MspDeInit) != HAL_OK)
   {
     return BSP_ERROR_PERIPH_FAILURE;
   }
   IsSPI3MspCbValid = 1;
-  
-  return BSP_ERROR_NONE;  
+
+  return BSP_ERROR_NONE;
 }
 
 /**
@@ -233,23 +231,23 @@ int32_t BSP_SPI3_RegisterDefaultMspCallbacks (void)
 int32_t BSP_SPI3_RegisterMspCallbacks (BSP_SPI_Cb_t *Callbacks)
 {
   /* Prevent unused argument(s) compilation warning */
-  __HAL_SPI_RESET_HANDLE_STATE(&hspi3);  
- 
+  __HAL_SPI_RESET_HANDLE_STATE(&hspi3);
+
    /* Register MspInit Callback */
   if (HAL_SPI_RegisterCallback(&hspi3, HAL_SPI_MSPINIT_CB_ID, Callbacks->pMspInitCb)  != HAL_OK)
   {
     return BSP_ERROR_PERIPH_FAILURE;
   }
-  
+
   /* Register MspDeInit Callback */
   if (HAL_SPI_RegisterCallback(&hspi3, HAL_SPI_MSPDEINIT_CB_ID, Callbacks->pMspDeInitCb) != HAL_OK)
   {
     return BSP_ERROR_PERIPH_FAILURE;
   }
-  
+
   IsSPI3MspCbValid = 1;
-  
-  return BSP_ERROR_NONE;  
+
+  return BSP_ERROR_NONE;
 }
 #endif /* USE_HAL_SPI_REGISTER_CALLBACKS */
 
@@ -261,7 +259,7 @@ int32_t BSP_GetTick(void) {
   return HAL_GetTick();
 }
 
-/* SPI3 init function */ 
+/* SPI3 init function */
 
 __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi)
 {
@@ -269,11 +267,11 @@ __weak HAL_StatusTypeDef MX_SPI3_Init(SPI_HandleTypeDef* hspi)
   hspi->Instance = SPI3;
   hspi->Init.Mode = SPI_MODE_MASTER;
   hspi->Init.Direction = SPI_DIRECTION_2LINES;
-  hspi->Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi->Init.DataSize = SPI_DATASIZE_8BIT;
   hspi->Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi->Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi->Init.NSS = SPI_NSS_SOFT;
-  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
   hspi->Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi->Init.TIMode = SPI_TIMODE_DISABLE;
   hspi->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -296,20 +294,37 @@ static void SPI3_MspInit(SPI_HandleTypeDef* spiHandle)
   /* USER CODE END SPI3_MspInit 0 */
     /* Enable Peripheral clock */
     __HAL_RCC_SPI3_CLK_ENABLE();
-  
+
     __HAL_RCC_GPIOC_CLK_ENABLE();
-    /**SPI3 GPIO Configuration    
+    /**SPI3 GPIO Configuration
     PC10     ------> SPI3_SCK
     PC11     ------> SPI3_MISO
-    PC12     ------> SPI3_MOSI 
+    PC12     ------> SPI3_MOSI
     */
-    GPIO_InitStruct.Pin = INTERNAL_SPI3_SCK_Pin|INTERNAL_SPI3_MISO_Pin|INTERNAL_SPI3_MOSI_Pin;
+    GPIO_InitStruct.Pin = BUS_SPI3_SCK_GPIO_PIN;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = BUS_SPI3_SCK_GPIO_AF;
+    HAL_GPIO_Init(BUS_SPI3_SCK_GPIO_PORT, &GPIO_InitStruct);
 
+    GPIO_InitStruct.Pin = BUS_SPI3_MISO_GPIO_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = BUS_SPI3_MISO_GPIO_AF;
+    HAL_GPIO_Init(BUS_SPI3_MISO_GPIO_PORT, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = BUS_SPI3_MOSI_GPIO_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = BUS_SPI3_MOSI_GPIO_AF;
+    HAL_GPIO_Init(BUS_SPI3_MOSI_GPIO_PORT, &GPIO_InitStruct);
+
+    /* Peripheral interrupt init */
+    HAL_NVIC_SetPriority(SPI3_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(SPI3_IRQn);
   /* USER CODE BEGIN SPI3_MspInit 1 */
 
   /* USER CODE END SPI3_MspInit 1 */
@@ -322,13 +337,20 @@ static void SPI3_MspDeInit(SPI_HandleTypeDef* spiHandle)
   /* USER CODE END SPI3_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_SPI3_CLK_DISABLE();
-  
-    /**SPI3 GPIO Configuration    
+
+    /**SPI3 GPIO Configuration
     PC10     ------> SPI3_SCK
     PC11     ------> SPI3_MISO
-    PC12     ------> SPI3_MOSI 
+    PC12     ------> SPI3_MOSI
     */
-    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12);
+    HAL_GPIO_DeInit(BUS_SPI3_SCK_GPIO_PORT, BUS_SPI3_SCK_GPIO_PIN);
+
+    HAL_GPIO_DeInit(BUS_SPI3_MISO_GPIO_PORT, BUS_SPI3_MISO_GPIO_PIN);
+
+    HAL_GPIO_DeInit(BUS_SPI3_MOSI_GPIO_PORT, BUS_SPI3_MOSI_GPIO_PIN);
+
+    /* Peripheral interrupt Deinit*/
+    HAL_NVIC_DisableIRQ(SPI3_IRQn);
 
   /* USER CODE BEGIN SPI3_MspDeInit 1 */
 
@@ -350,25 +372,25 @@ static uint32_t SPI_GetPrescaler( uint32_t clock_src_hz, uint32_t baudrate_mbps 
 
   static const uint32_t baudrate[]=
   {
-    SPI_BAUDRATEPRESCALER_2,  
-    SPI_BAUDRATEPRESCALER_4,      
-    SPI_BAUDRATEPRESCALER_8,      
-    SPI_BAUDRATEPRESCALER_16,     
-    SPI_BAUDRATEPRESCALER_32,     
-    SPI_BAUDRATEPRESCALER_64,     
-    SPI_BAUDRATEPRESCALER_128,   
-    SPI_BAUDRATEPRESCALER_256, 
+    SPI_BAUDRATEPRESCALER_2,
+    SPI_BAUDRATEPRESCALER_4,
+    SPI_BAUDRATEPRESCALER_8,
+    SPI_BAUDRATEPRESCALER_16,
+    SPI_BAUDRATEPRESCALER_32,
+    SPI_BAUDRATEPRESCALER_64,
+    SPI_BAUDRATEPRESCALER_128,
+    SPI_BAUDRATEPRESCALER_256,
   };
-  
+
   while( spi_clk > baudrate_mbps)
   {
     presc = baudrate[divisor];
     if (++divisor > 7)
       break;
-      
+
     spi_clk= ( spi_clk >> 1);
   }
-  
+
   return presc;
 }
 #endif

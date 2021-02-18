@@ -1,8 +1,8 @@
 /******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
-* File Name          : hci.h
+* File Name          : hci_tl.h
 * Author             : AMG RF FW team
 * Version            : V1.1.0
-* Date               : 18-July-2016
+* Date               : 21-Sept-2016
 * Description        : Header file for framework required for handling HCI interface.
 ********************************************************************************
 * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
@@ -13,8 +13,8 @@
 * INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
 *******************************************************************************/
 
-#ifndef __HCI_TL_H_
-#define __HCI_TL_H_
+#ifndef HCI_TL_H
+#define HCI_TL_H
 
 #include "hci_tl_interface.h"
 #include "bluenrg_types.h"
@@ -25,7 +25,7 @@
  * @addtogroup LOW_LEVEL_INTERFACE LOW_LEVEL_INTERFACE
  * @{
  */
-  
+ 
 /** 
  * @defgroup LL_HCI_TL HCI_TL
  * @{
@@ -35,8 +35,9 @@
  * @defgroup BASIC BASIC
  * @{
  */
- 
-/** @defgroup BASIC_Types Exported Types
+
+/** 
+ * @defgroup BASIC_Types Exported Types
  * @{
  */ 
 
@@ -64,8 +65,8 @@ struct hci_request {
 typedef struct _tHciDataPacket
 {
   tListNode currentNode;
-  uint8_t dataBuff[HCI_READ_PACKET_SIZE];
-  uint8_t data_len;
+  uint8_t   dataBuff[HCI_READ_PACKET_SIZE];
+  uint8_t   data_len;
 } tHciDataPacket;
 /**
  * @}
@@ -75,16 +76,16 @@ typedef struct _tHciDataPacket
  * @brief Structure used to manage the BUS IO operations.
  *        All the structure fields will point to functions defined at user level.
  * @{
- */ 
+ */
 typedef struct
 {                
   int32_t (* Init)    (void* pConf); /**< Pointer to HCI TL function for the IO Bus initialization */
-  int32_t (* DeInit)  (void); /**< Pointer to HCI TL function for the IO Bus de-initialization */  
-  int32_t (* Reset)   (void); /**< Pointer to HCI TL function for the IO Bus reset */    
+  int32_t (* DeInit)  (void); /**< Pointer to HCI TL function for the IO Bus de-initialization */
+  int32_t (* Reset)   (void); /**< Pointer to HCI TL function for the IO Bus reset */
   int32_t (* Receive) (uint8_t*, uint16_t); /**< Pointer to HCI TL function for the IO Bus data reception */
   int32_t (* Send)    (uint8_t*, uint16_t); /**< Pointer to HCI TL function for the IO Bus data transmission */
-  int32_t (* DataAck) (uint8_t*, uint16_t* len); /**< Pointer to HCI TL function for the IO Bus data ack reception */	
-  int32_t (* GetTick) (void); /**< Pointer to BSP function for getting the HAL time base timestamp */    
+  int32_t (* DataAck) (uint8_t*, uint16_t* len); /**< Pointer to HCI TL function for the IO Bus data ack reception */
+  int32_t (* GetTick) (void); /**< Pointer to BSP function for getting the HAL time base timestamp */
 } tHciIO;
 /**
  * @}
@@ -102,7 +103,7 @@ typedef enum
 /**
  * @}
  */
- 
+
 /**
  * @brief Contain the HCI context
  * @{
@@ -110,28 +111,29 @@ typedef enum
 typedef struct
 {   
   tHciIO io; /**< Manage the BUS IO operations */
-  void (* UserEvtRx) (void * pData); /**< ACI events callback function pointer */  
+  void (* UserEvtRx)(void* pData); /**< ACI events callback function pointer */
 } tHciContext;
 
 /**
  * @}
  */ 
- 
+
 /**
  * @}
  */
- 
-/** @defgroup BASIC_Functions Exported Functions
+
+/** 
+ * @defgroup BASIC_Functions Exported Functions
  * @{
  */
 
 /**
-  * @brief  Send an HCI request either in synchronous or in asynchronous mode.
-  *
-  * @param  r: The HCI request
-  * @param  async: TRUE if asynchronous mode, FALSE if synchronous mode
-  * @retval int: 0 when success, -1 when failure
-  */
+ * @brief  Send an HCI request either in synchronous or in asynchronous mode.
+ *
+ * @param  r: The HCI request
+ * @param  async: TRUE if asynchronous mode, FALSE if synchronous mode
+ * @retval int: 0 when success, -1 when failure
+ */
 int hci_send_req(struct hci_request *r, BOOL async);
  
 /**
@@ -179,14 +181,14 @@ int hci_send_req(struct hci_request *r, BOOL async);
  * @retval None
  */
 void hci_register_io_bus(tHciIO* fops);
-  
+
 /**
  * @brief  Interrupt service routine that must be called when the BlueNRG 
  *         reports a packet received or an event to the host through the 
- *         BlueNRG-MS interrupt line.
+ *         BlueNRG interrupt line.
  *
  * @param  pdata Packet or event pointer
- * @retval 0: packet/event processed, 1: no packet/event processed 
+ * @retval 0: packet/event processed, 1: no packet/event processed
  */
 int32_t hci_notify_asynch_evt(void* pdata);
 
@@ -224,7 +226,11 @@ void hci_cmd_resp_release(uint32_t flag);
 /**
  * @}
  */
- 
+
+/**
+ * @}
+ */
+
 /**
  * @}
  */
@@ -233,8 +239,4 @@ void hci_cmd_resp_release(uint32_t flag);
  * @}
  */
  
-/**
- * @}
- */
- 
-#endif /* __HCI_TL_H_ */
+#endif /* HCI_TL_H */
