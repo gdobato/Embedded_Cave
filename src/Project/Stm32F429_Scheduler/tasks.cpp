@@ -21,7 +21,7 @@ auto greenLed  = std::make_unique<UserLed>(Gpio_WriteGreenLed);
 
  }
 
- void GreenLed_Run (void)
+ void GreenLed_Run (void*)
  {
   static uint8_t ucIdx;
   
@@ -40,7 +40,7 @@ auto greenLed  = std::make_unique<UserLed>(Gpio_WriteGreenLed);
 
 }
 
- void RedLed_Run (void)
+ void RedLed_Run (void*)
  {
   static uint8_t ucIdx;
 
@@ -62,7 +62,7 @@ ucIdx++;
 }
 
  void UserButton_Init (void){}
- void UserButton_Run (void)
+ void UserButton_Run (void*)
  {
   
   if (Gpio_GetUserButton() == GPIO_PIN_SET ) 
@@ -75,7 +75,7 @@ ucIdx++;
   }
  } 
 
- void Dummy_Idle(void)
+ void Dummy_Idle(void*)
  {
 //    redLed->On();
  } 
