@@ -1,13 +1,12 @@
 #include <FreeRTOS.h>
 #include <task.h>
-#include <stats/taskStats.h>
-#include <taskDebug.h>
+#include <stats/task_stats.h>
+#include <task_debug.h>
 #include <stdio.h>
 #include <Cfg.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+extern "C"
+{
 void vTaskStats(void* pvParameters)
 {
   xQueueHandle    xQueueDebug = xTaskDebug_GetQueue();
@@ -28,7 +27,4 @@ void vTaskStats(void* pvParameters)
     vTaskDelay(pdMS_TO_TICKS(1000));
   }
 }
-
-#ifdef __cplusplus
-}
-#endif
+}  

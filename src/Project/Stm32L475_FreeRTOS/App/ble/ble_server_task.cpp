@@ -1,7 +1,7 @@
-#include "ble_server.h"
+#include <ble_server.h>
 #include <FreeRTOS.h>
 #include <queue.h>
-#include <taskDebug.h>
+#include <task_debug.h>
 #include "string.h"
 #include <stdio.h>
 #include <task.h>
@@ -10,10 +10,8 @@
 #include <gpio/gpio.h>
 #include <Cfg.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+extern "C" 
+{
 void vTaskBleServer(void* pvParameters)
 {
 
@@ -24,7 +22,5 @@ void vTaskBleServer(void* pvParameters)
   }
 }
 
-#ifdef __cplusplus
 }
-#endif
 
