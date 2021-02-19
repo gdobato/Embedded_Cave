@@ -3,13 +3,14 @@
 
 #include <stdint.h>
 #include <Platform_Types.h>
+#include <functional>
 
 class UserButton 
 {
 
  public:
-  using getLLState = uint8_t(*)(void);
-  using action     = void(*)(void);
+  using getLLState = std::function<uint8_t(void)>;
+  using action     = std::function<void()>;
   using actionType = enum{HIGH,LOW, RISE,DOWN};
   using pullType   = enum{PULLUP, PULLDOWN};
   using portType   = uint8_t;

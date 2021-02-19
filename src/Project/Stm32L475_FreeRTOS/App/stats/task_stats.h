@@ -2,6 +2,7 @@
 #define __TASK_STATS_H__
 
 #define STATS_BUFFER_SIZE  512
+
 #ifdef __cplusplus
 extern "C" {
 #endif

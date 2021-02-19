@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <userButton/userButton.h> 
+#include <user_button.h> 
 
 uint8_t UserButton::getState (void) const
 {

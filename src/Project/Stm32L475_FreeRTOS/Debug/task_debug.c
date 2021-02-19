@@ -1,6 +1,6 @@
 #include <cmsis_os.h>
 #include "debug.h"
-#include "taskDebug.h"
+#include "task_debug.h"
 
 
 static xQueueHandle xQueueDebug = NULL;

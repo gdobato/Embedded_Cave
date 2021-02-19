@@ -11,11 +11,11 @@
 #include <system/system.h> 
 #include <gpio/gpio.h> 
 #include <usart/usart.h> 
-#include <userLed/taskUserLed.h> 
-#include <stats/taskStats.h> 
+#include <user_led/task_user_led.h> 
+#include <task_debug.h> 
+#include <stats/task_stats.h> 
 #include <ble/ble_server_task.h>
 #include <ble/ble_server.h>
-#include <taskDebug.h> 
 #include <timer/timer.h>
 #include <Cfg.h>
 /************************************

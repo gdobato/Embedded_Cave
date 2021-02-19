@@ -20,6 +20,10 @@ set(CMAKE_EXE_LINKER_FLAGS "-T${PROJECT_LINKER_SCRIPT_FILE} -Wl,-Map=${DEPLOY_DI
 #Generic include directories
 #Project Squeleton include
 include_directories(${APP_DIR})
+include_directories(${APP_DIR}/ble)
+include_directories(${APP_DIR}/stats)
+include_directories(${APP_DIR}/user_button)
+include_directories(${APP_DIR}/user_led)
 include_directories(${BSP_DIR})
 include_directories(${CONFIG_DIR})
 include_directories(${DEBUG_DIR})

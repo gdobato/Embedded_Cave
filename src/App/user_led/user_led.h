@@ -3,10 +3,11 @@
 
 #include <stdint.h>
 #include <hal/hal.h>
+#include <functional>
 
 class UserLed {
  public:
-   using writeLLPort = void(*)(uint8_t);
+   using writeLLPort = std::function<void(uint8_t)>;
 
    UserLed(writeLLPort wLLPort = nullptr) : wLLPort(wLLPort) {};
    UserLed(const UserLed& led) = delete;

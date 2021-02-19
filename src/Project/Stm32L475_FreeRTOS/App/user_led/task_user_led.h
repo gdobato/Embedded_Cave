@@ -1,7 +1,5 @@
-#ifndef __TASK_LED_H__
-  #define __TASK_LED_H__
-
-#include <cmsis_os.h>
+#ifndef __TASK_USER_LED_H__
+  #define __TASK_USER_LED_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -12,5 +10,4 @@ void vTaskLed(void * pvParameters);
 #ifdef __cplusplus
 }
 #endif
-
 #endif
