@@ -4,7 +4,8 @@
  * @date
  * @brief
  **/
-
+extern "C"
+{
 /************************************
 * Includes
 ************************************/
@@ -18,6 +19,7 @@
 #include <ble/ble_server.h>
 #include <timer/timer.h>
 #include <Cfg.h>
+#include <cstdlib>
 /************************************
 * Private definitions 
 ************************************/
@@ -30,16 +32,34 @@
 * Private variables
 ************************************/
 
+volatile uint32_t prioBits;
 /************************************
 * Private declarations 
 ************************************/
+int array[] = {3,2,5,1,4};
+int length  = 5;
+int temp;
 int main(void)
 {
   #if (SYSTEMVIEW == STD_ON)
   System_EnableCycleCounter();
   #endif
 
+  for (int i = 0; i < length; i++) 
+  {     
+    for (int j = i+1; j < length; j++) 
+    {     
+       if(array[i] > array[j])
+       {    
+           temp = array[i];    
+           array[i] = array[j];    
+           array[j] = temp;    
+       }     
+    } 
+  }
+
   HAL_Init();
+
   Timer_Init();
 
   /* ToDo: Implement own API. Remove CMSIS depenencies */
@@ -76,5 +96,7 @@ int main(void)
 
   return 0;
 }
+
+}//Extern C
 
 

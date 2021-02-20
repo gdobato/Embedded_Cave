@@ -55,7 +55,7 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/App/stats/task_stats.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
-  ${PROJECT_DIR}/main.c
+  ${PROJECT_DIR}/main.cpp
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/freertos.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/croutine.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/event_groups.c
