@@ -1,6 +1,5 @@
 
 #include <stdint.h> 
-extern "C" {
 #include "bluenrg_gap.h"
 #include "hci_const.h"
 #include "bluenrg_hal_aci.h"
@@ -41,4 +40,3 @@ void Ble_server_process(void)
 	
 	aci_gap_set_discoverable(ADV_IND,0,0,PUBLIC_ADDR,NO_WHITE_LIST_USE,sizeof(local_name),local_name,0,NULL,0,0);
 }  
-}

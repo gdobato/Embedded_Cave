@@ -12,4 +12,4 @@ void vTaskBleServer(void * pvParameters);
 }
 #endif
 
-#endif
+#endif //__TASK_BLESERVER_H__

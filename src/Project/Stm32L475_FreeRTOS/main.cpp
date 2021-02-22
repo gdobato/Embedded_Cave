@@ -16,7 +16,7 @@ extern "C"
 #include <task_debug.h> 
 #include <stats/task_stats.h> 
 #include <ble/ble_server_task.h>
-#include <ble/ble_server.h>
+#include <ble/ble_server_legacy.h>
 #include <timer/timer.h>
 #include <Cfg.h>
 #include <cstdlib>
@@ -44,19 +44,6 @@ int main(void)
   #if (SYSTEMVIEW == STD_ON)
   System_EnableCycleCounter();
   #endif
-
-  for (int i = 0; i < length; i++) 
-  {     
-    for (int j = i+1; j < length; j++) 
-    {     
-       if(array[i] > array[j])
-       {    
-           temp = array[i];    
-           array[i] = array[j];    
-           array[j] = temp;    
-       }     
-    } 
-  }
 
   HAL_Init();
 
