@@ -9,6 +9,7 @@
 #include "bluenrg_gap_aci.h"
 #include "bluenrg_utils.h"
 #include "ble_services.h"
+#include "sm.h"
 
 void Ble_server_init(void)
 {
@@ -28,8 +29,6 @@ void Ble_server_init(void)
 	aci_gatt_init();
 	aci_gap_init_IDB05A1(GAP_PERIPHERAL_ROLE_IDB05A1,0,0x07,&service_handle,&dev_name_char_handle,&appearance_char_handle);
 	aci_gatt_update_char_value(service_handle,dev_name_char_handle,0,strlen(name),(uint8_t *)name);
-	
-	
 }
 
 void Ble_server_process(void)

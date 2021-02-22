@@ -32,13 +32,9 @@ extern "C"
 * Private variables
 ************************************/
 
-volatile uint32_t prioBits;
 /************************************
 * Private declarations 
 ************************************/
-int array[] = {3,2,5,1,4};
-int length  = 5;
-int temp;
 int main(void)
 {
   #if (SYSTEMVIEW == STD_ON)
