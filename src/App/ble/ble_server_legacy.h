@@ -1,7 +1,6 @@
-#ifndef __BLE_SERVER_H__
-#define __BLE_SERVER_H__
+#ifndef __BLE_SERVER_LEGACY_H__
+#define __BLE_SERVER_LEGACY_H__
 
-//ToDo: Set right Class 
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,4 +12,8 @@ void Ble_server_process(void);
 #ifdef __cplusplus
 }
 #endif
-#endif
+
+
+#endif //__BLE_SERVER_H__
+
+

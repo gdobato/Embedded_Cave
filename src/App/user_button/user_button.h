@@ -16,7 +16,7 @@ class UserButton
   using portType   = uint8_t;
   using pinType    = uint8_t;
 
-  UserButton(getLLState getLL = nullptr): state(STD_OFF), getLL(getLL), HAction(nullptr),LAction(nullptr), RiseAction(nullptr), DownAction(nullptr){};
+  explicit UserButton(getLLState getLL): state(STD_OFF), getLL(getLL), HAction(nullptr),LAction(nullptr), RiseAction(nullptr), DownAction(nullptr){};
   UserButton(const UserButton&  button) = delete;
   UserButton(      UserButton&& button) = default;
   UserButton& operator=(const UserButton& button) = delete;

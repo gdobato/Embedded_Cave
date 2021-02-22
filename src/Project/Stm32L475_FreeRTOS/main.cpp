@@ -4,7 +4,8 @@
  * @date
  * @brief
  **/
-
+extern "C"
+{
 /************************************
 * Includes
 ************************************/
@@ -15,9 +16,10 @@
 #include <task_debug.h> 
 #include <stats/task_stats.h> 
 #include <ble/ble_server_task.h>
-#include <ble/ble_server.h>
+#include <ble/ble_server_legacy.h>
 #include <timer/timer.h>
 #include <Cfg.h>
+#include <cstdlib>
 /************************************
 * Private definitions 
 ************************************/
@@ -30,9 +32,13 @@
 * Private variables
 ************************************/
 
+volatile uint32_t prioBits;
 /************************************
 * Private declarations 
 ************************************/
+int array[] = {3,2,5,1,4};
+int length  = 5;
+int temp;
 int main(void)
 {
   #if (SYSTEMVIEW == STD_ON)
@@ -40,6 +46,7 @@ int main(void)
   #endif
 
   HAL_Init();
+
   Timer_Init();
 
   /* ToDo: Implement own API. Remove CMSIS depenencies */
@@ -76,5 +83,7 @@ int main(void)
 
   return 0;
 }
+
+}//Extern C
 
 

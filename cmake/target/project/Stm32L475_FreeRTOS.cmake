@@ -8,14 +8,10 @@ set(STARTUP_FILE startup_stm32l475xx.s)
 #Specific project paths
 
 #specific include directories
-include_directories(${BSP_DIR}/STM32F4xx/Inc)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/includes)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic)
+include_directories(${APP_DIR}/ble)
+include_directories(${APP_DIR}/user_button)
+include_directories(${APP_DIR}/user_led)
+include_directories(${BSP_DIR}/ble)
 include_directories(${PROJECT_DIR}/Os)
 include_directories(${PROJECT_DIR}/App)
 include_directories(${PROJECT_DIR}/App/ble)
@@ -26,6 +22,13 @@ include_directories(${PROJECT_DIR}/Debug)
 include_directories(${PROJECT_DIR}/Startup)
 include_directories(${PROJECT_DIR}/Stubs)
 include_directories(${PROJECT_DIR}/Bsp/hal)
+include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Include)
+include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
+include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
+include_directories(${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/includes)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils)
+include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
 include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
@@ -36,12 +39,13 @@ include_directories(${THIRD_PARTY_DIR}/SEGGER/SEGGER)
 
 #Files to include
 set(PROJECT_FILES
-  ${APP_DIR}/ble/ble_server.cpp
+  ${APP_DIR}/ble/ble_server_legacy.c
   ${APP_DIR}/stats/stats.cpp
   ${APP_DIR}/user_button/user_button.cpp
   ${APP_DIR}/user_led/user_led.cpp
   ${PROJECT_DIR}/Debug/debug.c
   ${PROJECT_DIR}/Debug/task_debug.c
+  ${PROJECT_DIR}/Bsp/ble/ble_hci.cpp
   ${PROJECT_DIR}/Bsp/ble/b_l475e_iot01a1_bus.c
   ${PROJECT_DIR}/Bsp/ble/hci_tl_interface.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.c
@@ -55,7 +59,7 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/App/stats/task_stats.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
-  ${PROJECT_DIR}/main.c
+  ${PROJECT_DIR}/main.cpp
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/freertos.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/croutine.c
   ${THIRD_PARTY_DIR}/FreeRTOS/Source/event_groups.c
