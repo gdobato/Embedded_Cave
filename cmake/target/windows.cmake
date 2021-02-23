@@ -1,5 +1,6 @@
-include(${CMAKE_CURRENT_LIST_DIR}/config.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/genpaths.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../config.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../genpaths.cmake)
+
 set(TARGET_CPU                    "arm")
 set(CMAKE_SYSTEM_PROCESSOR        ${TARGET_CPU})
 set(CMAKE_SYSTEM_NAME             Generic)
