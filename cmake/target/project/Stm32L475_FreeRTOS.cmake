@@ -40,6 +40,7 @@ include_directories(${THIRD_PARTY_DIR}/SEGGER/SEGGER)
 #Files to include
 set(PROJECT_FILES
   ${APP_DIR}/ble/ble_server_legacy.c
+  ${APP_DIR}/ble/ble_uuid.cpp
   ${APP_DIR}/stats/stats.cpp
   ${APP_DIR}/user_button/user_button.cpp
   ${APP_DIR}/user_led/user_led.cpp
