@@ -16,7 +16,7 @@ class Server_Base
 {
   public:
     Server_Base(GATT& gatt, GAP& gap, bsp::ble::HCI& hci):gatt(gatt),gap(gap), hci(hci){};
-    ~Server_Base();
+    virtual ~Server_Base() = default;
 
     virtual void init(void)    = 0;
     virtual void process(void) = 0;

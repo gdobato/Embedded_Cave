@@ -11,7 +11,7 @@ namespace app::ble
 class GAP_Base
 {
   public:
-    GAP_Base(const std::string device_name) : device_name(device_name){};
+    GAP_Base(const std::string device_name) : device_name(device_name), static_addr(){};
     GAP_Base(const GAP_Base& gatt) = delete;
     virtual void init(uint8_t, uint8_t, uint8_t, uint16_t*) = 0; 
     virtual ~GAP_Base() = default;
