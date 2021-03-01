@@ -37,7 +37,7 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/crc/crc.c
   ${PROJECT_DIR}/Bsp/dma/dma.c
   ${PROJECT_DIR}/Bsp/fmc/fmc.c
-  ${PROJECT_DIR}/Bsp/gpio/gpio.c
+  ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
   ${PROJECT_DIR}/Bsp/i2c/i2c.c
   ${PROJECT_DIR}/Bsp/ltdc/ltdc.c
   ${PROJECT_DIR}/Bsp/spi/spi.c

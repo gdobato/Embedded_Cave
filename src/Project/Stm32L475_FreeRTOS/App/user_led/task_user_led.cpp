@@ -14,7 +14,7 @@ extern "C" {
 
 void vTaskLed(void* pvParameters)
 {
-  auto greenLed = std::make_unique<UserLed>(Gpio_WriteGreenLed);
+  app::user_led::User_led green_led {LED2_GPIO_Port, LED2_Pin};
 
   #if (DEBUG_TRACE  == STD_ON)
   xQueueHandle        xQueueDebug = xTaskDebug_GetQueue();
@@ -31,7 +31,7 @@ void vTaskLed(void* pvParameters)
     if (pdTRUE == xQueueSend(xQueueDebug, &xQueueData, portMAX_DELAY)) {}
     #endif
 
-    greenLed->toggle();
+    green_led.toggle();
 
     vTaskDelay(pdMS_TO_TICKS(250));
   }

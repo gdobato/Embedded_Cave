@@ -11,7 +11,7 @@ UUID::UUID(const std::string& uuid):m_str(uuid)
 
   m_str.erase(std::remove(m_str.begin(), m_str.end(), '-'), m_str.end());
   std::copy (m_str.begin(), m_str.end(), back_inserter(m_raw));
-  for (raw_t::iterator i = m_raw.begin(); i != m_raw.end() ; i=i+2 )
+  for (auto i = m_raw.begin(); i != m_raw.end() ; i=i+2 )
   {
       std::iter_swap(i, i + 1);
   }

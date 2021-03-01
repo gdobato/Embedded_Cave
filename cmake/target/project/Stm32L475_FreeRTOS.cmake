@@ -44,20 +44,20 @@ set(PROJECT_FILES
   ${APP_DIR}/stats/stats.cpp
   ${APP_DIR}/user_button/user_button.cpp
   ${APP_DIR}/user_led/user_led.cpp
-  ${PROJECT_DIR}/Debug/debug.c
-  ${PROJECT_DIR}/Debug/task_debug.c
+  ${PROJECT_DIR}/App/user_led/task_user_led.cpp
+  ${PROJECT_DIR}/App/stats/task_stats.cpp
+  ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
   ${PROJECT_DIR}/Bsp/ble/ble_hci.cpp
   ${PROJECT_DIR}/Bsp/ble/b_l475e_iot01a1_bus.c
   ${PROJECT_DIR}/Bsp/ble/hci_tl_interface.c
-  ${PROJECT_DIR}/Bsp/gpio/gpio.c
   ${PROJECT_DIR}/Bsp/hal/stm32l4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/system/stm32l4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32l4xx.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
+  ${PROJECT_DIR}/Debug/debug.c
+  ${PROJECT_DIR}/Debug/task_debug.c
   ${PROJECT_DIR}/App/ble/ble_server_task.cpp
-  ${PROJECT_DIR}/App/user_led/task_user_led.cpp
-  ${PROJECT_DIR}/App/stats/task_stats.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.cpp

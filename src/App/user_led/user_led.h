@@ -1,29 +1,35 @@
-#ifndef __USERLED_H__
-#define __USERLED_H__
+#ifndef __USER_LED_H__
+#define __USER_LED_H__
 
 #include <stdint.h>
 #include <hal/hal.h>
 #include <functional>
+#include <Platform_Types.h>
+#include <gpio/gpio.h>
 
-class UserLed {
+namespace app::user_led
+{
+class User_led {
   public:
-    using writeLLPort = std::function<void(uint8_t)>;
+    using port_t = bsp::gpio::port_t;
+    using pin_t  = bsp::gpio::pin_t;
+    using state_t = enum{LED_OFF = 0, LED_ON = 1};
 
-    explicit UserLed(writeLLPort wLLPort = nullptr) : wLLPort(wLLPort) {};
-    UserLed(const UserLed& led) = delete;
-    UserLed& operator=(const UserLed& led)  = delete;
-    UserLed& operator=(      UserLed&& led) = default;
-   ~UserLed()=default;
+    User_led(const port_t& port, const pin_t& pin ) : port{port}, pin{pin}, state{LED_OFF}{} 
+    User_led(const User_led& led) = delete;
+    User_led& operator=(const User_led&  led) = delete;
+    User_led& operator=(      User_led&& led) = default;
+   ~User_led()=default;
 
     void toggle(void);
     void On(void);
     void Off(void);
     bool getState(void);
 
-
-  private:
-    writeLLPort wLLPort;
-    uint8_t     state;
+  protected:
+    port_t     port;
+    pin_t      pin;
+    state_t    state;
 };
-
+}
 #endif
