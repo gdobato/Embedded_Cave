@@ -3,35 +3,33 @@
 #include <hal/hal.h>
 #include <user_led.h>
 #include <Platform_Types.h>
+#include <gpio/gpio.h>
 
-
-
-void UserLed::toggle(void)
+namespace app::user_led
 {
-  if(wLLPort!= nullptr)
-  {
-    state =!state;
-    wLLPort(state);
-  }
+
+using namespace bsp::gpio;
+
+void User_led::toggle(void)
+{
+  state = (state == LED_OFF) ? LED_ON : LED_OFF;
+  Write(port, pin, (state == LED_OFF) ? HIGH : LOW);
 }
 
-void UserLed::On(void)
+void User_led::On(void)
 {
-  if(wLLPort!= nullptr)
-  {
-    wLLPort(STD_ON);
-  }
+  state = LED_ON;
+  Write(port, pin, HIGH);
 }
 
-void UserLed::Off(void)
+void User_led::Off(void)
 {
-  if(wLLPort!= nullptr)
-  {
-    wLLPort(STD_OFF);
-  }
+  state = LED_OFF;
+  Write(port, pin, LOW);
 }
 
-bool UserLed::getState(void)
+bool User_led::getState(void)
 {
   return state;
+}
 }

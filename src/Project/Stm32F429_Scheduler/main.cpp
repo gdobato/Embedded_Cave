@@ -39,8 +39,9 @@
 int main(void)
 {
   HAL_Init();
-  Gpio_Init();
   Timer_Init();
+
+  bsp::gpio::Init();
   
   //Start Os Scheduler
   Os_Start();

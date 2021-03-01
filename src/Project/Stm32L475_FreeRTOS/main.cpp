@@ -4,13 +4,12 @@
  * @date
  * @brief
  **/
-extern "C"
-{
 /************************************
 * Includes
 ************************************/
+extern "C"
+{
 #include <system/system.h> 
-#include <gpio/gpio.h> 
 #include <usart/usart.h> 
 #include <user_led/task_user_led.h> 
 #include <task_debug.h> 
@@ -18,8 +17,11 @@ extern "C"
 #include <ble/ble_server_task.h>
 #include <ble/ble_server_legacy.h>
 #include <timer/timer.h>
+}
 #include <Cfg.h>
 #include <cstdlib>
+#include <gpio/gpio.h> 
+
 /************************************
 * Private definitions 
 ************************************/
@@ -49,9 +51,13 @@ int main(void)
   /* Analyse why sysgroup bit is not 0 by default*/
   NVIC_SetPriorityGrouping( 0 );
 
-  Gpio_Init();
+
   Usart_Init();
+
+  bsp::gpio::Init();
+
   Ble_server_init();
+
 
    /* Start System recording*/
   #if (SYSTEMVIEW == STD_ON)
@@ -80,6 +86,5 @@ int main(void)
   return 0;
 }
 
-}//Extern C
 
 

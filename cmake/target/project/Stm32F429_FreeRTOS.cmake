@@ -31,8 +31,11 @@ set(PROJECT_FILES
   ${APP_DIR}/user_button/user_button.cpp
   ${APP_DIR}/user_led/user_led.cpp
   ${APP_DIR}/stats/stats.cpp
-  ${PROJECT_DIR}/Debug/debug.c
-  ${PROJECT_DIR}/Debug/taskDebug.c
+  ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
+  ${PROJECT_DIR}/App/stats/taskStats.cpp
+  ${PROJECT_DIR}/App/userButton/taskUserButton.cpp
+  ${PROJECT_DIR}/main.cpp  
+  ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
@@ -40,18 +43,15 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/crc/crc.c
   ${PROJECT_DIR}/Bsp/dma/dma.c
   ${PROJECT_DIR}/Bsp/fmc/fmc.c
-  ${PROJECT_DIR}/Bsp/gpio/gpio.c
   ${PROJECT_DIR}/Bsp/i2c/i2c.c
   ${PROJECT_DIR}/Bsp/ltdc/ltdc.c
   ${PROJECT_DIR}/Bsp/spi/spi.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
-  ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
-  ${PROJECT_DIR}/App/stats/taskStats.cpp
-  ${PROJECT_DIR}/App/userButton/taskUserButton.cpp
+  ${PROJECT_DIR}/Debug/debug.c
+  ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
-  ${PROJECT_DIR}/main.c  
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c

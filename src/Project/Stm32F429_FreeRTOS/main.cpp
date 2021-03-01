@@ -52,7 +52,8 @@
 * Private declarations 
 ************************************/
 static void Error_Handler(void);
-
+extern "C"
+{
 /************************************
 * Implementation 
 ************************************/
@@ -65,9 +66,10 @@ int main(void)
 
   /* Init BSP*/
   HAL_Init();
-  Gpio_Init();
   Usart_Init();
   Timer_Init();
+
+  bsp::gpio::Init();
 
   /* ToDo: Implement own API. Remove CMSIS depenencies */
   /* Analyse why sysgroup bit is not 0 by default*/
@@ -99,6 +101,7 @@ int main(void)
   }
 
   return 0;
+}
 }
 
 void Error_Handler(void)

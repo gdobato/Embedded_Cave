@@ -10,8 +10,7 @@
 /************************************
 * Public includes 
 ************************************/
-//#include "hal.h"
-#include "hal/hal.h"
+
 /************************************
 * Public type definitions 
 ************************************/
@@ -19,12 +18,14 @@
 /************************************
 * APIs
 ************************************/
-#ifdef __cplusplus
-extern "C" {
-#endif
-void Gpio_Init(void);
-void Gpio_WriteGreenLed(uint8_t level);
-#ifdef __cplusplus
+namespace bsp::gpio
+{
+  using port_t  = GPIO_TypeDef*;
+  using pin_t   = uint16_t;
+  using level_t = enum level{HIGH, LOW};
+
+  void Init(void);
+  void Write(port_t port, pin_t pin, level_t level);
 }
-#endif
+
 #endif

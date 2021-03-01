@@ -10,7 +10,7 @@
 ************************************/
 #include "stm32f4xx_hal.h"
 #include "hal/hal.h"
-
+#include <gpio/gpio.h>
 /************************************
 * Private type definitions 
 ************************************/
@@ -27,12 +27,9 @@
 * Implementation 
 ************************************/
 
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-void Gpio_Init(void)
+namespace bsp::gpio
+{
+void Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
@@ -112,17 +109,10 @@ void Gpio_Init(void)
 
 }
 
-GPIO_PinState Gpio_GetUserButton(void)
+void Write(port_t port, pin_t pin, level_t level)
 {
-  return (uint8_t)HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin);
+  HAL_GPIO_WritePin(port, pin, level== HIGH ? GPIO_PIN_SET:GPIO_PIN_RESET);
 }
 
-void Gpio_WriteGreenLed(uint8_t level)
-{
-  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, level);
-}
 
-void Gpio_WriteRedLed(uint8_t level)
-{
-  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, level);
 }

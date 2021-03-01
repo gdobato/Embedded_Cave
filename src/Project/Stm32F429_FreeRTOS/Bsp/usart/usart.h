@@ -29,6 +29,10 @@
 /************************************
 * APIs
 ************************************/
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #if(USART_IFC1 || USART_IFC2)
 void Usart_Init(void);
 #endif
@@ -39,6 +43,10 @@ HAL_StatusTypeDef Usart1_Transmit(uint8_t *pData, uint16_t Size, uint32_t Timeou
 
 #if(USART_IFC2)
 HAL_StatusTypeDef Usart2_Transmit(uint8_t *pData, uint16_t Size, uint32_t Timeout);
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif
