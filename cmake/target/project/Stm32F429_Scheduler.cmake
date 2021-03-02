@@ -29,7 +29,6 @@ include_directories(${BSP_DIR}/STM32F4xx/Inc)
 
 #Files to include
 set(PROJECT_FILES
-  ${APP_DIR}/user_led/user_led.cpp
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c

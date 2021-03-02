@@ -21,6 +21,7 @@ extern "C"
 #include <Cfg.h>
 #include <cstdlib>
 #include <gpio/gpio.h> 
+#include <user_button/user_button.h>
 
 /************************************
 * Private definitions 

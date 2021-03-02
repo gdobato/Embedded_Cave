@@ -28,8 +28,6 @@ include_directories(${BSP_DIR}/STM32F4xx/Inc)
 
 #Files to include
 set(PROJECT_FILES
-  ${APP_DIR}/user_button/user_button.cpp
-  ${APP_DIR}/user_led/user_led.cpp
   ${APP_DIR}/stats/stats.cpp
   ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
   ${PROJECT_DIR}/App/stats/taskStats.cpp
