@@ -8,23 +8,25 @@ set(PROJECT_LINKER_SCRIPT_FILE "${PROJECT_DIR}/Startup/STM32F429ZITx_FLASH.ld ")
 #Specific project paths
 
 #Paths to include
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/Config)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/OS)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/Patch)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/SEGGER)
-include_directories(${PROJECT_DIR}/Os)
-include_directories(${PROJECT_DIR}/App)
-include_directories(${PROJECT_DIR}/Bsp)
-include_directories(${PROJECT_DIR}/Debug)
-include_directories(${PROJECT_DIR}/Startup)
-include_directories(${PROJECT_DIR}/Bsp/hal)
-include_directories(${BSP_DIR}/STM32F4xx/Inc)
+include_directories(
+  ${BSP_DIR}/STM32F4xx/Inc
+  ${PROJECT_DIR}/Os
+  ${PROJECT_DIR}/App
+  ${PROJECT_DIR}/Bsp
+  ${PROJECT_DIR}/Debug
+  ${PROJECT_DIR}/Startup
+  ${PROJECT_DIR}/Bsp/hal
+  ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include
+  ${THIRD_PARTY_DIR}/CMSIS/Include
+  ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/include
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
+  ${THIRD_PARTY_DIR}/SEGGER/Config
+  ${THIRD_PARTY_DIR}/SEGGER/OS
+  ${THIRD_PARTY_DIR}/SEGGER/Patch
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER
+)
 
 #Files to include
 set(PROJECT_FILES

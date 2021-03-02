@@ -5,7 +5,7 @@
 #include <hal/hal.h>
 #include <functional>
 #include <Platform_Types.h>
-#include <gpio/gpio.h>
+#include <gpio.h>
 
 namespace app::user_button
 {

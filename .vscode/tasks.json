@@ -165,5 +165,9 @@
             },
             "problemMatcher": []
         },
+        {
+            "label": "Batch build",
+            "dependsOn" :["Build: Stm32F429_Scheduler"]
+        }
     ]
 }

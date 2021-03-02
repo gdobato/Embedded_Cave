@@ -10,7 +10,7 @@
 ************************************/
 #include "stm32f4xx_hal.h"
 #include "hal/hal.h"
-#include <gpio/gpio.h>
+#include <gpio.h>
 /************************************
 * Private type definitions 
 ************************************/

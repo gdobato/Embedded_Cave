@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.6)
 project (${PROJECT} C CXX ASM)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 #Includes
 include(../utils.cmake)
@@ -22,17 +22,21 @@ set(CMAKE_EXE_LINKER_FLAGS "-T${PROJECT_LINKER_SCRIPT_FILE} -Wl,-Map=${DEPLOY_DI
 
 #Generic include directories
 #Project Squeleton include
-include_directories(${APP_DIR})
-include_directories(${APP_DIR}/ble)
-include_directories(${APP_DIR}/stats)
-include_directories(${APP_DIR}/user_button)
-include_directories(${APP_DIR}/user_led)
-include_directories(${BSP_DIR})
-include_directories(${CONFIG_DIR})
-include_directories(${DEBUG_DIR})
-include_directories(${PROJECT_DIR})
-include_directories(${STARTUP_DIR})
-include_directories(${UTIL_DIR})
+include_directories(
+  ${APP_DIR}
+  ${APP_DIR}/ble
+  ${APP_DIR}/stats
+  ${APP_DIR}/user_button
+  ${APP_DIR}/user_led
+  ${BSP_DIR}/ble
+  ${BSP_DIR}/gpio
+  ${BSP_DIR}/hal
+  ${CONFIG_DIR}
+  ${DEBUG_DIR}
+  ${PROJECT_DIR}
+  ${STARTUP_DIR}
+  ${UTIL_DIR}
+)
 
 #Output Files
 #Elf File

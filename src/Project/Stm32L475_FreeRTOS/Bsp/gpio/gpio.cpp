@@ -3,8 +3,8 @@
   * @param None
   * @retval None
   */
-#include "hal/hal.h"
-#include <gpio/gpio.h>
+#include <hal/hal.h>
+#include <gpio.h>
 
 namespace bsp::gpio
 {

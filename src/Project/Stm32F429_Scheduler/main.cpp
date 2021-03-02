@@ -10,8 +10,9 @@
 ************************************/
 #include <Os.h>
 #include <user_led.h> 
-#include <hal/hal.h>
-#include <gpio/gpio.h>
+#include <hal_base.h>
+#include <hal.h>
+#include <gpio.h>
 #include <system/system.h>
 #include <timer/timer.h>
 
@@ -38,10 +39,11 @@
 
 int main(void)
 {
-  HAL_Init();
+  //Init Bsp
+  bsp::hal::Init();
   Timer_Init();
-
   bsp::gpio::Init();
+
   
   //Start Os Scheduler
   Os_Start();

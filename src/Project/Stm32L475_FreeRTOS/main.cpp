@@ -20,9 +20,9 @@ extern "C"
 }
 #include <Cfg.h>
 #include <cstdlib>
-#include <gpio/gpio.h> 
-#include <user_button/user_button.h>
-
+#include <gpio.h> 
+#include <user_button.h>
+#include <hal_base.h>
 /************************************
 * Private definitions 
 ************************************/
@@ -44,8 +44,9 @@ int main(void)
   System_EnableCycleCounter();
   #endif
 
-  HAL_Init();
-
+  //Init Bsp
+  bsp::hal::Init();
+  bsp::gpio::Init();
   Timer_Init();
 
   /* ToDo: Implement own API. Remove CMSIS depenencies */
@@ -55,7 +56,6 @@ int main(void)
 
   Usart_Init();
 
-  bsp::gpio::Init();
 
   Ble_server_init();
 

@@ -9,23 +9,24 @@ set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
-include_directories(${BSP_DIR}/hal)
-
-include_directories(${PROJECT_DIR})
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
-include_directories(${PROJECT_DIR}/Os)
-include_directories(${OS_DIR}/Scheduler)
-include_directories(${PROJECT_DIR}/App)
-include_directories(${PROJECT_DIR}/Bsp)
-include_directories(${PROJECT_DIR}/Debug)
-include_directories(${PROJECT_DIR}/Startup)
-include_directories(${PROJECT_DIR}/Bsp/hal)
-include_directories(${BSP_DIR}/STM32F4xx/Inc)
+include_directories(
+  ${BSP_DIR}/STM32F4xx/Inc
+  ${BSP_DIR}/hal
+  ${OS_DIR}/Scheduler
+  ${PROJECT_DIR}
+  ${PROJECT_DIR}/App
+  ${PROJECT_DIR}/Bsp
+  ${PROJECT_DIR}/Debug
+  ${PROJECT_DIR}/Os
+  ${PROJECT_DIR}/Startup
+  ${PROJECT_DIR}/Bsp/hal
+  ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include
+  ${THIRD_PARTY_DIR}/CMSIS/Include
+  ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/include
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
+)
 
 #Files to include
 set(PROJECT_FILES

@@ -7,7 +7,7 @@
 #include <task.h>
 #include <hal/hal.h>
 #include <memory>
-#include <gpio/gpio.h>
+#include <gpio.h>
 #include <Cfg.h>
 
 extern "C" {
