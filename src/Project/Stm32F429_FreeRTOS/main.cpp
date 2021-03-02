@@ -21,13 +21,7 @@
 //Bsp
 #include "stm32f4xx_hal.h"
 #include <hal/hal.h>
-#include <adc/adc.h>
-#include <dma/dma.h>
-#include <fmc/fmc.h>
 #include <gpio/gpio.h>
-#include <i2c/i2c.h>
-#include <ltdc/ltdc.h>
-#include <spi/spi.h>
 #include <system/system.h>
 #include <timer/timer.h>
 #include <usart/usart.h>

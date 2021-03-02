@@ -37,13 +37,6 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
-  ${PROJECT_DIR}/Bsp/adc/adc.c
-  ${PROJECT_DIR}/Bsp/crc/crc.c
-  ${PROJECT_DIR}/Bsp/dma/dma.c
-  ${PROJECT_DIR}/Bsp/fmc/fmc.c
-  ${PROJECT_DIR}/Bsp/i2c/i2c.c
-  ${PROJECT_DIR}/Bsp/ltdc/ltdc.c
-  ${PROJECT_DIR}/Bsp/spi/spi.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
   ${PROJECT_DIR}/Debug/debug.c
