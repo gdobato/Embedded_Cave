@@ -14,7 +14,6 @@ extern "C" {
 
 void vTaskButton(void* pvParameters)
 {
-  //auto button = std::make_unique<UserButton>(Gpio_GetUserButton);
 
   #if (DEBUG_TRACE  == STD_ON)
   xQueueHandle        xQueueDebug = xTaskDebug_GetQueue();

@@ -9,27 +9,45 @@
 
 namespace app::user_led
 {
-class User_led {
-  public:
-    using port_t = bsp::gpio::port_t;
-    using pin_t  = bsp::gpio::pin_t;
-    using state_t = enum{LED_OFF = 0, LED_ON = 1};
+  template<bsp::gpio::port_type port_value ,
+           bsp::gpio::pin_type  pin_value  >
+  class User_led
+  {
+    public:
+      using state_type = enum{LED_OFF = 0, LED_ON = 1};
+      using gpio_pin  = bsp::gpio::Gpio_Pin<port_value,
+                                            pin_value>;
 
-    User_led(const port_t& port, const pin_t& pin ) : port{port}, pin{pin}, state{LED_OFF}{} 
-    User_led(const User_led& led) = delete;
-    User_led& operator=(const User_led&  led) = delete;
-    User_led& operator=(      User_led&& led) = default;
-   ~User_led()=default;
+      User_led()                                = default;
+      User_led(const User_led& led)             = delete;
+      User_led& operator=(const User_led&  led) = delete;
+      User_led& operator=(      User_led&& led) = default;
+     ~User_led()=default;
+  
+      void toggle(void)
+      { 
+        if (state == LED_OFF)
+        {
+          gpio_pin::Write(static_cast<bsp::gpio::state_type>(1));
+          state = LED_ON;
+        }
+        else
+        {
+          gpio_pin::Write(static_cast<bsp::gpio::state_type>(0));
+          state = LED_OFF;
+        }
+          
+      }
+  
+      void On(void) { state = LED_ON ; gpio_pin::Write(static_cast<bsp::gpio::state_type>(1));}
 
-    void toggle(void);
-    void On(void);
-    void Off(void);
-    bool getState(void);
+      void Off(void){ state = LED_OFF; gpio_pin::Write(static_cast<bsp::gpio::state_type>(0));}
 
-  protected:
-    port_t     port;
-    pin_t      pin;
-    state_t    state;
-};
+      state_type getState(void) const { return state;}
+  
+    protected:
+      state_type state;
+  
+  };
 }
 #endif

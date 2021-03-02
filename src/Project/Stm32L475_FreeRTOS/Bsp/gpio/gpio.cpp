@@ -230,9 +230,5 @@ void Init(void)
 
 }
 
-void Write(port_t port, pin_t pin, level_t level)
-{
-  HAL_GPIO_WritePin(port, pin, level== HIGH ? GPIO_PIN_SET:GPIO_PIN_RESET);
-}
 
 }

@@ -1,39 +1,46 @@
-#ifndef __USERBUTTON_H__
-#define __USERBUTTON_H__
+#ifndef __USER_BUTTON_H__
+#define __USER_BUTTON_H__
 
 #include <stdint.h>
-#include <Platform_Types.h>
+#include <hal/hal.h>
 #include <functional>
+#include <Platform_Types.h>
+#include <gpio/gpio.h>
 
-class UserButton 
+namespace app::user_button
 {
+  template<bsp::gpio::port_type port_value ,
+           bsp::gpio::pin_type  pin_value  >
+  class User_button
+  {
+    public:
+      using pull_type    = enum{PULLUP, PULLDOWN};
+      using state_type   = enum{PRESSED, RELEASED};
+      using event_type   = enum{HIGH,LOW, RISE,DOWN};
+      using action_type  = std::function<void()>;
+      using gpio_pin     = bsp::gpio::Gpio_Pin<port_value,
+                                              pin_value>;
 
- public:
-  using getLLState = std::function<uint8_t(void)>;
-  using action     = std::function<void()>;
-  using actionType = enum{HIGH,LOW, RISE,DOWN};
-  using pullType   = enum{PULLUP, PULLDOWN};
-  using portType   = uint8_t;
-  using pinType    = uint8_t;
+      User_button(pull_type pull) : pull(pull),state{RELEASED}{};
+      User_button(const User_button& led)              = delete;
+      User_button& operator=(const User_button&   led) = delete;
+      User_button& operator=(      User_button&&  led) = default;
+     ~User_button()=default;
+  
 
-  explicit UserButton(getLLState getLL): state(STD_OFF), getLL(getLL), HAction(nullptr),LAction(nullptr), RiseAction(nullptr), DownAction(nullptr){};
-  UserButton(const UserButton&  button) = delete;
-  UserButton(      UserButton&& button) = default;
-  UserButton& operator=(const UserButton& button) = delete;
+      state_type getState(void)
+      { 
+        state = gpio_pin::Read() == static_cast<bsp::gpio::state_type>(0) ? (pull == PULLDOWN ? RELEASED : PRESSED)
+                                                                          : (pull == PULLDOWN ? PRESSED  : RELEASED);
+        return state;
+      }
+      void  register_action (event_type event, action_type action); 
+      void  listener(void);
 
-  ~UserButton();
-
-  uint8_t getState (void)const;
-  void    listener (void)const;
-  void    registerAction (UserButton::actionType actionType, UserButton::action);
-
- private:
-  uint8_t    state;
-  getLLState getLL;
-  action     HAction;
-  action     LAction;
-  action     RiseAction;
-  action     DownAction;
-};
-
+    protected:
+      state_type state;
+      pull_type  pull;
+  
+  };
+}
 #endif

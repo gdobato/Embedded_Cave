@@ -14,7 +14,8 @@ extern "C" {
 
 void vTaskLed(void* pvParameters)
 {
-  app::user_led::User_led green_led {LED2_GPIO_Port, LED2_Pin};
+
+  app::user_led::User_led<GPIOB_BASE, LED2_Pin> green_led;
 
   #if (DEBUG_TRACE  == STD_ON)
   xQueueHandle        xQueueDebug = xTaskDebug_GetQueue();
