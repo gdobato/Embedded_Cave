@@ -40,6 +40,7 @@ set(PROJECT_FILES
   ${APP_DIR}/ble/ble_server_legacy.c
   ${APP_DIR}/ble/ble_uuid.cpp
   ${APP_DIR}/stats/stats.cpp
+  ${BSP_DIR}/hal/hal_base.cpp
   ${PROJECT_DIR}/App/ble/ble_server_task.cpp
   ${PROJECT_DIR}/App/user_led/task_user_led.cpp
   ${PROJECT_DIR}/App/stats/task_stats.cpp

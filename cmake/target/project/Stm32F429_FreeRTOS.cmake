@@ -31,6 +31,7 @@ include_directories(
 #Files to include
 set(PROJECT_FILES
   ${APP_DIR}/stats/stats.cpp
+  ${BSP_DIR}/hal/hal_base.cpp
   ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
   ${PROJECT_DIR}/App/stats/taskStats.cpp
   ${PROJECT_DIR}/App/userButton/taskUserButton.cpp

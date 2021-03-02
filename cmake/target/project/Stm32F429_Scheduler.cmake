@@ -30,6 +30,8 @@ include_directories(
 
 #Files to include
 set(PROJECT_FILES
+  ${BSP_DIR}/hal/hal_base.cpp
+  ${OS_DIR}/Scheduler/Os.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
@@ -41,7 +43,6 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/main.cpp
   ${PROJECT_DIR}/tasks.cpp
   ${PROJECT_DIR}/callouts.c
-  ${OS_DIR}/Scheduler/Os.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c
