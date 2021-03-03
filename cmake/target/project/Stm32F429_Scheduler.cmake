@@ -9,37 +9,33 @@ set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
-include_directories(${BSP_DIR}/hal)
-
-include_directories(${PROJECT_DIR})
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
-include_directories(${PROJECT_DIR}/Os)
-include_directories(${OS_DIR}/Scheduler)
-include_directories(${PROJECT_DIR}/App)
-include_directories(${PROJECT_DIR}/Bsp)
-include_directories(${PROJECT_DIR}/Debug)
-include_directories(${PROJECT_DIR}/Startup)
-include_directories(${PROJECT_DIR}/Bsp/hal)
-include_directories(${BSP_DIR}/STM32F4xx/Inc)
+include_directories(
+  ${BSP_DIR}/STM32F4xx/Inc
+  ${BSP_DIR}/hal
+  ${OS_DIR}/Scheduler
+  ${PROJECT_DIR}
+  ${PROJECT_DIR}/App
+  ${PROJECT_DIR}/Bsp
+  ${PROJECT_DIR}/Debug
+  ${PROJECT_DIR}/Os
+  ${PROJECT_DIR}/Startup
+  ${PROJECT_DIR}/Bsp/hal
+  ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include
+  ${THIRD_PARTY_DIR}/CMSIS/Include
+  ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/include
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
+)
 
 #Files to include
 set(PROJECT_FILES
+  ${BSP_DIR}/hal/hal_base.cpp
+  ${OS_DIR}/Scheduler/Os.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
-  ${PROJECT_DIR}/Bsp/adc/adc.c
-  ${PROJECT_DIR}/Bsp/crc/crc.c
-  ${PROJECT_DIR}/Bsp/dma/dma.c
-  ${PROJECT_DIR}/Bsp/fmc/fmc.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
-  ${PROJECT_DIR}/Bsp/i2c/i2c.c
-  ${PROJECT_DIR}/Bsp/ltdc/ltdc.c
-  ${PROJECT_DIR}/Bsp/spi/spi.c
   ${PROJECT_DIR}/Bsp/timer/timer.c
   ${PROJECT_DIR}/Bsp/usart/usart.c
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
@@ -47,7 +43,6 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/main.cpp
   ${PROJECT_DIR}/tasks.cpp
   ${PROJECT_DIR}/callouts.c
-  ${OS_DIR}/Scheduler/Os.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c

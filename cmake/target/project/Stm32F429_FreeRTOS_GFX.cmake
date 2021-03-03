@@ -9,32 +9,34 @@ set(DRIVER_BAREMETAL_DIR     ${DRIVER_DIR}/STM32F4xx_BAREMETAL_Driver)
 set(DRIVER_HAL_DIR           ${DRIVER_DIR}/STM32F4xx_HAL_Driver)
 
 #Paths to include
-include_directories(${PROJECT_DIR})
-include_directories(${PROJECT_DIR}/Core/Inc)
-include_directories(${PROJECT_DIR}/TouchGFX/target)
-include_directories(${PROJECT_DIR}/USB_HOST/App)
-include_directories(${PROJECT_DIR}/USB_HOST/Target)
-include_directories(${PROJECT_DIR}/TouchGFX/generated/fonts/include)
-include_directories(${PROJECT_DIR}/TouchGFX/generated/texts/include)
-include_directories(${PROJECT_DIR}/TouchGFX/generated/images/include)
-include_directories(${PROJECT_DIR}/TouchGFX/generated/gui_generated/include)
-include_directories(${PROJECT_DIR}/TouchGFX/gui/include)
-include_directories(${PROJECT_DIR}/Middlewares/ST/TouchGFX/touchgfx/framework/include)
-include_directories(${PROJECT_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc)
-include_directories(${PROJECT_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy)
-include_directories(${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include) 
-include_directories(${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS) 
-include_directories(${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F)
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/exc7200) 
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/stmpe811) 
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/ts3510) 
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/ili9341) 
-include_directories(${PROJECT_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc) 
-include_directories(${PROJECT_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc) 
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/ampire480272) 
-include_directories(${PROJECT_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include) 
-include_directories(${PROJECT_DIR}/Drivers/BSP/Components/Common) 
-include_directories(${PROJECT_DIR}/Drivers/CMSIS/Include)
+include_directories(
+  ${PROJECT_DIR}
+  ${PROJECT_DIR}/Core/Inc
+  ${PROJECT_DIR}/TouchGFX/target
+  ${PROJECT_DIR}/USB_HOST/App
+  ${PROJECT_DIR}/USB_HOST/Target
+  ${PROJECT_DIR}/TouchGFX/generated/fonts/include
+  ${PROJECT_DIR}/TouchGFX/generated/texts/include
+  ${PROJECT_DIR}/TouchGFX/generated/images/include
+  ${PROJECT_DIR}/TouchGFX/generated/gui_generated/include
+  ${PROJECT_DIR}/TouchGFX/gui/include
+  ${PROJECT_DIR}/Middlewares/ST/TouchGFX/touchgfx/framework/include
+  ${PROJECT_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
+  ${PROJECT_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
+  ${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
+  ${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+  ${PROJECT_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+  ${PROJECT_DIR}/Drivers/BSP/Components/exc7200
+  ${PROJECT_DIR}/Drivers/BSP/Components/stmpe811
+  ${PROJECT_DIR}/Drivers/BSP/Components/ts3510
+  ${PROJECT_DIR}/Drivers/BSP/Components/ili9341
+  ${PROJECT_DIR}/Middlewares/ST/STM32_USB_Host_Library/Core/Inc
+  ${PROJECT_DIR}/Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc
+  ${PROJECT_DIR}/Drivers/BSP/Components/ampire480272
+  ${PROJECT_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  ${PROJECT_DIR}/Drivers/BSP/Components/Common
+  ${PROJECT_DIR}/Drivers/CMSIS/Include
+)
 
 
 #Files to include

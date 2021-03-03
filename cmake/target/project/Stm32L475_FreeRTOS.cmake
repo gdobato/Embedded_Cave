@@ -8,40 +8,39 @@ set(STARTUP_FILE startup_stm32l475xx.s)
 #Specific project paths
 
 #specific include directories
-include_directories(${APP_DIR}/ble)
-include_directories(${APP_DIR}/user_button)
-include_directories(${APP_DIR}/user_led)
-include_directories(${BSP_DIR}/ble)
-include_directories(${PROJECT_DIR}/Os)
-include_directories(${PROJECT_DIR}/App)
-include_directories(${PROJECT_DIR}/App/ble)
-include_directories(${PROJECT_DIR}/Bsp)
-include_directories(${PROJECT_DIR}/Bsp/ble)
-include_directories(${PROJECT_DIR}/Bsp/hal)
-include_directories(${PROJECT_DIR}/Debug)
-include_directories(${PROJECT_DIR}/Startup)
-include_directories(${PROJECT_DIR}/Stubs)
-include_directories(${PROJECT_DIR}/Bsp/hal)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/CMSIS/Include)
-include_directories(${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/includes)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils)
-include_directories(${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/include)
-include_directories(${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/Config)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/OS)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/Patch)
-include_directories(${THIRD_PARTY_DIR}/SEGGER/SEGGER)
+include_directories(
+  ${PROJECT_DIR}/Os
+  ${PROJECT_DIR}/App
+  ${PROJECT_DIR}/App/ble
+  ${PROJECT_DIR}/Bsp
+  ${PROJECT_DIR}/Bsp/ble
+  ${PROJECT_DIR}/Bsp/hal
+  ${PROJECT_DIR}/Debug
+  ${PROJECT_DIR}/Startup
+  ${PROJECT_DIR}/Stubs
+  ${PROJECT_DIR}/Bsp/hal
+  ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32L4xx/Include
+  ${THIRD_PARTY_DIR}/CMSIS/Include
+  ${THIRD_PARTY_DIR}/CMSIS/Include
+  ${THIRD_PARTY_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/includes
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/utils
+  ${THIRD_PARTY_DIR}/Middleware/BlueNRG-MS/hci/hci_tl_patterns/Basic
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/include
+  ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
+  ${THIRD_PARTY_DIR}/SEGGER/Config
+  ${THIRD_PARTY_DIR}/SEGGER/OS
+  ${THIRD_PARTY_DIR}/SEGGER/Patch
+  ${THIRD_PARTY_DIR}/SEGGER/SEGGER
+)
 
 #Files to include
 set(PROJECT_FILES
   ${APP_DIR}/ble/ble_server_legacy.c
   ${APP_DIR}/ble/ble_uuid.cpp
   ${APP_DIR}/stats/stats.cpp
+  ${BSP_DIR}/hal/hal_base.cpp
   ${PROJECT_DIR}/App/ble/ble_server_task.cpp
   ${PROJECT_DIR}/App/user_led/task_user_led.cpp
   ${PROJECT_DIR}/App/stats/task_stats.cpp

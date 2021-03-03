@@ -7,7 +7,7 @@
 #include <hal/hal.h>
 #include <Cfg.h>
 #include <memory>
-#include <gpio/gpio.h>
+#include <gpio.h>
 #include <user_led.h>
 
 #ifdef __cplusplus

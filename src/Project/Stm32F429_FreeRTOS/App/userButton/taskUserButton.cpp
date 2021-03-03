@@ -6,11 +6,9 @@
 #include <task.h>
 #include <Cfg.h>
 #include <memory>
-#include <gpio/gpio.h>
+#include <gpio.h>
 
-#ifdef __cplusplus
 extern "C" {
-#endif
 
 void vTaskButton(void* pvParameters)
 {
@@ -41,7 +39,5 @@ void vTaskButton(void* pvParameters)
   }
 }
 
-#ifdef __cplusplus
 }
-#endif
 

@@ -20,14 +20,9 @@
 
 //Bsp
 #include "stm32f4xx_hal.h"
-#include <hal/hal.h>
-#include <adc/adc.h>
-#include <dma/dma.h>
-#include <fmc/fmc.h>
-#include <gpio/gpio.h>
-#include <i2c/i2c.h>
-#include <ltdc/ltdc.h>
-#include <spi/spi.h>
+#include <hal_base.h>
+#include <hal.h>
+#include <gpio.h>
 #include <system/system.h>
 #include <timer/timer.h>
 #include <usart/usart.h>
@@ -65,7 +60,7 @@ int main(void)
   #endif
 
   /* Init BSP*/
-  HAL_Init();
+  bsp::hal::Init();
   Usart_Init();
   Timer_Init();
 
