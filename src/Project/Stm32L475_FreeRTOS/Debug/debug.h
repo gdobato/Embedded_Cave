@@ -23,6 +23,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+void Debug_Init(void);
 void Debug_PrintMsg(char *msg, ...);
 void Debug_PrintMsgTime(char *msg, ...);
 #ifdef __cplusplus

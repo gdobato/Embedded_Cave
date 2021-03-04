@@ -14,7 +14,7 @@
 #include <hal.h>
 #include <gpio.h>
 #include <system/system.h>
-#include <timer/timer.h>
+#include <timer.h>
 
 /************************************
 * Private definitions 
@@ -40,9 +40,9 @@
 int main(void)
 {
   //Init Bsp
-  bsp::hal::Init();
-  Timer_Init();
-  bsp::gpio::Init();
+  bsp::hal  ::Init();
+  bsp::timer::Init();
+  bsp::gpio ::Init();
 
   
   //Start Os Scheduler

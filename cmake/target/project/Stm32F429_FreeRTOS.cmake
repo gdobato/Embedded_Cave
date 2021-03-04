@@ -33,17 +33,14 @@ set(PROJECT_FILES
   ${APP_DIR}/stats/stats.cpp
   ${BSP_DIR}/hal/hal_base.cpp
   ${PROJECT_DIR}/App/userLed/taskUserLed.cpp
-  ${PROJECT_DIR}/App/stats/taskStats.cpp
   ${PROJECT_DIR}/App/userButton/taskUserButton.cpp
   ${PROJECT_DIR}/main.cpp  
   ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
-  ${PROJECT_DIR}/Bsp/timer/timer.c
+  ${PROJECT_DIR}/Bsp/timer/timer.cpp
   ${PROJECT_DIR}/Bsp/usart/usart.c
-  ${PROJECT_DIR}/Debug/debug.c
-  ${PROJECT_DIR}/Debug/taskDebug.c
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
