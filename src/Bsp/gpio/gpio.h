@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <hal/hal.h>
 
+
+//Basic C++ wrapper
 namespace bsp::gpio
 {
   void Init(void);

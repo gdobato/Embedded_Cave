@@ -36,13 +36,12 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
-  ${PROJECT_DIR}/Bsp/timer/timer.c
-  ${PROJECT_DIR}/Bsp/usart/usart.c
+  ${PROJECT_DIR}/Bsp/timer/timer.cpp
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.cpp
   ${PROJECT_DIR}/tasks.cpp
-  ${PROJECT_DIR}/callouts.c
+  ${PROJECT_DIR}/callouts.cpp
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c

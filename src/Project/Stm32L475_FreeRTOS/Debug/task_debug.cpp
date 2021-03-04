@@ -1,6 +1,6 @@
 #include <cmsis_os.h>
 #include "debug.h"
-#include "taskDebug.h"
+#include "task_debug.h"
 
 
 static xQueueHandle xQueueDebug = NULL;
@@ -8,6 +8,7 @@ static xQueueHandle xQueueDebug = NULL;
 void vTaskDebug(void* pvParamters)
 {
   xQueueDebugData xQueueData;
+  Debug_Init();
   for(;;)
   {
     if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData, portMAX_DELAY))

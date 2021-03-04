@@ -1,5 +1,5 @@
 /**
- * @file 
+ * @file  CPP Wrapper of generated files
  * @author 
  * @date
  * @brief
@@ -8,8 +8,11 @@
 /************************************
 * Includes
 ************************************/
-#include "hal/hal.h"
-#include "stdbool.h"
+#include <hal.h>
+
+
+namespace bsp::timer{
+
  
 /************************************
 * Private variables
@@ -20,17 +23,12 @@ static TIM_HandleTypeDef htim6;
 /************************************
 * Private declarations 
 ************************************/
-static void Timer_ErrorHandler(void);
+static void ErrorHandler(void);
 
 /************************************
 * Implementation 
 ************************************/
-/**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-void Timer_Init(void)
+void Init(void)
 {
 
   /* USER CODE BEGIN TIM1_Init 0 */
@@ -52,18 +50,18 @@ void Timer_Init(void)
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
   {
-    Timer_ErrorHandler();
+    ErrorHandler();
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
   {
-    Timer_ErrorHandler();
+    ErrorHandler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
   {
-    Timer_ErrorHandler();
+    ErrorHandler();
   }
   /* USER CODE BEGIN TIM1_Init 2 */
 
@@ -187,24 +185,14 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 
-uint32_t Timer_GetTick(void)
+void ErrorHandler(void)
+{
+  __asm("nop");
+}
+
+uint32_t Get_Tick(void)
 {
   return HAL_GetTick();
 }
 
-uint32_t Timer_Start(uint32_t ulTimeOut)
-{
-  uint32_t ulTicks = HAL_GetTick();
-  return (uint32_t)(ulTicks + ulTimeOut);
-}
-
-bool Timer_TimeOut(uint32_t ulTime)
-{
-   uint32_t ulTicks = HAL_GetTick();
-   return  (((ulTicks - ulTime ) & (uint32_t)0x80000000UL) == (uint32_t)0U ) ? true : false;
-}
-
-void Timer_ErrorHandler(void)
-{
-  __asm("nop");
 }

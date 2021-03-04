@@ -13,7 +13,6 @@
 
 //Os objects
 #include "FreeRTOS.h"
-#include <taskDebug.h>
 #include <userLed/taskUserLed.h>
 #include <stats/taskStats.h>
 #include <userButton/taskUserButton.h>
@@ -24,7 +23,7 @@
 #include <hal.h>
 #include <gpio.h>
 #include <system/system.h>
-#include <timer/timer.h>
+#include <timer.h>
 #include <usart/usart.h>
 
 //Cfg
@@ -47,8 +46,7 @@
 * Private declarations 
 ************************************/
 static void Error_Handler(void);
-extern "C"
-{
+
 /************************************
 * Implementation 
 ************************************/
@@ -61,8 +59,8 @@ int main(void)
 
   /* Init BSP*/
   bsp::hal::Init();
+  bsp::timer::Init();
   Usart_Init();
-  Timer_Init();
 
   bsp::gpio::Init();
 
@@ -78,11 +76,10 @@ int main(void)
 
   /* Initialize Os objects */
   //Queues
-  vTaskDebug_CreateQueue(3U);
+  //vTaskDebug_CreateQueue(3U);
 
   //Tasks
-  xTaskCreate(vTaskStats  , "Stats"     , 1024, NULL, 2, NULL );
-  xTaskCreate(vTaskDebug  , "Debug"     , 1024, NULL, 2, NULL );
+  //xTaskCreate(vTaskStats  , "Stats"     , 1024, NULL, 2, NULL );
   xTaskCreate(vTaskLed    , "UserLed"   , 256 , NULL, 1, NULL );
   xTaskCreate(vTaskButton , "UserButton", 256 , NULL, 1, NULL );
 
@@ -96,7 +93,6 @@ int main(void)
   }
 
   return 0;
-}
 }
 
 void Error_Handler(void)

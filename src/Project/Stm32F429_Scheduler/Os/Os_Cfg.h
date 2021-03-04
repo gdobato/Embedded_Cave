@@ -2,7 +2,6 @@
 #define __OS_CFG_H__
 
 #include "Os_Types.h"
-#include "timer/timer.h"
 #include "callouts.h"
 #include "tasks.h"
 

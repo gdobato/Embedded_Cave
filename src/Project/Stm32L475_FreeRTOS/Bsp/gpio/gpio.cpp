@@ -1,5 +1,5 @@
 /**
-  * @brief GPIO Initialization Function
+  * @brief CPP wrapper for generate files
   * @param None
   * @retval None
   */

@@ -31,6 +31,8 @@ include_directories(
   ${BSP_DIR}/ble
   ${BSP_DIR}/gpio
   ${BSP_DIR}/hal
+  ${BSP_DIR}/timer
+  ${BSP_DIR}/usart
   ${CONFIG_DIR}
   ${DEBUG_DIR}
   ${PROJECT_DIR}

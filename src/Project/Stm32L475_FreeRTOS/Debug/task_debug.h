@@ -4,6 +4,8 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 
+#define  DEBUG_QUEUE_PRINTMSG            0U
+#define  DEBUG_QUEUE_PRINTMSG_TIMESTAMP  1U
 typedef struct xQueueDebugData
 {
   uint8_t  ucType;
@@ -11,8 +13,6 @@ typedef struct xQueueDebugData
 }xQueueDebugData;
 
 
-#define  DEBUG_QUEUE_PRINTMSG            0U
-#define  DEBUG_QUEUE_PRINTMSG_TIMESTAMP  1U
 
 #ifdef __cplusplus
 extern "C" {

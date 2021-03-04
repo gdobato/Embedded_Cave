@@ -8,10 +8,12 @@
 /************************************
 * Includes
 ************************************/
-#include "hal/hal.h"
-#include "usart/usart.h"
 #include "debug.h"
-#include "timer/timer.h"
+#include <hal.h>
+#include <timer.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
 
 /************************************
 * Private type definitions 
@@ -35,19 +37,25 @@
 /************************************
 * Implementation 
 ************************************/
+#include <usart.h>
+
+//ToDo add proper C++ semihosting artifact
+bsp::usart::Usart usart1 {USART1, 115200};
+
+void Debug_Init(void){usart1.init();}
 void Debug_PrintMsg(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
-  Usart1_Transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)), HAL_MAX_DELAY);
+  CREATE_VAR_BUFF(buff, msg, 1024);
+  usart1.transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)));
 }
 
 void Debug_PrintMsgTime(char *msg, ...)
 {
-  CREATE_VAR_BUFF(buff, msg, 80);
-  uint32_t timems = Timer_GetTick();
+  CREATE_VAR_BUFF(buff, msg, 1024);
+  uint32_t timems = bsp::timer::Get_Tick();
   char auxStr[90];
   sprintf(auxStr, "[%lu ms] : ", timems);
   strcat(auxStr, VAR_BUFF(buff));
-  Usart1_Transmit((uint8_t*)auxStr, strlen((const char *)auxStr), HAL_MAX_DELAY);
-
+  usart1.transmit((uint8_t*)auxStr, strlen((const char *)auxStr));
+   
 }
