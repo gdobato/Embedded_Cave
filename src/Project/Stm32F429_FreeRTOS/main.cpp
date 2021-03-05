@@ -58,11 +58,9 @@ int main(void)
   #endif
 
   /* Init BSP*/
-  bsp::hal::Init();
+  bsp::hal  ::Init();
   bsp::timer::Init();
-  Usart_Init();
-
-  bsp::gpio::Init();
+  bsp::gpio ::Init();
 
   /* ToDo: Implement own API. Remove CMSIS depenencies */
   /* Analyse why sysgroup bit is not 0 by default*/
