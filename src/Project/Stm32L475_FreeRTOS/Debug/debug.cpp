@@ -38,15 +38,15 @@
 * Implementation 
 ************************************/
 #include <usart.h>
-
+#include <string>
 //ToDo add proper C++ semihosting artifact
-bsp::usart::Usart usart1 {USART1, 115200};
+//bsp::usart::Usart usart1 {USART1, 115200};
 
-void Debug_Init(void){usart1.init();}
+void Debug_Init(void){/*usart1.init();*/}
 void Debug_PrintMsg(char *msg, ...)
 {
   CREATE_VAR_BUFF(buff, msg, 1024);
-  usart1.transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)));
+  //usart1.transmit((uint8_t*)VAR_BUFF(buff), strlen((const char *)VAR_BUFF(buff)));
 }
 
 void Debug_PrintMsgTime(char *msg, ...)
@@ -56,6 +56,13 @@ void Debug_PrintMsgTime(char *msg, ...)
   char auxStr[90];
   sprintf(auxStr, "[%lu ms] : ", timems);
   strcat(auxStr, VAR_BUFF(buff));
-  usart1.transmit((uint8_t*)auxStr, strlen((const char *)auxStr));
+  //usart1.transmit((uint8_t*)auxStr, strlen((const char *)auxStr));
    
 }
+
+
+
+#if 0
+template <typename T>
+void Debug_PrintMsgTimeBase(T t)
+#endif
