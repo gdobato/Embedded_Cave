@@ -31,12 +31,12 @@ include_directories(
 #Files to include
 set(PROJECT_FILES
   ${BSP_DIR}/hal/hal_base.cpp
+  ${BSP_DIR}/timer/stm32f4x/timer.cpp
   ${OS_DIR}/Scheduler/Os.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/gpio/gpio.cpp
-  ${PROJECT_DIR}/Bsp/timer/timer.cpp
   ${PROJECT_DIR}/Startup/startup_stm32f429xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
   ${PROJECT_DIR}/main.cpp
