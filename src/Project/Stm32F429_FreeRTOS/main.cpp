@@ -24,7 +24,7 @@
 #include <gpio.h>
 #include <system/system.h>
 #include <timer.h>
-#include <usart/usart.h>
+#include <usart.h>
 
 //Cfg
 #include <Cfg.h>
