@@ -11,7 +11,6 @@
 #include <hal.h>
 
 
-namespace bsp::timer{
 
   
 /************************************
@@ -27,11 +26,12 @@ static TIM_HandleTypeDef htim6;
 /************************************
 * Private declarations 
 ************************************/
-static void ErrorHandler(void);
+
 /************************************
 * Implementation 
 ************************************/
 
+namespace bsp::timer{
 void Init(void)
 {
 
@@ -54,24 +54,26 @@ void Init(void)
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
   {
-    ErrorHandler();
   }
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
   if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
   {
-    ErrorHandler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
   {
-    ErrorHandler();
   }
   /* USER CODE BEGIN TIM1_Init 2 */
 
   /* USER CODE END TIM1_Init 2 */
 }
-
+uint32_t Get_Tick(void)
+{
+  return HAL_GetTick();
+}
+}
+extern "C"{
 /**
   * @brief  This function configures the TIM6 as a time base source. 
   *         The time source is configured  to have 1ms time base with a dedicated 
@@ -186,15 +188,5 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 
-
-void ErrorHandler(void)
-{
-  __asm("nop");
-}
-
-uint32_t Get_Tick(void)
-{
-  return HAL_GetTick();
-}
 
 }

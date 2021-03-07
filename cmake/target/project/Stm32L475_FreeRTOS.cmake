@@ -41,6 +41,7 @@ set(PROJECT_FILES
   ${APP_DIR}/ble/ble_uuid.cpp
   ${APP_DIR}/stats/stats.cpp
   ${BSP_DIR}/hal/hal_base.cpp
+  ${BSP_DIR}/timer/stm32l4x/timer.cpp
   ${BSP_DIR}/usart/usart.cpp
   ${PROJECT_DIR}/App/ble/ble_server_task.cpp
   ${PROJECT_DIR}/App/user_led/task_user_led.cpp
@@ -52,7 +53,6 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/hal/stm32l4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/system/stm32l4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32l4xx.c
-  ${PROJECT_DIR}/Bsp/timer/timer.cpp
   ${PROJECT_DIR}/Debug/debug.cpp
   ${PROJECT_DIR}/Debug/task_debug.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
