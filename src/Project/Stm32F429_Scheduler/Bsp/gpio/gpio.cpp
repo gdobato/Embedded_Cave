@@ -26,6 +26,7 @@
 /************************************
 * Implementation 
 ************************************/
+
 namespace bsp::gpio
 {
 void Init(void)
