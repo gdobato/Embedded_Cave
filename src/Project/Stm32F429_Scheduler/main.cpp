@@ -36,7 +36,6 @@
 * Implementation 
 ************************************/
  
-
 int main(void)
 {
   //Init Bsp
@@ -44,15 +43,13 @@ int main(void)
   bsp::timer::Init();
   bsp::gpio ::Init();
 
-  
   //Start Os Scheduler
   Os_Start();
 
   //Error Hook
   for(;;)
   {
-
+    __asm("nop");
   }
 }
-
 
