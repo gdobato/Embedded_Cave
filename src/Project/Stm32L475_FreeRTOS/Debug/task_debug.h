@@ -8,8 +8,8 @@
 #define  DEBUG_QUEUE_PRINTMSG_TIMESTAMP  1U
 typedef struct xQueueDebugData
 {
-  uint8_t  ucType;
-  char*    pucBuff;
+  uint8_t ucType;
+  char*   pucBuff;
 }xQueueDebugData;
 
 

@@ -9,37 +9,46 @@
 static xQueueHandle xQueueDebug = NULL;
 bsp::usart::Usart usart1 {USART1, 115200};
 
-std::string aux;
-template<typename T>
-void Debug_PrintMsgTime2(T t1)
-{
-  aux.append(t1);
-  /*
-  std::string aux(t1);
-  usart1.transmit(reinterpret_cast<const uint8_t*>(&aux[0]), aux.length());
-  vTaskDelay(pdMS_TO_TICKS(500));
-  */
-   
-}
 
-template<typename T, typename...Ts>
-void Debug_PrintMsgTime2(T t1, Ts... ts)
-{
-  //std::string aux(t1);
-  Debug_PrintMsgTime2(ts...);
-  usart1.transmit(reinterpret_cast<const uint8_t*>(&aux[0]), aux.length());
-   
-}
+/*
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <string>
+using namespace std;
 
-char buffer[256];
+int main()
+{
+    stringstream ss;
+    for (int i = 0; i < 20; i++) {
+        ss << setw(3) << i;
+    }
+    cout << "Resulting string: " << endl;
+    cout << ss.str() << endl;
+    printf("Resulting char*: \n%s\n", ss.str().c_str() );
+    return 0;
+}
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <string>
+
 template<typename T>
 void Debug_PrintMsg3(T t1)
 {
-  std::snprintf(buffer, 256, t1);
-  usart1.transmit(reinterpret_cast<const uint8_t*>(&buffer[0]), strlen((const char *)buffer));
+  auto s = std::to_string(t1);
+  usart1.transmit(reinterpret_cast<const uint8_t*>(s.c_str()), s.length() );
 }
+
+template<>
+void Debug_PrintMsg3(const char* data)
+{
+  usart1.transmit(reinterpret_cast<const uint8_t*>(data), strlen(data) );
+}
+
 template<typename T , typename...Ts>
-//void Debug_PrintMsg3(const char * format, Ts... ts)
 void Debug_PrintMsg3(T t1, Ts... ts)
 {
   Debug_PrintMsg3(t1);
@@ -68,7 +77,7 @@ void vTaskDebug(void* pvParamters)
 
       }
       #else
-      Debug_PrintMsg3("test1", "test2 \n");
+      Debug_PrintMsg3( "test", 1, 2, "\n");
       #endif
     }
   }
