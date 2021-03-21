@@ -8,41 +8,20 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <array>
 
 static xQueueHandle xQueueDebug = NULL;
-bsp::usart::Usart usart1 {USART1, 115200};
-
-
-template<typename T>
-void Debug_PrintMsg3(T t1)
-{
-  auto s = std::to_string(t1);
-  usart1.transmit(reinterpret_cast<const uint8_t*>(s.c_str()), s.length() );
-}
-
-template<>
-void Debug_PrintMsg3(const char* data)
-{
-  usart1.transmit(reinterpret_cast<const uint8_t*>(data), strlen(data) );
-}
-
-template<typename T , typename...Ts>
-void Debug_PrintMsg3(T t1, Ts... ts)
-{
-  Debug_PrintMsg3(t1);
-  Debug_PrintMsg3(ts...);
-}
+;
 
 void vTaskDebug(void* pvParamters)
 {
   xQueueDebugData xQueueData;
   Debug_Init();
-  usart1.init();
   for(;;)
   {
     if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData, portMAX_DELAY))
     {
-      #if 0
+      #if 1
       switch(xQueueData.ucType)
       {
         case DEBUG_QUEUE_PRINTMSG_TIMESTAMP:
@@ -55,7 +34,7 @@ void vTaskDebug(void* pvParamters)
 
       }
       #else
-      Debug_PrintMsg3( "test", 1, 2, "\n");
+      //Debug_PrintMsg3( "test1", "test2");
       #endif
     }
   }
