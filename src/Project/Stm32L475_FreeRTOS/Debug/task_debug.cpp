@@ -4,36 +4,14 @@
 #include <usart.h>
 #include <task.h>
 #include <string>
-#include <stdio.h>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 static xQueueHandle xQueueDebug = NULL;
 bsp::usart::Usart usart1 {USART1, 115200};
 
-
-/*
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <string>
-using namespace std;
-
-int main()
-{
-    stringstream ss;
-    for (int i = 0; i < 20; i++) {
-        ss << setw(3) << i;
-    }
-    cout << "Resulting string: " << endl;
-    cout << ss.str() << endl;
-    printf("Resulting char*: \n%s\n", ss.str().c_str() );
-    return 0;
-}
-*/
-
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <string>
 
 template<typename T>
 void Debug_PrintMsg3(T t1)
