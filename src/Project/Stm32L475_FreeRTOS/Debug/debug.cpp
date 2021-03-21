@@ -38,7 +38,7 @@
 * Implementation 
 ************************************/
 #include <usart.h>
-
+#include <string>
 //ToDo add proper C++ semihosting artifact
 bsp::usart::Usart usart1 {USART1, 115200};
 
@@ -59,3 +59,4 @@ void Debug_PrintMsgTime(char *msg, ...)
   usart1.transmit((uint8_t*)auxStr, strlen((const char *)auxStr));
    
 }
+

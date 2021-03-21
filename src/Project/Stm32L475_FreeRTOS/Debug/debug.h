@@ -26,7 +26,11 @@ extern "C" {
 void Debug_Init(void);
 void Debug_PrintMsg(char *msg, ...);
 void Debug_PrintMsgTime(char *msg, ...);
+void Debug_PrintMsgTime2(char *msg);
+
 #ifdef __cplusplus
 }
 #endif
+
+
 #endif
