@@ -21,16 +21,13 @@ include_directories(
   ${THIRD_PARTY_DIR}/CMSIS/Device/ST/STM32F4xx/Include
   ${THIRD_PARTY_DIR}/CMSIS/Include
   ${THIRD_PARTY_DIR}/Drivers/STM32F4xx_HAL_Driver/Inc
-  ${THIRD_PARTY_DIR}/FreeRTOS/Source/CMSIS_RTOS
-  ${THIRD_PARTY_DIR}/FreeRTOS/Source/include
-  ${THIRD_PARTY_DIR}/FreeRTOS/Source/portable/GCC/ARM_CM4F
 )
 
 #Files to include
 set(PROJECT_FILES
   ${BSP_DIR}/hal/hal_base.cpp
   ${BSP_DIR}/timer/stm32f4x/timer.cpp
-  ${OS_DIR}/Scheduler/Os.cpp
+  ${OS_DIR}/Scheduler/Os.c
   ${PROJECT_DIR}/Bsp/system/stm32f4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32f4xx.c
   ${PROJECT_DIR}/Bsp/hal/stm32f4xx_hal_msp.c
