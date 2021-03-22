@@ -5,7 +5,7 @@
 //Basic C++ wrapper
 namespace bsp::hal
 {
-  void Init(void);
+  void Init();
 }
 
 

@@ -16,7 +16,7 @@ namespace bsp::usart
       Usart(control_block_type ctrl, uint32_t baudrate);
       Usart(const Usart&) = delete;
      ~Usart() = default;
-      void init(void);
+      void init();
       void transmit(const uint8_t* data, uint16_t size);
       void receive (      uint8_t* data, uint16_t size);
 

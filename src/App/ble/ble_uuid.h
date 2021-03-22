@@ -16,7 +16,7 @@ class UUID final
     using str_t = std::string;
 
     UUID(const std::string& uuid);
-    raw_t get_raw(void)const;
+    raw_t get_raw()const;
     ~UUID() = default;
 
   private:

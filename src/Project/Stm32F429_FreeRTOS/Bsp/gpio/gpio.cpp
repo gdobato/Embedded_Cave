@@ -29,7 +29,7 @@
 
 namespace bsp::gpio
 {
-void Init(void)
+void Init()
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 

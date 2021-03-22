@@ -9,8 +9,8 @@
 
 namespace bsp::timer
 {
-  void     Init(void);  
-  uint32_t Get_Tick(void);
+  void     Init();  
+  uint32_t Get_Tick();
 }
 
 #endif

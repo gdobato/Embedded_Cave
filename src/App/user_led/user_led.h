@@ -24,7 +24,7 @@ namespace app::user_led
       User_led& operator=(      User_led&& led) = default;
      ~User_led()=default;
   
-      void toggle(void)
+      void toggle()
       { 
         if (state == LED_OFF)
         {
@@ -39,9 +39,9 @@ namespace app::user_led
           
       }
   
-      void On(void) { state = LED_ON ; gpio_pin::Write(static_cast<bsp::gpio::state_type>(1));}
+      void On() { state = LED_ON ; gpio_pin::Write(static_cast<bsp::gpio::state_type>(1));}
 
-      void Off(void){ state = LED_OFF; gpio_pin::Write(static_cast<bsp::gpio::state_type>(0));}
+      void Off(){ state = LED_OFF; gpio_pin::Write(static_cast<bsp::gpio::state_type>(0));}
 
       state_type getState(void) const { return state;}
   

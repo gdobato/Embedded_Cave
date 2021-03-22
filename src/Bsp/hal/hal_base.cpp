@@ -4,5 +4,5 @@
 
 namespace bsp::hal
 {
-  void Init(void){ HAL_Init(); }
+  void Init(){ HAL_Init(); }
 }
