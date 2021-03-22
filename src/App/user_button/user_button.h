@@ -28,14 +28,14 @@ namespace app::user_button
      ~User_button()=default;
   
 
-      state_type getState(void)
+      state_type getState()
       { 
         state = gpio_pin::Read() == static_cast<bsp::gpio::state_type>(0) ? (pull == PULLDOWN ? RELEASED : PRESSED)
                                                                           : (pull == PULLDOWN ? PRESSED  : RELEASED);
         return state;
       }
       void  register_action (event_type event, action_type action); 
-      void  listener(void);
+      void  listener();
 
     protected:
       state_type state;

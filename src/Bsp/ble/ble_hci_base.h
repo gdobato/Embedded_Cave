@@ -10,7 +10,7 @@ class HCI_Base
 {
   public:
     HCI_Base()=default;
-    void init (void) {};
+    void init () {};
     virtual ~HCI_Base() = default;
 };
 

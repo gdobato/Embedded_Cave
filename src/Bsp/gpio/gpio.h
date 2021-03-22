@@ -8,7 +8,7 @@
 //Basic C++ wrapper
 namespace bsp::gpio
 {
-  void Init(void);
+  void Init();
 
   using port_type  = uintptr_t;
   using pin_type   = uint16_t;
