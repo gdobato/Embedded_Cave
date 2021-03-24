@@ -14,7 +14,7 @@ namespace bsp::usart
   {
     public:
       Usart(control_block_type ctrl, uint32_t baudrate);
-      Usart(const Usart&) = delete;
+      Usart(const Usart&) = default;
      ~Usart() = default;
       void init();
       void transmit(const uint8_t* data, uint16_t size);
@@ -23,6 +23,6 @@ namespace bsp::usart
     private:
       handle_type handle;     
   };
-
+  
 }
 #endif 

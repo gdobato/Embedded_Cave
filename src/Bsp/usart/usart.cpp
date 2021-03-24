@@ -15,9 +15,10 @@ namespace bsp::usart
     handle.Init.Mode         = UART_MODE_TX_RX;
     handle.Init.HwFlowCtl    = UART_HWCONTROL_NONE;
     handle.Init.OverSampling = UART_OVERSAMPLING_16;
+    HAL_UART_Init(&handle);
     
   };
-  void Usart::init() {HAL_UART_Init(&handle);};
+
   void Usart::transmit(const uint8_t* data, uint16_t size)
   { 
     HAL_UART_Transmit(&handle, const_cast<uint8_t*>(data), size, UINT32_C(0xFFFF));

@@ -1,41 +1,32 @@
-#include <cmsis_os.h>
-#include "debug.h"
-#include "task_debug.h"
+#include <task_debug.h>
 #include <usart.h>
 #include <task.h>
-#include <string>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <string>
-#include <array>
+#include <usart.h>
+#include <log.h>
+
+
+bsp::usart::Usart usart1 {USART1, 115200};
+util::log::Serial serial {usart1};
 
 static xQueueHandle xQueueDebug = NULL;
-;
-
 void vTaskDebug(void* pvParamters)
 {
   xQueueDebugData xQueueData;
-  Debug_Init();
   for(;;)
   {
     if(pdTRUE == xQueueReceive (xQueueDebug, &xQueueData, portMAX_DELAY))
     {
-      #if 1
       switch(xQueueData.ucType)
       {
         case DEBUG_QUEUE_PRINTMSG_TIMESTAMP:
-          Debug_PrintMsgTime("%s \n", xQueueData.pucBuff);
+          serial.print_ts(xQueueData.pucBuff, "\n");
           break;
         case DEBUG_QUEUE_PRINTMSG:
         default:
-          Debug_PrintMsg("%s \n", xQueueData.pucBuff);
+          serial.print(xQueueData.pucBuff, "\n");
           break;
 
       }
-      #else
-      //Debug_PrintMsg3( "test1", "test2");
-      #endif
     }
   }
 }
