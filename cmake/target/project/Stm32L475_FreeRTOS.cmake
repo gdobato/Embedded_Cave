@@ -53,7 +53,6 @@ set(PROJECT_FILES
   ${PROJECT_DIR}/Bsp/hal/stm32l4xx_hal_msp.c
   ${PROJECT_DIR}/Bsp/system/stm32l4xx_it.c
   ${PROJECT_DIR}/Bsp/system/system_stm32l4xx.c
-  ${PROJECT_DIR}/Debug/debug.cpp
   ${PROJECT_DIR}/Debug/task_debug.cpp
   ${PROJECT_DIR}/Startup/startup_stm32l475xx.s
   ${PROJECT_DIR}/Startup/Startup_Init.c
