@@ -163,6 +163,7 @@ void DebugMon_Handler(void)
 /**
   * @brief This function handles DMA2D global interrupt.
   */
+#if 0
 void DMA2D_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA2D_IRQn 0 */
@@ -173,7 +174,7 @@ void DMA2D_IRQHandler(void)
 
   /* USER CODE END DMA2D_IRQn 1 */
 }
-
+#endif
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

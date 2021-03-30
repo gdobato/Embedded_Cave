@@ -1,15 +1,13 @@
-#include "userLed.h"
 #include <FreeRTOS.h>
 #include <queue.h>
-#include <taskDebug.h>
 #include "string.h"
 #include <stdio.h>
 #include <task.h>
 #include <hal/hal.h>
 #include <Cfg.h>
 #include <memory>
-#include <gpio/gpio.h>
-
+#include <gpio.h>
+#include <user_led.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,9 +15,8 @@ extern "C" {
 
 void vTaskLed(void* pvParameters)
 {
-  auto redLed   = std::make_unique<UserLed>(Gpio_WriteRedLed);
-  auto greenLed = std::make_unique<UserLed>(Gpio_WriteGreenLed);
-
+  app::user_led::User_led<GPIOG_BASE, LD3_Pin> green_led;
+  app::user_led::User_led<GPIOG_BASE, LD4_Pin> red_led;
   #if (DEBUG_TRACE  == STD_ON)
   xQueueHandle        xQueueDebug = xTaskDebug_GetQueue();
   xQueueDebugData     xQueueData;
@@ -28,7 +25,7 @@ void vTaskLed(void* pvParameters)
   sprintf(xQueueData.pucBuff, "Task Led");
   #endif
 
-  redLed->toggle();
+  red_led.toggle();
 
   for(;;)
   {
@@ -36,8 +33,8 @@ void vTaskLed(void* pvParameters)
     if (pdTRUE == xQueueSend(xQueueDebug, &xQueueData, portMAX_DELAY)) {}
     #endif
 
-    redLed->toggle();
-    greenLed->toggle();
+    red_led.toggle();
+    green_led.toggle();
 
     vTaskDelay(pdMS_TO_TICKS(250));
   }

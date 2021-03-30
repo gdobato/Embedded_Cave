@@ -7,15 +7,13 @@ extern "C" {
 
 void GreenLed_Init(void);
 void RedLed_Init(void);
-
-void GreenLed_Run(void);
-void RedLed_Run(void);
-
-
 void UserButton_Init (void);
-void UserButton_Run (void);
 
-void Dummy_Idle (void);
+void GreenLed_Run(void*);
+void RedLed_Run(void*);
+void UserButton_Run (void*);
+
+void Dummy_Idle (void*);
 
 #ifdef __cplusplus
 }

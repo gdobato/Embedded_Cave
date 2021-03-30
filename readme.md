@@ -1,4 +1,4 @@
-# Mcu Platform
+# Development on STM32 MCUs
 
 ## Prerequisites
 
@@ -33,6 +33,8 @@ python ./run.py Clean
 ```
 python ./run.py Flash
 ```
+###
 
-
+## Build, Flashing and Debug integrated in VS Code
+![alt text](https://github.com/gdobato/embedded-cave/blob/develop/docu/example1.png?raw=true)
 

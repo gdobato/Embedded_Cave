@@ -122,6 +122,18 @@
         {
             "type": "cortex-debug",
             "request": "launch",
+            "servertype": "jlink",
+            "cwd": "/",
+            "armToolchainPath": "${workspaceFolder}/tools/toolchain/LINUX/gcc-arm-none-eabi-8-2019-q3-update/bin/",
+            "executable": "${workspaceFolder}/build/target/bin/Stm32L475_FreeRTOS/Stm32L475_FreeRTOS.elf",
+            "name": "LINUX J-Link Stm32L475_FreeRTOS",
+            "device": "STM32L4S5VI",
+            "svdFile": "${workspaceFolder}/tools/SVD/STM32L4x5.svd",
+            "showDevDebugOutput": true,
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
             "servertype": "openocd",
             "cwd": "/",
             "armToolchainPath": "${workspaceFolder}/tools/toolchain/WIN/gcc-arm-none-eabi-8-2019-q3-update/bin/",

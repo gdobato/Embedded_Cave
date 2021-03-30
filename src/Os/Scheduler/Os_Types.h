@@ -5,7 +5,8 @@
 #include <stdbool.h>
 
 
-typedef void    (*tfpTask)                   (void);
+typedef void    (*tfpTaskInit)               (void);
+typedef void    (*tfpTaskRun)                (void*);
 typedef uint32_t(*tfpTimerStart)             (uint32_t);
 typedef bool    (*tfpTimerTimeOut)           (uint32_t ulTimeOut);
 typedef void    (*tfpInterruptsSwitch)       (void);
@@ -14,7 +15,7 @@ typedef struct tsOsHandler
 {
   tfpTimerStart        fpTimerStart;
   tfpTimerTimeOut      fpTimerTimeOut;
-  tfpTask              fpIdle;
+  tfpTaskRun           fpIdle;
   tfpInterruptsSwitch  fpInterruptsEnable;
   tfpInterruptsSwitch  fpInterruptsDisable;
 }tsOsHandler;
@@ -22,8 +23,8 @@ typedef struct tsOsHandler
 typedef struct tsOsTaskCfg
 {
   uint16_t      unTaskId; 
-  tfpTask       fpInit;
-  tfpTask       fpRun;
+  tfpTaskInit   fpInit;
+  tfpTaskRun    fpRun;
   bool          boAlarm;
   int32_t       ulRunPeriod;
   int32_t       ulRunOffset;

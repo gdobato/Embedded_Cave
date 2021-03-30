@@ -3,6 +3,7 @@
 import os
 import platform
 import sys
+import shutil
 
 #Variables
 ERROR = -1
@@ -38,7 +39,9 @@ def usage():
 def generateFiles(target):
   project = str(target)
   if PLATFORM == "Windows" :
-    os.system ('IF NOT EXIST build ( MKDIR build/target ) ')
+    directory = "build/target" 
+    if not os.path.exists(directory):
+      os.makedirs(directory)
     os.system ('cd build/target && ' + CMAKE + ' -G "MinGW Makefiles" -D"CMAKE_TOOLCHAIN_FILE=windows.cmake" -DPROJECT=' + project + ' ../../cmake/target')
   else :
     os.system ('mkdir -p build/target')
@@ -114,6 +117,7 @@ def optionParser(option):
     "Flash"    : flash,
     "UTest"    : utest 
   }
+ 
   func = switcher.get(option, usage)
   func()
 

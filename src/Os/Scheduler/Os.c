@@ -3,6 +3,7 @@
 ************************************/
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include "Os.h"
 #include "Os_Types.h"
 #include "Os_Cfg.h"
@@ -67,7 +68,7 @@ void Os_Start(void)
       {
          //If any task is waken up deactivate execution of Idle Task
          boExecuteIdle = false;
-         Os_TaskCfg[unTaskIdx].fpRun();
+         Os_TaskCfg[unTaskIdx].fpRun(NULL);
       }
       
     }
@@ -75,7 +76,7 @@ void Os_Start(void)
     //If no task is waken up, call Idle function
     if (boExecuteIdle == true)
     {
-      Os_Handler.fpIdle();
+      Os_Handler.fpIdle(NULL);
 
     }
     

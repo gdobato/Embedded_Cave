@@ -1,11 +1,3 @@
-#
-# Main project cmake file
-#  
-# Author: Gabriel Dobato  dobatog@gmail.com 
-# Author: Jenifer Blanco  jenifer_blanco@hotmail.com
-#
-#
-
 string(ASCII 27 Esc)
 set(ColourReset "${Esc}[m")
 set(ColourBold  "${Esc}[1m")

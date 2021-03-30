@@ -9,11 +9,12 @@
 * Includes
 ************************************/
 #include <Os.h>
-#include <userLed/userLed.h> 
-#include <hal/hal.h>
-#include <gpio/gpio.h>
+#include <user_led.h> 
+#include <hal_base.h>
+#include <hal.h>
+#include <gpio.h>
 #include <system/system.h>
-#include <timer/timer.h>
+#include <timer.h>
 
 /************************************
 * Private definitions 
@@ -35,21 +36,20 @@
 * Implementation 
 ************************************/
  
-
 int main(void)
 {
-  HAL_Init();
-  Gpio_Init();
-  Timer_Init();
-  
+  //Init Bsp
+  bsp::hal  ::Init();
+  bsp::timer::Init();
+  bsp::gpio ::Init();
+
   //Start Os Scheduler
   Os_Start();
 
   //Error Hook
   for(;;)
   {
-
+    __asm("nop");
   }
 }
-
 
