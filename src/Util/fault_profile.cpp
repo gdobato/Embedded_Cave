@@ -38,14 +38,14 @@ namespace util::fault_profile
   
   struct context_t
   {
-    volatile uint32_t r0;
-    volatile uint32_t r1;
-    volatile uint32_t r2;
-    volatile uint32_t r3;
-    volatile uint32_t r12;
-    volatile uint32_t lr;
-    volatile uint32_t pc;
-    volatile xpsr_t   xpsr;
+    uint32_t r0;
+    uint32_t r1;
+    uint32_t r2;
+    uint32_t r3;
+    uint32_t r12;
+    uint32_t lr;
+    uint32_t pc;
+    xpsr_t   xpsr;
   };
   
   union shcsr_t 
@@ -81,13 +81,13 @@ namespace util::fault_profile
      uint8_t raw;
      struct bits 
      {
-       volatile uint8_t iac_viol      : 1;
-       volatile uint8_t dacc_viol     : 1;
-       volatile uint8_t               : 1;
-       volatile uint8_t munstk_err    : 1;
-       volatile uint8_t mstk_err      : 1;
-       volatile uint8_t               : 2;
-       volatile uint8_t mmar_valid    : 1;
+       uint8_t iac_viol      : 1;
+       uint8_t dacc_viol     : 1;
+       uint8_t               : 1;
+       uint8_t munstk_err    : 1;
+       uint8_t mstk_err      : 1;
+       uint8_t               : 2;
+       uint8_t mmar_valid    : 1;
      };
    }; 
   
