@@ -9,20 +9,21 @@
 ************************************/
 extern "C"
 {
-#include <system/system.h> 
-#include <user_led/task_user_led.h> 
-#include <task_debug.h> 
-#include <stats/task_stats.h> 
-#include <ble/ble_server_task.h>
-#include <ble/ble_server_legacy.h>
+  #include <system/system.h> 
+  #include <user_led/task_user_led.h> 
+  #include <task_debug.h> 
+  #include <stats/task_stats.h> 
+  #include <ble/ble_server_task.h>
+  #include <ble/ble_server_legacy.h>
 }
+
 #include <Cfg.h>
 #include <cstdlib>
 #include <gpio.h> 
 #include <user_button.h>
 #include <hal_base.h>
 #include <timer.h>
-
+#include <fault_profile.h>
 /************************************
 * Private definitions 
 ************************************/
@@ -44,6 +45,17 @@ int main(void)
   System_EnableCycleCounter();
   #endif
 
+  #if (FAULT_PROFILE == STD_ON)
+  util::fault_profile::fault_disable_write_buffering();
+  util::fault_profile::fault_enable_usg_fault();
+  util::fault_profile::fault_enable_bus_fault();
+  util::fault_profile::fault_enable_mem_fault();
+  #endif
+
+  #if 0 
+  util::fault_profile::fault_inject_bus_fault();
+  #endif
+
   //Init Bsp
   bsp::hal  ::Init();
   bsp::gpio ::Init();
@@ -53,13 +65,15 @@ int main(void)
   /* Analyse why sysgroup bit is not 0 by default*/
   NVIC_SetPriorityGrouping( 0 );
 
-  Ble_server_init();
-
    /* Start System recording*/
   #if (SYSTEMVIEW == STD_ON)
   SEGGER_SYSVIEW_Conf();
   SEGGER_SYSVIEW_Start();
   #endif
+
+  //ToDo: Deprecated
+  Ble_server_init();
+
 
   vTaskDebug_CreateQueue(3U);
   
