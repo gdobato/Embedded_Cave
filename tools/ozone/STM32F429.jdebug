@@ -35,6 +35,7 @@ void OnProjectLoad (void) {
   //
   // User settings
   //
+  Edit.Preference (PREF_TIMESTAMP_FORMAT, TIMESTAMP_FORMAT_INST_CNT);
   File.Open ("/home/gdobato/Workspace/MCUPlatform/target/build/target/bin/Stm32F429_FreeRTOS/Stm32F429_FreeRTOS.elf");
 }
 

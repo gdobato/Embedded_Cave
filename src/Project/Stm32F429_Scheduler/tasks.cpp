@@ -8,14 +8,14 @@
 app::user_led::User_led<GPIOG_BASE, LD3_Pin> green_led{};
 app::user_led::User_led<GPIOG_BASE, LD4_Pin> red_led{};
 
- void GreenLed_Init (void)
+ void GreenLed_Init (void*)
  {
 
   green_led.On();
 
  }
 
- void RedLed_Init (void)
+ void RedLed_Init (void*)
  {
 
    red_led.Off();
@@ -62,10 +62,11 @@ app::user_led::User_led<GPIOG_BASE, LD4_Pin> red_led{};
 
 }
 
- void UserButton_Init (void){}
+ void UserButton_Init (void*){}
  void UserButton_Run (void*)
  {
-  if(0)
+  #if 0
+  if(1)
   {
     Os_SetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_ON)); 
   }
@@ -73,12 +74,12 @@ app::user_led::User_led<GPIOG_BASE, LD4_Pin> red_led{};
   {
     Os_SetEvent(TASK_RED_LED, OS_EVENT(LED_SWITCH_OFF)); 
   }
+  #endif
  } 
 
  void Dummy_Idle(void*)
  {
-   red_led.On();
  } 
-  
+
   
 

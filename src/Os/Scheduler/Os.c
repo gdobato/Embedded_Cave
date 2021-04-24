@@ -38,7 +38,7 @@ void Os_Start(void)
     }
 
     //Call init functions onces
-    Os_TaskCfg[unTaskIdx].fpInit();
+    Os_TaskCfg[unTaskIdx].fpInit(NULL);
   }
    
   //Never Return loop

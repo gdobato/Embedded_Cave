@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 
-typedef void    (*tfpTaskInit)               (void);
+typedef void    (*tfpTaskInit)               (void*);
 typedef void    (*tfpTaskRun)                (void*);
 typedef uint32_t(*tfpTimerStart)             (uint32_t);
 typedef bool    (*tfpTimerTimeOut)           (uint32_t ulTimeOut);
