@@ -94,6 +94,24 @@
             "problemMatcher": []
         },
         {
+            "label": "Build: Stm32H747_CM7_FreeRTOS",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}",
+             },
+            "command": "",
+            "args": [ "./run.py","Build", "Stm32H747_CM7_FreeRTOS" ],
+            "windows": {
+              "command": "python",
+              "args": [ ".\\run.py","Build", "Stm32H747_CM7_FreeRTOS" ],
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Rebuild",
             "type": "shell",
             "options": {

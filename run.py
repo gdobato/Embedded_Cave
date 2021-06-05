@@ -7,7 +7,7 @@ import shutil
 
 #Variables
 ERROR = -1
-PROJECT_LIST = ["Stm32F429_FreeRTOS", "Stm32L475_FreeRTOS","Stm32L475_IoTOS","Stm32L475_Osek"]
+PROJECT_LIST = ["Stm32F429_FreeRTOS", "Stm32L475_FreeRTOS","Stm32L475_IoTOS","Stm32L475_Osek","Stm32H747_CM7_FreeRTOS"]
 
 #Check platform
 PLATFORM   =  platform.system()
