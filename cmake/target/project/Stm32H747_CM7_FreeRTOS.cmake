@@ -1,6 +1,6 @@
 #Compiler settings
 set(PROJECT_CDEFS "-DSTM32H747xx -DCORE_CM7")
-set(PROJECT_CPU_FLAGS "-mcpu=cortex-m7 -specs=nano.specs -specs=nosys.specs")        
+set(PROJECT_CPU_FLAGS "-mcpu=cortex-m7 -g -O0 -specs=nano.specs -specs=nosys.specs")        
 set(PROJECT_FPU_FLAGS "-mfpu=fpv5-d16 -mfloat-abi=hard")        
 set(PROJECT_LINKER_SCRIPT_FILE "${PROJECT_DIR}/Startup/STM32H747XIHX_FLASH.ld ")        
 set(STARTUP_FILE startup_stm32l475xx.s)
@@ -32,30 +32,30 @@ include_directories(
 
 #Files to include
 set(PROJECT_FILES
-  ${PROJECT_DIR}/main.c
-  ${PROJECT_DIR}/Bsp/system/system_stm32h7xx_dualcore_boot_cm4_cm7.c
-  ${PROJECT_DIR}/Bsp/system/stm32h7xx_it.c
-  ${PROJECT_DIR}/Bsp/hal/stm32h7xx_hal_msp.c
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c;
- #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c;
- #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c;
- #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c;
+  #${PROJECT_DIR}/main.c
+  #${PROJECT_DIR}/Bsp/system/system_stm32h7xx_dualcore_boot_cm4_cm7.c
+  #${PROJECT_DIR}/Bsp/system/stm32h7xx_it.c
+  #${PROJECT_DIR}/Bsp/hal/stm32h7xx_hal_msp.c
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c;
   #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c;
   #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c;
-  ${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c;
+  #${THIRD_PARTY_DIR}/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c;
   #${APP_DIR}/ble/ble_server_legacy.c
   #${APP_DIR}/ble/ble_uuid.cpp
   #${APP_DIR}/stats/stats.cpp
